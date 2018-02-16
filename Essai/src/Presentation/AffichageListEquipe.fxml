@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="479.0" prefWidth="1078.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.AffichageListEquipeController">
+   <children>
+      <TableView fx:id="tabEquipe" layoutX="83.0" layoutY="68.0" onMouseClicked="#tableCliked" prefHeight="200.0" prefWidth="977.0">
+        <columns>
+            <TableColumn fx:id="idEquipe" prefWidth="75.0" text="IDequipe" />
+            <TableColumn fx:id="NE" prefWidth="75.0" text="Nom equipe" />
+          <TableColumn fx:id="E" prefWidth="75.0" text="Entraineur" />
+          <TableColumn fx:id="Drap" prefWidth="75.0" text="Drapeau" />
+            <TableColumn fx:id="Conti" prefWidth="75.0" text="Continant" />
+            <TableColumn fx:id="grop" prefWidth="75.0" text="groupe" />
+            <TableColumn fx:id="MJ" prefWidth="75.0" text="MJ" />
+            <TableColumn fx:id="MG" prefWidth="75.0" text="MG" />
+            <TableColumn fx:id="MP" prefWidth="75.0" text="MP" />
+            <TableColumn fx:id="MN" prefWidth="75.0" text="MN" />
+            <TableColumn fx:id="BE" prefWidth="75.0" text="BE" />
+            <TableColumn fx:id="BM" prefWidth="75.0" text="BM" />
+            <TableColumn fx:id="PTS" prefWidth="75.0" text="PTS" />
+        </columns>
+      </TableView>
+      <TextField fx:id="EN" layoutX="51.0" layoutY="371.0" />
+      <TextField fx:id="Drapo" layoutX="365.0" layoutY="371.0" />
+      <TextField fx:id="JM" layoutX="868.0" layoutY="371.0" />
+      <TextField fx:id="entrain" layoutX="207.0" layoutY="371.0" prefWidth="149.0" />
+      <Button fx:id="Ajout" layoutX="813.0" layoutY="282.0" mnemonicParsing="false" onAction="#valider" text="Ajouter" />
+      <Button fx:id="modif" layoutX="909.0" layoutY="282.0" mnemonicParsing="false" onAction="#modifierequipe" text="modifier" />
+      <Button fx:id="supprimer" layoutX="992.0" layoutY="282.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
+      <Label layoutX="83.0" layoutY="345.0" text="Nom Equipe" />
+      <Label layoutX="268.0" layoutY="344.0" text="Entraineur" />
+      <Label layoutX="426.0" layoutY="353.0" text="Drapeau" />
+      <Label layoutX="587.0" layoutY="353.0" text="Continant" />
+      <Label layoutX="757.0" layoutY="353.0" text="Groupe" />
+      <ComboBox fx:id="Groupa" layoutX="702.0" layoutY="371.0" prefWidth="150.0" />
+      <ComboBox fx:id="continant" layoutX="539.0" layoutY="371.0" prefWidth="150.0" />
+   </children>
+</AnchorPane>

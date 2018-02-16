@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" styleClass="bodybg" stylesheets="@../CSS/dark-theme.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.ClassementParGroupeController">
+   <children>
+      <Separator layoutX="171.0" layoutY="1.0" orientation="VERTICAL" prefHeight="560.0" prefWidth="6.0" />
+      <Pane layoutY="-1.0" prefHeight="600.0" prefWidth="207.0" style="-fx-background-color: #36393B;">
+         <children>
+            <Label layoutX="40.0" layoutY="40.0" prefHeight="17.0" prefWidth="127.0" text="Classement" textFill="#f2ebeb">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Text fill="#fcfcfc" layoutX="38.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nous allons vous recompensez pour votre fidélité" textAlignment="CENTER" wrappingWidth="127.00001287460327">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <JFXButton layoutX="14.0" layoutY="205.0" prefHeight="37.0" prefWidth="141.0" text="Liste Cadeaux" textFill="#fcf9f9">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="tick" layoutX="20.0" layoutY="377.0" onAction="#listesTickets" prefHeight="25.0" prefWidth="118.0" text="Tickets" textFill="#979292">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="voi" layoutX="26.0" layoutY="316.0" onAction="#listesVoitures" prefHeight="25.0" prefWidth="118.0" text="Voitures" textFill="#aeaeae">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="tele" layoutX="20.0" layoutY="260.0" onAction="#listesTelephones" prefHeight="25.0" prefWidth="118.0" text="Téléphones" textFill="#909090">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="achat" layoutX="20.0" layoutY="433.0" onAction="#listesBon" prefHeight="25.0" prefWidth="118.0" text="Bon d'achat" textFill="#979292">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <Separator layoutX="18.0" layoutY="473.0" prefHeight="6.0" prefWidth="150.0" />
+            <Label layoutX="39.0" layoutY="513.0" style="-fx-border-color: #ffffff;" text="Contact US" textFill="#fcf8f8">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Separator layoutX="207.0" layoutY="113.0" prefHeight="6.0" prefWidth="1000.0" />
+      <Pane layoutX="440.0" layoutY="113.0" prefHeight="44.0" prefWidth="338.0" />
+      <TabPane fx:id="tablePane" layoutX="234.0" layoutY="167.0" prefHeight="200.0" prefWidth="535.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="tabA" onSelectionChanged="#listGroupA" text="Groupe A">
+               <content>
+                  <TableView fx:id="table" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="182.0" prefWidth="535.0">
+                    <columns>
+                      <TableColumn fx:id="nomEquipe" prefWidth="75.0" text="Equipe" />
+                        <TableColumn fx:id="matchJoue" prefWidth="42.0" text="MJ" />
+                        <TableColumn fx:id="matchGagne" prefWidth="71.0" text="MG" />
+                        <TableColumn fx:id="matchNull" prefWidth="60.0" text="MN" />
+                        <TableColumn fx:id="matchPerdu" prefWidth="55.0" text="MP" />
+                        <TableColumn fx:id="butMarque" prefWidth="61.0" text="ButM" />
+                        <TableColumn fx:id="bueEncaisse" prefWidth="57.0" text="ButE" />
+                      <TableColumn fx:id="PointEquipe" prefWidth="71.0" text="Pts" />
+                    </columns>
+                  </TableView>
+               </content></Tab>
+          <Tab fx:id="tabB" onSelectionChanged="#listGroupB" text="Groupe B">
+               <content>
+                  <TableView fx:id="table1" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="125.0" prefWidth="535.0">
+                     <columns>
+                        <TableColumn fx:id="nomEquipe1" prefWidth="75.0" text="Equipe" />
+                        <TableColumn fx:id="matchJoue1" prefWidth="42.0" text="MJ" />
+                        <TableColumn fx:id="matchGagne1" prefWidth="71.0" text="MG" />
+                        <TableColumn fx:id="matchNull1" prefWidth="60.0" text="MN" />
+                        <TableColumn fx:id="matchPerdu1" prefWidth="55.0" text="MP" />
+                        <TableColumn fx:id="butMarque1" prefWidth="61.0" text="ButM" />
+                        <TableColumn fx:id="bueEncaisse1" prefWidth="57.0" text="ButE" />
+                        <TableColumn fx:id="PointEquipe1" prefWidth="71.0" text="Pts" />
+                     </columns>
+                  </TableView>
+               </content></Tab>
+            <Tab fx:id="tabC" onSelectionChanged="#listGroupC" text="Groupe C">
+               <content>
+                  <TableView fx:id="table2" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="125.0" prefWidth="535.0">
+                     <columns>
+                        <TableColumn fx:id="nomEquipe2" prefWidth="75.0" text="Equipe" />
+                        <TableColumn fx:id="matchJoue2" prefWidth="42.0" text="MJ" />
+                        <TableColumn fx:id="matchGagne2" prefWidth="71.0" text="MG" />
+                        <TableColumn fx:id="matchNull2" prefWidth="60.0" text="MN" />
+                        <TableColumn fx:id="matchPerdu2" prefWidth="55.0" text="MP" />
+                        <TableColumn fx:id="butMarque2" prefWidth="61.0" text="ButM" />
+                        <TableColumn fx:id="bueEncaisse2" prefWidth="57.0" text="ButE" />
+                        <TableColumn fx:id="PointEquipe2" prefWidth="71.0" text="Pts" />
+                     </columns>
+                  </TableView>
+               </content></Tab>
+            <Tab fx:id="tabD" onSelectionChanged="#listGroupD" text="Groupe D">
+               <content>
+                  <TableView fx:id="table3" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="125.0" prefWidth="535.0">
+                     <columns>
+                        <TableColumn fx:id="nomEquipe3" prefWidth="75.0" text="Equipe" />
+                        <TableColumn fx:id="matchJoue3" prefWidth="42.0" text="MJ" />
+                        <TableColumn fx:id="matchGagne3" prefWidth="71.0" text="MG" />
+                        <TableColumn fx:id="matchNull3" prefWidth="60.0" text="MN" />
+                        <TableColumn fx:id="matchPerdu3" prefWidth="55.0" text="MP" />
+                        <TableColumn fx:id="butMarque3" prefWidth="61.0" text="ButM" />
+                        <TableColumn fx:id="bueEncaisse3" prefWidth="57.0" text="ButE" />
+                        <TableColumn fx:id="PointEquipe3" prefWidth="71.0" text="Pts" />
+                     </columns>
+                  </TableView>
+               </content></Tab>
+            <Tab fx:id="tabE" onSelectionChanged="#listGroupE" text="Groupe E">
+               <content>
+                  <TableView fx:id="table43" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="125.0" prefWidth="535.0">
+                     <columns>
+                        <TableColumn fx:id="nomEquipe43" prefWidth="75.0" text="Equipe" />
+                        <TableColumn fx:id="matchJoue43" prefWidth="42.0" text="MJ" />
+                        <TableColumn fx:id="matchGagne43" prefWidth="71.0" text="MG" />
+                        <TableColumn fx:id="matchNull43" prefWidth="60.0" text="MN" />
+                        <TableColumn fx:id="matchPerdu43" prefWidth="55.0" text="MP" />
+                        <TableColumn fx:id="butMarque43" prefWidth="61.0" text="ButM" />
+                        <TableColumn fx:id="bueEncaisse43" prefWidth="57.0" text="ButE" />
+                        <TableColumn fx:id="PointEquipe43" prefWidth="71.0" text="Pts" />
+                     </columns>
+                  </TableView>
+               </content></Tab>
+            <Tab fx:id="tabF" onSelectionChanged="#listGroupF" text="Groupe F">
+               <content>
+                  <TableView fx:id="table4" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="125.0" prefWidth="535.0">
+                     <columns>
+                        <TableColumn fx:id="nomEquipe4" prefWidth="75.0" text="Equipe" />
+                        <TableColumn fx:id="matchJoue4" prefWidth="42.0" text="MJ" />
+                        <TableColumn fx:id="matchGagne4" prefWidth="71.0" text="MG" />
+                        <TableColumn fx:id="matchNull4" prefWidth="60.0" text="MN" />
+                        <TableColumn fx:id="matchPerdu4" prefWidth="55.0" text="MP" />
+                        <TableColumn fx:id="butMarque4" prefWidth="61.0" text="ButM" />
+                        <TableColumn fx:id="bueEncaisse4" prefWidth="57.0" text="ButE" />
+                        <TableColumn fx:id="PointEquipe4" prefWidth="71.0" text="Pts" />
+                     </columns>
+                  </TableView>
+               </content></Tab>
+            <Tab fx:id="tabG" onSelectionChanged="#listGroupG" text="Groupe G">
+               <content>
+                  <TableView fx:id="table41" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="125.0" prefWidth="535.0">
+                     <columns>
+                        <TableColumn fx:id="nomEquipe41" prefWidth="75.0" text="Equipe" />
+                        <TableColumn fx:id="matchJoue41" prefWidth="42.0" text="MJ" />
+                        <TableColumn fx:id="matchGagne41" prefWidth="71.0" text="MG" />
+                        <TableColumn fx:id="matchNull41" prefWidth="60.0" text="MN" />
+                        <TableColumn fx:id="matchPerdu41" prefWidth="55.0" text="MP" />
+                        <TableColumn fx:id="butMarque41" prefWidth="61.0" text="ButM" />
+                        <TableColumn fx:id="bueEncaisse41" prefWidth="57.0" text="ButE" />
+                        <TableColumn fx:id="PointEquipe41" prefWidth="71.0" text="Pts" />
+                     </columns>
+                  </TableView>
+               </content></Tab>
+            <Tab fx:id="tabH" onSelectionChanged="#listGroupH" text="Groupe H">
+               <content>
+                  <TableView fx:id="table42" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="125.0" prefWidth="535.0">
+                     <columns>
+                        <TableColumn fx:id="nomEquipe42" prefWidth="75.0" text="Equipe" />
+                        <TableColumn fx:id="matchJoue42" prefWidth="42.0" text="MJ" />
+                        <TableColumn fx:id="matchGagne42" prefWidth="71.0" text="MG" />
+                        <TableColumn fx:id="matchNull42" prefWidth="60.0" text="MN" />
+                        <TableColumn fx:id="matchPerdu42" prefWidth="55.0" text="MP" />
+                        <TableColumn fx:id="butMarque42" prefWidth="61.0" text="ButM" />
+                        <TableColumn fx:id="bueEncaisse42" prefWidth="57.0" text="ButE" />
+                        <TableColumn fx:id="PointEquipe42" prefWidth="71.0" text="Pts" />
+                     </columns>
+                  </TableView>
+               </content></Tab>
+        </tabs>
+      </TabPane>
+      <JFXListView fx:id="listView" layoutX="807.0" layoutY="225.0" prefHeight="310.0" prefWidth="270.0" />
+   </children>
+</AnchorPane>

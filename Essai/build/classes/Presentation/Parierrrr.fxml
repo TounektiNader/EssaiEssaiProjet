@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.ParierrrrController">
+   <children>
+      <TableView fx:id="table" layoutX="243.0" layoutY="176.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#userClickedOnTable" prefHeight="226.0" prefWidth="478.0">
+         <columns>
+            <TableColumn fx:id="columDate" prefWidth="129.0" text="Date Match" />
+            <TableColumn fx:id="columnGroup" minWidth="0.0" prefWidth="135.0" text="Groupe" />
+            <TableColumn fx:id="ColumAway" prefWidth="108.0" text="Away" />
+            <TableColumn fx:id="ColumHome" prefWidth="125.0" text="Home" />
+         </columns>
+      </TableView>
+      <HBox layoutX="429.0" layoutY="34.0" prefHeight="45.0" prefWidth="291.0">
+         <children>
+            <Button fx:id="btAffiche" mnemonicParsing="false" onAction="#importContenu" prefHeight="30.0" prefWidth="160.0" text="Afficher" />
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="128.0" text="Button" />
+         </children>
+      </HBox>
+      <Button fx:id="parier" layoutX="780.0" layoutY="22.0" mnemonicParsing="false" onAction="#PariView" prefHeight="25.0" prefWidth="145.0" text="Parier " />
+      <Pane prefHeight="600.0" prefWidth="207.0" style="-fx-background-color: #36393B;">
+         <children>
+            <Text fill="#fcfcfc" layoutX="38.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nous allons vous recompensez pour votre fidélité" textAlignment="CENTER" wrappingWidth="127.00001287460327">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <JFXButton layoutX="31.0" layoutY="254.0" prefHeight="37.0" prefWidth="141.0" text="Liste Cadeaux" textFill="#fcf9f9">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="tick" layoutX="20.0" layoutY="368.0" onAction="#listesTickets" prefHeight="25.0" prefWidth="118.0" text="Tickets" textFill="#979292">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="voi" layoutX="26.0" layoutY="339.0" onAction="#listesVoitures" prefHeight="25.0" prefWidth="118.0" text="Voitures" textFill="#aeaeae">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="tele" layoutX="33.0" layoutY="309.0" onAction="#listesTelephones" prefHeight="25.0" prefWidth="118.0" text="Téléphones" textFill="#909090">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="achat" layoutX="34.0" layoutY="397.0" onAction="#listesBon" prefHeight="25.0" prefWidth="118.0" text="Bon d'achat" textFill="#979292">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <Label fx:id="nombreTel" alignment="CENTER" layoutX="156.0" layoutY="313.0" prefHeight="17.0" prefWidth="18.0" style="-fx-background-color: #1563CC;" text="2" textAlignment="CENTER" textFill="#f8f4f4">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Separator layoutX="29.0" layoutY="437.0" prefHeight="6.0" prefWidth="150.0" />
+            <Label layoutX="63.0" layoutY="474.0" style="-fx-border-color: #ffffff;" text="Contact US" textFill="#fcf8f8">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="nombreBon" alignment="CENTER" layoutX="156.0" layoutY="401.0" prefHeight="17.0" prefWidth="18.0" style="-fx-background-color: #1563CC;" text="2" textAlignment="CENTER" textFill="#f8f4f4">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="nombreTicket" alignment="CENTER" layoutX="156.0" layoutY="372.0" prefHeight="17.0" prefWidth="18.0" style="-fx-background-color: #1563CC;" text="2" textAlignment="CENTER" textFill="#f8f4f4" />
+            <Label fx:id="nombreVoiture" alignment="CENTER" layoutX="155.0" layoutY="343.0" prefHeight="17.0" prefWidth="18.0" style="-fx-background-color: #1563CC;" text="2" textAlignment="CENTER" textFill="#f8f4f4">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Separator layoutX="207.0" layoutY="101.0" prefHeight="6.0" prefWidth="791.0" />
+      <Separator layoutX="759.0" layoutY="98.0" orientation="VERTICAL" prefHeight="318.0" prefWidth="6.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bdc5cd" height="185.0" layoutX="802.0" layoutY="197.0" opacity="0.43" stroke="BLACK" strokeType="INSIDE" width="145.0" />
+      <JFXRadioButton fx:id="home" layoutX="811.0" layoutY="243.0" onAction="#changedRadio" text="Home">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/tunsie.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <toggleGroup>
+            <ToggleGroup fx:id="toggle" />
+         </toggleGroup>
+      </JFXRadioButton>
+      <JFXRadioButton fx:id="away" layoutX="813.0" layoutY="266.0" onAction="#changedRadio" text="Away" toggleGroup="$toggle">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/france.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXRadioButton>
+      <JFXRadioButton fx:id="eg" layoutX="814.0" layoutY="300.0" onAction="#changedRadio" prefHeight="17.0" prefWidth="87.0" text="Egalite" toggleGroup="$toggle" />
+      <JFXButton fx:id="sv" layoutX="880.0" layoutY="336.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#parier" prefHeight="35.0" prefWidth="42.0" ripplerFill="#f51616" text="Save" textFill="#2935b5">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="27.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/save.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="reset" layoutX="818.0" layoutY="336.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#reset" prefHeight="35.0" prefWidth="42.0" ripplerFill="#3c3838" text="Reset" textFill="#2935b5">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <graphic>
+            <ImageView fx:id="rs" fitHeight="27.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/reset.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton layoutX="804.0" layoutY="206.0" prefHeight="37.0" prefWidth="141.0" text="Parier" textFill="#415087">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </JFXButton>
+      <Label alignment="CENTER" layoutX="355.0" layoutY="129.0" prefHeight="27.0" prefWidth="219.0" text="Match A parier " textAlignment="JUSTIFY" textFill="#415087">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <PieChart fx:id="pieHome" layoutX="246.0" layoutY="429.0" prefHeight="150.0" prefWidth="309.0" />
+      <PieChart fx:id="pieAway" layoutX="587.0" layoutY="429.0" prefHeight="134.0" prefWidth="351.0" />
+      <Separator layoutX="207.0" layoutY="417.0" prefHeight="6.0" prefWidth="791.0" />
+      <Label fx:id="labelHome" alignment="CENTER" layoutX="246.0" layoutY="416.0" prefHeight="27.0" prefWidth="184.0" textAlignment="JUSTIFY" textFill="#415087">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelAway" alignment="CENTER" layoutX="667.0" layoutY="416.0" prefHeight="17.0" prefWidth="184.0" textAlignment="JUSTIFY" textFill="#415087">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Separator layoutX="552.0" layoutY="418.0" orientation="VERTICAL" prefHeight="173.0" prefWidth="6.0" />
+   </children>
+</AnchorPane>

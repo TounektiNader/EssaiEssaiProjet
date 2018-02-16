@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<repertoire>
+  <personne>
+    <nom>maha</nom>
+    <prenom>maha</prenom>
+    <mail>true</mail>
+    <pseudo>maha</pseudo>
+    <mdp>000</mdp>
+    <role>maha@gmail.Com</role>
+    <nationalite>Tunisie</nationalite>
+    <jeton>20</jeton>
+    <status>true</status>
+  </personne>
+</repertoire>

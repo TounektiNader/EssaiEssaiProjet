@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" styleClass="bodybg" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Separator layoutX="171.0" layoutY="1.0" orientation="VERTICAL" prefHeight="560.0" prefWidth="6.0" />
+      <Pane layoutY="-1.0" prefHeight="600.0" prefWidth="207.0" style="-fx-background-color: #36393B;">
+         <children>
+            <Label layoutX="40.0" layoutY="40.0" prefHeight="17.0" prefWidth="127.0" text="Gérer Cadeaux" textFill="#f2ebeb">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Text fill="#fcfcfc" layoutX="38.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nous allons vous recompensez pour votre fidélité" textAlignment="CENTER" wrappingWidth="127.00001287460327">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <JFXButton layoutX="31.0" layoutY="200.0" prefHeight="37.0" prefWidth="141.0" text="Liste Cadeaux" textFill="#fcf9f9">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="tick" layoutX="20.0" layoutY="368.0" onAction="#listesTickets" prefHeight="25.0" prefWidth="118.0" text="Tickets" textFill="#979292">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="voi" layoutX="26.0" layoutY="339.0" onAction="#listesVoitures" prefHeight="25.0" prefWidth="118.0" text="Voitures" textFill="#aeaeae">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="tele" layoutX="33.0" layoutY="309.0" onAction="#listesTelephones" prefHeight="25.0" prefWidth="118.0" text="Téléphones" textFill="#909090">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="achat" layoutX="34.0" layoutY="397.0" onAction="#listesBon" prefHeight="25.0" prefWidth="118.0" text="Bon d'achat" textFill="#979292">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <Separator layoutX="29.0" layoutY="437.0" prefHeight="6.0" prefWidth="150.0" />
+            <Label layoutX="63.0" layoutY="474.0" style="-fx-border-color: #ffffff;" text="Contact US" textFill="#fcf8f8">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Separator layoutX="208.0" layoutY="313.0" prefHeight="6.0" prefWidth="1000.0" />
+   </children>
+</AnchorPane>

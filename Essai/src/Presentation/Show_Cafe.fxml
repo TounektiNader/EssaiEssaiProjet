@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1200.0" styleClass="mainFxmlClass" stylesheets="@overview.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.Show_CafeController">
+   <children>
+      <ScrollPane fitToWidth="true" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="1400.0" prefViewportHeight="800.0" prefViewportWidth="1200.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <BorderPane prefHeight="1026.0" prefWidth="1360.0" styleClass="borderContainer" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <bottom>
+                  <AnchorPane prefHeight="45.0" prefWidth="1200.0" styleClass="footer" BorderPane.alignment="CENTER">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </AnchorPane>
+               </bottom>
+               <center>
+                  <AnchorPane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="960.0" style="-fx-background-color: #EBEBEB; -fx-background-radius: 5.0;" styleClass="tabbedPane" BorderPane.alignment="CENTER">
+                     <children>
+                        <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="3326.0" prefWidth="960.0" style="-fx-background-color: #EBEBEB; -fx-background-radius: 5.0;" styleClass="toolbar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane maxWidth="-Infinity" minHeight="-Infinity" prefHeight="40.0">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets top="2.0" />
+                                 </padding>
+                                 <children>
+                                    <ToolBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="960.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <padding>
+                                          <Insets left="28.0" right="10.0" />
+                                       </padding>
+                                    </ToolBar>
+                                    <ToolBar layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="960.0" style="-fx-background-color: transparent;">
+                                       <items>
+                                          <HBox alignment="CENTER_LEFT" minHeight="-Infinity" prefHeight="40.0" prefWidth="901.0" spacing="5.0">
+                                             <children>
+                                                <Button fx:id="bt_menu" mnemonicParsing="false" onAction="#menu" prefHeight="31.0" prefWidth="78.0">
+                                                   <graphic>
+                                                      <ImageView fitHeight="21.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../img/home.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
+                                                <Button fx:id="hotels" mnemonicParsing="false" onAction="#hotels" prefHeight="32.0" prefWidth="160.0" text="Hotels">
+                                                   <graphic>
+                                                      <ImageView fitHeight="21.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../img/hotel.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
+                                                <Button fx:id="cafes" mnemonicParsing="false" onAction="#cafes" prefHeight="32.0" prefWidth="160.0" text="Cafés" textFill="#7f1673">
+                                                   <graphic>
+                                                      <ImageView fitHeight="21.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../img/cafe.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
+                                                <Button fx:id="restos" mnemonicParsing="false" onAction="#restos" prefHeight="32.0" prefWidth="160.0" text="Restaurants">
+                                                   <graphic>
+                                                      <ImageView fitHeight="21.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../img/resto.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
+                                                <Button fx:id="stades" mnemonicParsing="false" onAction="#stades" prefHeight="32.0" prefWidth="160.0" text="Stades">
+                                                   <graphic>
+                                                      <ImageView fitHeight="21.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../img/stadium.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
+                                                <Button fx:id="villes" mnemonicParsing="false" onAction="#villes" prefHeight="32.0" prefWidth="160.0" text="Villes">
+                                                   <graphic>
+                                                      <ImageView fitHeight="21.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../img/city.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                       </items>
+                                       <padding>
+                                          <Insets left="28.0" right="10.0" />
+                                       </padding>
+                                    </ToolBar>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="770.0" prefWidth="960.0" style="-fx-background-color: #FAFAFA; -fx-background-radius: 10.0;" styleClass="content-wrap">
+                                 <children>
+                                    <VBox fx:id="mainContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="770.0" prefWidth="960.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <AnchorPane fx:id="imgcafe" prefHeight="602.0" prefWidth="960.0">
+                                             <children>
+                                                <ButtonBar layoutX="548.0" layoutY="269.0" prefHeight="40.0" prefWidth="200.0" />
+                                                <AnchorPane layoutX="100.0" layoutY="450.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="450.0" />
+                                                <Separator layoutX="5.0" layoutY="408.0" prefHeight="2.0" prefWidth="952.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+                                                <Label fx:id="details" layoutX="455.0" layoutY="437.0">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <ImageView fx:id="imgcafe" fitHeight="397.0" fitWidth="950.0" pickOnBounds="true" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                                
+                                                           
+                                                
+                                                            
+                                             </children>
+                                          </AnchorPane>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets top="25.0" />
+                                 </VBox.margin>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                     </children>
+                     <opaqueInsets>
+                        <Insets bottom="25.0" />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="20.0" />
+                     </padding>
+                  </AnchorPane>
+               </center>
+               <top>
+                  <AnchorPane prefHeight="128.5" prefWidth="1200.0" styleClass="header" BorderPane.alignment="CENTER">
+                     <children>
+                        <BorderPane prefHeight="200.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <center>
+                              <AnchorPane minWidth="-Infinity" prefHeight="70.0" prefWidth="350.0" BorderPane.alignment="CENTER">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <BorderPane.margin>
+                                    <Insets />
+                                 </BorderPane.margin>
+                                 <children>
+                                    <Label fx:id="cafe_name" layoutX="14.0" layoutY="37.0" prefHeight="101.0" prefWidth="449.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
+                                       <font>
+                                          <Font name="Lucida Calligraphy Italic" size="36.0" />
+                                       </font>
+                                    </Label>
+                                    <Separator layoutX="12.0" layoutY="128.0" prefWidth="200.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+                                    <Button fx:id="bt_loc" layoutX="1063.0" layoutY="26.0" mnemonicParsing="false" onAction="#Localiser" prefHeight="100.0" prefWidth="100.0" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+                                       <graphic>
+                                          <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../img/map.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                           </center>
+                        </BorderPane>
+                     </children>
+                  </AnchorPane>
+               </top>
+            </BorderPane>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

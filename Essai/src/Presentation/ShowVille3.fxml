@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1200.0" styleClass="mainFxmlClass" stylesheets="@overview.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.ShowVille3Controller">
+   <children>
+      <ScrollPane fitToWidth="true" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="1400.0" prefViewportHeight="800.0" prefViewportWidth="1200.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <BorderPane prefHeight="1026.0" prefWidth="1360.0" styleClass="borderContainer" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <bottom>
+                  <AnchorPane prefHeight="45.0" prefWidth="1200.0" styleClass="footer" BorderPane.alignment="CENTER">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </AnchorPane>
+               </bottom>
+               <center>
+                  <AnchorPane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="960.0" style="-fx-background-color: #EBEBEB; -fx-background-radius: 5.0;" styleClass="tabbedPane" BorderPane.alignment="CENTER">
+                     <children>
+                        <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="3326.0" prefWidth="960.0" style="-fx-background-color: #EBEBEB; -fx-background-radius: 5.0;" styleClass="toolbar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane maxWidth="-Infinity" minHeight="-Infinity" prefHeight="40.0">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets top="2.0" />
+                                 </padding>
+                                 <children>
+                                    <ToolBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="960.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <padding>
+                                          <Insets left="28.0" right="10.0" />
+                                       </padding>
+                                    </ToolBar>
+                                    <ToolBar layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="960.0" style="-fx-background-color: transparent;">
+                                       <items>
+                                          <HBox alignment="CENTER_LEFT" minHeight="-Infinity" prefHeight="40.0" prefWidth="901.0" spacing="5.0">
+                                             <children>
+                                                <Button fx:id="bt_menu" mnemonicParsing="false" onAction="#menu" prefHeight="31.0" prefWidth="78.0">
+                                                   <graphic>
+                                                      <ImageView fitHeight="21.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../img/home.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                       </items>
+                                       <padding>
+                                          <Insets left="28.0" right="10.0" />
+                                       </padding>
+                                    </ToolBar>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="770.0" prefWidth="960.0" style="-fx-background-color: #FAFAFA; -fx-background-radius: 10.0;" styleClass="content-wrap">
+                                 <children>
+                                    <VBox fx:id="mainContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="770.0" prefWidth="960.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <AnchorPane prefHeight="602.0" prefWidth="960.0">
+                                             <children>
+                                                <ButtonBar layoutX="548.0" layoutY="269.0" prefHeight="40.0" prefWidth="200.0" />
+                                                <ImageView fx:id="imgville" fitHeight="350.0" fitWidth="950.0" layoutX="205.0" layoutY="39.0" pickOnBounds="true" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                                <AnchorPane layoutX="100.0" layoutY="450.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="450.0" />
+                                                <Separator layoutX="380.0" layoutY="413.0" prefHeight="2.0" prefWidth="952.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+                                                <Separator layoutX="5.0" layoutY="358.0" prefHeight="2.0" prefWidth="952.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+                                                <GridPane layoutY="361.0" prefHeight="50.0" prefWidth="950.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
+                                                  <columnConstraints>
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="40.0" />
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="70.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="40.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="77.59997558593747" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="40.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="70.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="40.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="90.39999999999998" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="60.0" />
+                                                  </columnConstraints>
+                                                  <rowConstraints>
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                  </rowConstraints>
+                                                   <children>
+                                                      <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../img/foundation.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <Label text="Fondation :" GridPane.columnIndex="1">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="fondation" text="Label" GridPane.columnIndex="2">
+                                                         <font>
+                                                            <Font name="System Bold" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+                                                         <image>
+                                                            <Image url="@../img/population.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <Label text="Population :" GridPane.columnIndex="4">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="population" text="Label" GridPane.columnIndex="5">
+                                                         <font>
+                                                            <Font name="System Bold" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6">
+                                                         <image>
+                                                            <Image url="@../img/time.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <Label text="Timezone :" GridPane.columnIndex="7">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="time" text="Label" GridPane.columnIndex="8">
+                                                         <font>
+                                                            <Font name="System Bold" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="9">
+                                                         <image>
+                                                            <Image url="@../img/equipe.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <Label text="Equipe locale :" GridPane.columnIndex="10">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="equipe" text="Label" GridPane.columnIndex="11">
+                                                         <font>
+                                                            <Font name="System Bold" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Button fx:id="local" mnemonicParsing="false" onAction="#Localiser" prefHeight="50.0" prefWidth="60.0" GridPane.columnIndex="12">
+                                                         <graphic>
+                                                            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../img/map.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                   </children>
+                                                </GridPane>
+                                                <TabPane layoutX="382.0" layoutY="416.0" prefHeight="350.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
+                                                  <tabs>
+                                                    <Tab text="Hotels">
+                                                         <content>
+                                                            <TableView fx:id="table_hotels" prefHeight="200.0" prefWidth="200.0">
+                                                              <columns>
+                                                                <TableColumn fx:id="nomh" prefWidth="200.0" text="Nom" />
+                                                                <TableColumn fx:id="detailsh" prefWidth="561.6000366210938" text="Détails" />
+                                                                  <TableColumn fx:id="coordh" prefWidth="191.99993896484375" text="Coordonnées" />
+                                                              </columns>
+                                                            </TableView>
+                                                         </content>
+                                                      </Tab>
+                                                    <Tab text="Cafés">
+                                                         <content>
+                                                            <TableView fx:id="table_cafes" prefHeight="200.0" prefWidth="200.0">
+                                                               <columns>
+                                                                  <TableColumn fx:id="nomc" prefWidth="200.0" text="Nom" />
+                                                                  <TableColumn fx:id="detailsc" prefWidth="561.6000366210938" text="Détails" />
+                                                                  <TableColumn fx:id="coordc" prefWidth="191.99993896484375" text="Coordonnées" />
+                                                               </columns>
+                                                            </TableView>
+                                                         </content>
+                                                      </Tab>
+                                                      <Tab text="Restaurants">
+                                                         <content>
+                                                            <TableView prefHeight="200.0" prefWidth="200.0">
+                                                              <columns>
+                                                                <TableColumn prefWidth="75.0" text="C1" />
+                                                                <TableColumn prefWidth="75.0" text="C2" />
+                                                              </columns>
+                                                            </TableView>
+                                                         </content>
+                                                         <content>
+                                                            <TableView fx:id="table_restos" prefHeight="200.0" prefWidth="200.0">
+                                                               <columns>
+                                                                  <TableColumn fx:id="nomr" prefWidth="200.0" text="Nom" />
+                                                                  <TableColumn fx:id="detailsr" prefWidth="561.6000366210938" text="Détails" />
+                                                                  <TableColumn fx:id="coordr" prefWidth="191.99993896484375" text="Coordonnées" />
+                                                               </columns>
+                                                            </TableView>
+                                                         </content>
+                                                      </Tab>
+                                                      <Tab text="Stades">
+                                                         <content>
+                                                            <TableView fx:id="table_stades" prefHeight="200.0" prefWidth="200.0">
+                                                               <columns>
+                                                                  <TableColumn fx:id="noms" prefWidth="200.0" text="Nom" />
+                                                                  <TableColumn fx:id="fondations" prefWidth="120.0" text="Fondation" />
+                                                                  <TableColumn fx:id="capacites" prefWidth="191.99993896190483" text="Capacité" />
+                                                                  <TableColumn fx:id="equipes" prefWidth="225.0" text="Equipe locale" />
+                                                                  <TableColumn fx:id="coords" prefWidth="215.20002441406245" text="Coordonnées" />
+                                                               </columns>
+                                                            </TableView>
+                                                         </content>
+                                                      </Tab>
+                                                  </tabs>
+                                                </TabPane>
+                                                
+                                                           
+                                                
+                                                            
+                                             </children>
+                                          </AnchorPane>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets top="25.0" />
+                                 </VBox.margin>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                     </children>
+                     <opaqueInsets>
+                        <Insets bottom="25.0" />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="20.0" />
+                     </padding>
+                  </AnchorPane>
+               </center>
+               <top>
+                  <AnchorPane prefHeight="128.5" prefWidth="1200.0" styleClass="header" BorderPane.alignment="CENTER">
+                     <children>
+                        <BorderPane prefHeight="200.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <center>
+                              <AnchorPane minWidth="-Infinity" prefHeight="70.0" prefWidth="350.0" BorderPane.alignment="CENTER">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <BorderPane.margin>
+                                    <Insets />
+                                 </BorderPane.margin>
+                                 <children>
+                                    <Label fx:id="city_name" layoutX="14.0" layoutY="37.0" maxHeight="-Infinity" minWidth="-Infinity" prefHeight="101.0" prefWidth="500.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="15.0">
+                                       <font>
+                                          <Font name="Lucida Calligraphy Italic" size="36.0" />
+                                       </font>
+                                    </Label>
+                                    <ImageView fx:id="logoequipe" fitHeight="100.0" fitWidth="100.0" layoutX="971.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                                    <ImageView fx:id="logoville" fitHeight="100.0" fitWidth="100.0" layoutX="47.0" layoutY="-10.0" pickOnBounds="true" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                                    <Separator layoutX="12.0" layoutY="128.0" prefWidth="200.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+                                 </children>
+                              </AnchorPane>
+                           </center>
+                        </BorderPane>
+                     </children>
+                  </AnchorPane>
+               </top>
+            </BorderPane>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

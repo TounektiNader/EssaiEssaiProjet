@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="150.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.MatchAparierController">
+   <children>
+      <Button layoutX="329.0" layoutY="156.0" mnemonicParsing="false" onAction="#parier" prefHeight="29.0" prefWidth="84.0" style="-fx-background-color: #E45652;" text="confimer" />
+      <Label fx:id="labes" layoutX="30.0" layoutY="162.0" prefHeight="17.0" prefWidth="192.0" text="Label" />
+      <Button layoutX="242.0" layoutY="156.0" mnemonicParsing="false" onAction="#changeScreenButtonPushed" prefHeight="29.0" prefWidth="84.0" style="-fx-background-color: #E45652;" text="Retour" />
+      <HBox layoutX="30.0" layoutY="45.0" prefHeight="77.0" prefWidth="396.0" spacing="30.0">
+         <children>
+            <JFXRadioButton fx:id="home" onAction="#changedRadio" text="Home">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/tunsie.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <toggleGroup>
+                  <ToggleGroup fx:id="toggle" />
+               </toggleGroup>
+            </JFXRadioButton>
+            <JFXRadioButton fx:id="away" onAction="#changedRadio" text="Away" toggleGroup="$toggle">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/france.jpg" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXRadioButton>
+            <JFXRadioButton fx:id="eg" onAction="#changedRadio" prefHeight="17.0" prefWidth="109.0" text="Egalite" toggleGroup="$toggle" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
