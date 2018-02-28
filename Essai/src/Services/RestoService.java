@@ -68,10 +68,15 @@ public class RestoService implements Iresto
     {
         try
         {
-        String update = "UPDATE restos SET positionresto = ? WHERE nomresto = ?";
+        String update = "UPDATE restos SET nomresto = ?, detailsresto = ?, positionresto = ?, photoresto = ?, idville = ? WHERE idresto = ?";
         PreparedStatement statement2 = connexion.prepareStatement(update);
-        statement2.setString(1, "Hamza");
-        statement2.setString(2, p.getNom());
+        statement2.setString(1, p.getNom());
+        statement2.setString(2, p.getDetails());
+        statement2.setString(3, p.getPosition());
+        statement2.setString(4, p.getPhoto());
+        statement2.setInt(5, p.getRestoVille().getId());
+        statement2.setInt(6, p.getId());
+        System.out.println(p.getId());
         statement2.executeUpdate();
         System.out.println("Resto "+p.getNom()+" modifié !!!");
         
@@ -174,5 +179,30 @@ public class RestoService implements Iresto
                     System.err.println("VnedorError: "+e.getErrorCode());
                 }
         return lv;
+    }
+
+    @Override
+    public int Nmbr() 
+    {
+        int res=0;
+        try 
+        {
+        String select = "SELECT count(idresto) FROM restos;";
+        Statement statement1 = connexion.createStatement();
+      
+        ResultSet result = statement1.executeQuery(select);
+        
+        while (result.next()) 
+        {
+            res = result.getInt("count(idresto)");
+        }
+}
+        catch (SQLException e)
+                {
+                    System.err.println("SQLException: "+e.getMessage());
+                    System.err.println("SQLSTATE: "+e.getSQLState());
+                    System.err.println("VnedorError: "+e.getErrorCode());
+                }
+        return res;
     }
 }

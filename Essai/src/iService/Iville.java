@@ -11,4 +11,5 @@ public interface Iville
     public List<EntiteVille> listVilles();
     public List<String> ReturnNames();
     public int ReturnId(String nom);
+    public int Nmbr();
 }

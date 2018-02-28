@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <repertoire>
   <personne>
-    <nom>maha</nom>
-    <prenom>maha</prenom>
-    <mail>true</mail>
-    <pseudo>maha</pseudo>
-    <mdp>000</mdp>
-    <role>maha@gmail.Com</role>
+    <nom>tounekti</nom>
+    <prenom>nader</prenom>
+    <mail>Tounektii@esprit.tn</mail>
+    <pseudo>titou</pseudo>
+    <mdp>123</mdp>
+    <role>Utilisateur</role>
     <nationalite>Tunisie</nationalite>
-    <jeton>20</jeton>
+    <jeton>39</jeton>
     <status>true</status>
+    <num>+21650649211</num>
   </personne>
 </repertoire>

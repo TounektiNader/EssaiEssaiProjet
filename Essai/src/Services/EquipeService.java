@@ -20,8 +20,11 @@ import java.util.logging.Logger;
 import jdk.nashorn.internal.ir.CatchNode;
 import DateStroge.MyConnection;
 import Entity.Cadeau;
+import java.util.Optional;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 /**
  *
  * @author elbrh
@@ -89,34 +92,50 @@ public class EquipeService implements IEquipe{
 }
      
     
- @Override
+  @Override
     public void supprimerEquipe(Equipe E) {////////////////////////////////////////////////////////////////////////
-        try {
-            Statement stmt=conn.createStatement();
-          
-            stmt.executeUpdate("Delete from Equipe where NomEquipe='"+E.getNomEquipe()+"'");
-            System.out.println("Lequipe a ete suprimer");
-            
-        } catch (Exception e) {
-            System.err.println("Echec");
-        }
-    
-        
+    {
+         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Alerte suppression");
+        alert.setHeaderText("NOTICE!");
+        alert.setContentText("Êtes-vous sûr(e) de vouloir supprimer?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK)
+        try
+            {
+            String sql ="DELETE FROM equipe WHERE idEquipe= "+E.getIDEquipe()+";";
+            Statement stl = conn.createStatement();
+            stl.executeUpdate(sql);
+            System.out.println("Delete Done");
+            } 
+        catch (SQLException ex) 
+            {
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+            }
+
     }
+    }
+    
     @Override
     public void ModifierEquipe(Equipe E) {////////////////////////////////////////////////////////////////////////
-        try {
-               String myQuery="UPDATE equipe Set NomEquipe='"+E.getNomEquipe()+"',Entraineur='"+E.getEntraineur()+"',Continent='"+E.getContinent()+"',Drapeau='"+E.getDrapeau()+"',Groupe='"+E.getGroupe()+"'where idEquipe='"+E.getIDEquipe()+"'";
-           // String sql = "update equipe set NomEquipe=?,Entraineur=?,Contient
-               
-               
-               Statement stm=conn.createStatement();
-            stm.executeUpdate(myQuery);
-        } catch (Exception e) {
-            System.err.println("Echec");
+         String sql ="UPDATE Equipe SET NomEquipe = '"+E.getNomEquipe()+"', Entraineur = '"+E.getEntraineur()+"',Drapeau = '"+E.getDrapeau()+"',Continent = '"+E.getContinent()+"',Groupe = '"+E.getGroupe()+"' WHERE idEquipe ="+ E.getIDEquipe()+";";
+        try 
+        {
+            Statement stl = conn.createStatement();
+            stl.executeUpdate(sql);
+            System.out.println("Update done");
+        } 
+        catch (SQLException ex) 
+        {
+            System.err.println("SQLException: " + ex.getMessage());
+            System.err.println("SQLState: " + ex.getSQLState());
+            System.err.println("VendorError: " + ex.getErrorCode());
         }
-        
     }
+
 
     
 
@@ -194,16 +213,18 @@ public class EquipeService implements IEquipe{
           public ObservableList <Equipe> afficherGroupe(String groupe) {////////////////////////////////////////////////////////////////////////
          List<Equipe>group= new ArrayList<>();
          data = FXCollections.observableArrayList();
-         Equipe E = new Equipe();
+         
         try {       
-            String myQuery=("SELECT * FROM Equipe WHERE Groupe='"+groupe+"'");
+            String myQuery=("SELECT * FROM equipe WHERE Groupe='"+groupe+"'");
              Statement stm=conn.createStatement();
             ResultSet rs;
             rs = stm.executeQuery(myQuery);
             while(rs.next()){
+         Equipe E = new Equipe();
+                E.setIDEquipe(rs.getInt("idEquipe"));
                 E.setNomEquipe(rs.getString("NomEquipe"));
                 E.setEntraineur(rs.getString("Entraineur"));
-                E.setContinent(rs.getString("Continant"));
+                E.setContinent(rs.getString("Continent"));
                 E.setDrapeau(rs.getString("Drapeau"));
                 E.setGroupe(rs.getString("Groupe"));
                 E.setButMarque(rs.getInt("ButMarque"));
@@ -245,6 +266,67 @@ public class EquipeService implements IEquipe{
     
    return 0; 
 }
+    
+      public Equipe get(int id) {
+        Equipe J = new Equipe();
+        {
+            try {
+                String req = "SELECT * FROM equipe WHERE idEquipe=?";
+                PreparedStatement pst = conn.prepareStatement(req);
+                pst.setInt(1, id);
+                ResultSet res = pst.executeQuery();
+                while (res.next()) {
+                    J.setIDEquipe(id);
+                    J.setNomEquipe(res.getString("NomEquipe"));
+                    J.setEntraineur(res.getString("Entraineur"));
+                    J.setContinent(res.getString("Continent"));
+                    J.setDrapeau(res.getString("Drapeau"));
+                    J.setGroupe(res.getString("Groupe"));
+                    
+
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(EquipeService.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("uuuuuuuuuuuuu");
+            }
+        }
+
+        return J;
+    }
+    
+   @Override
+    public List<Equipe> afficherGroupeList(String Gr) {////////////////////////////////////////////////////////////////////////
+        List<Equipe> group = new ArrayList<>();
+        
+        try {
+            String myQuery = ("SELECT idEquipe,NomEquipe,Entraineur,Continent,Drapeau,ButMarque,butEncaisse,MatchJouee,MatchNull,MatchGagne,MatchPerdu,NombrePoints FROM equipe WHERE Groupe='" + Gr + "'");
+            Statement stm = conn.createStatement();
+            ResultSet rs;
+            rs = stm.executeQuery(myQuery);
+            while (rs.next()) {
+                Equipe E = new Equipe();
+                E.setIDEquipe(rs.getInt("idEquipe"));
+                E.setNomEquipe(rs.getString("NomEquipe"));
+                E.setEntraineur(rs.getString("Entraineur"));
+                E.setContinent(rs.getString("Continent"));
+                E.setDrapeau(rs.getString("Drapeau"));
+                // E.setGroupe(rs.getString("Groupe"));
+                E.setButMarque(rs.getInt("ButMarque"));
+                E.setButEncaisse(rs.getInt("butEncaisse"));
+                E.setMatchJouee(rs.getInt("MatchJouee"));
+                E.setMatchNull(rs.getInt("MatchNull"));
+                E.setMatchGagne(rs.getInt("MatchGagne"));
+                E.setMatchperdu(rs.getInt("MatchPerdu"));
+                E.setNombrePoints(rs.getInt("NombrePoints"));
+                group.add(E);
+
+            }
+        } catch (Exception e) {
+            System.err.println("Echec");
+        }
+        return group;
+    }
+   
      
      
     

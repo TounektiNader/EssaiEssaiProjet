@@ -14,6 +14,7 @@ import javafx.collections.ObservableList;
  * @author elbrh
  */
 public interface IEquipe {
+     public List<Equipe> afficherGroupeList(String Gr);
    public void ajouterEquipe(Equipe E );
    public void supprimerEquipe(Equipe E);
    public void ModifierEquipe(Equipe E);

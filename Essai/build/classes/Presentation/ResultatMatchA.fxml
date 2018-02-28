@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -19,16 +22,17 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.ResultatMatchAController">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#refrechAnchor" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.ResultatMatchAController">
    <children>
-      <VBox layoutX="-6.0" prefHeight="600.0" prefWidth="207.0" spacing="10.0" style="-fx-background-color: #36393B;">
+      <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" prefHeight="600.0" prefWidth="190.0" />
+      <VBox fx:id="paneEE" layoutX="-6.0" prefHeight="600.0" prefWidth="221.0" spacing="10.0" style="-fx-background-color: #36393B;">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="255.0" spacing="15.0">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
             </HBox>
-            <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="151.0" text="Gérer Résultat" textFill="#f2ebeb">
+            <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="151.0" text="Gérer Résultat" textFill="#f2ebeb">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -36,18 +40,13 @@
                   <Insets left="40.0" />
                </VBox.margin>
             </Label>
-            <JFXButton fx:id="tele" onAction="#gestionPartie" prefHeight="35.0" prefWidth="190.0" text="Gestion Partie" textFill="#909090">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </JFXButton>
          </children>
       </VBox>
       <VBox alignment="TOP_RIGHT" layoutX="427.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="441.0" prefWidth="573.0">
          <children>
             <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="37.0" prefWidth="694.0" spacing="80.0">
                <VBox.margin>
-                  <Insets />
+                  <Insets top="30.0" />
                </VBox.margin>
                <children>
                   <JFXButton onMouseClicked="#tousLesMatch" text="Tous Les Matchs">
@@ -59,7 +58,7 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <JFXButton onMouseClicked="#matchJouee" text="Matchs jouées">
+                  <JFXButton onMouseClicked="#matchJouee" prefHeight="34.0" prefWidth="118.0" text="Matchs jouées">
                      <graphic>
                         <ImageView fitHeight="21.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -79,10 +78,13 @@
                   </JFXButton>
                </children>
             </HBox>
-            <Separator prefWidth="200.0" />
+            <Separator prefWidth="200.0" style="-fx-background-color: #36393B;">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin></Separator>
             <VBox prefHeight="389.0" prefWidth="546.0">
                <children>
-                  <TableView fx:id="table" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#getSelectionItem" prefHeight="293.0" prefWidth="558.0" tableMenuButtonVisible="true">
+                  <TableView fx:id="table" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#getSelectionItem" prefHeight="293.0" prefWidth="558.0" style="-fx-border-color: #36393B;" tableMenuButtonVisible="true">
                      <columns>
                         <TableColumn fx:id="columnId" maxWidth="700.0" prefWidth="64.0" text="ID" />
                         <TableColumn fx:id="columnHome" maxWidth="4000.0" prefWidth="198.0" text="Home" />
@@ -101,7 +103,7 @@
                         </ContextMenu>
                      </contextMenu>
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets top="30.0" />
                      </VBox.margin>
                   </TableView>
                </children>
@@ -111,22 +113,16 @@
             </VBox>
          </children>
       </VBox>
-      <TextField fx:id="home" layoutX="245.0" layoutY="196.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="157.0" promptText="Equipe Home" />
-      <TextField fx:id="away" layoutX="245.0" layoutY="241.0" prefHeight="30.0" prefWidth="157.0" promptText="Equipe Away" />
-      <ComboBox fx:id="CBH" layoutX="249.0" layoutY="288.0" prefWidth="150.0" promptText="But Home" />
-      <ComboBox fx:id="CBA" layoutX="249.0" layoutY="328.0" prefWidth="150.0" promptText="But Away" />
-      <Separator layoutX="39.0" layoutY="447.0" prefHeight="6.0" prefWidth="150.0" />
-      <Label layoutX="73.0" layoutY="484.0" style="-fx-border-color: #ffffff;" text="Contact US" textFill="#fcf8f8">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Button fx:id="reset" layoutX="230.0" layoutY="383.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: white;" text="Reset">
+      <TextField fx:id="home" disable="true" layoutX="224.0" layoutY="197.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="145.0" promptText="Equipe Home" />
+      <TextField fx:id="away" disable="true" layoutX="224.0" layoutY="239.0" prefHeight="30.0" prefWidth="145.0" promptText="Equipe Away" />
+      <ComboBox fx:id="CBH" layoutX="374.0" layoutY="199.0" prefHeight="25.0" prefWidth="28.0" promptText="But Home" />
+      <ComboBox fx:id="CBA" layoutX="374.0" layoutY="242.0" prefHeight="25.0" prefWidth="50.0" promptText="But Away" />
+      <Button fx:id="reset" layoutX="235.0" layoutY="305.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: white;" text="Reset">
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" color="#1965d0" />
          </effect>
       </Button>
-      <Button fx:id="saveUser" alignment="CENTER" contentDisplay="CENTER" layoutX="331.0" layoutY="383.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#updateResultat" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: #E45652;" text="Save" textFill="WHITE">
+      <Button fx:id="saveUser" alignment="CENTER" contentDisplay="CENTER" layoutX="336.0" layoutY="305.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#updateResultat" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: #E45652;" text="Save" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
@@ -134,5 +130,76 @@
             <DropShadow blurType="ONE_PASS_BOX" color="#6468b2" />
          </effect>
       </Button>
+      <JFXHamburger fx:id="hamburger" layoutX="956.0" layoutY="51.0" />
+      <Label layoutX="276.0" layoutY="34.0" prefHeight="23.0" prefWidth="59.0" text="Username" />
+      <JFXButton layoutX="896.0" layoutY="8.0" text="Se déconnecter" />
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="235.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/admiUSer.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="871.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/logout.png" />
+         </image>
+      </ImageView>
+      <JFXTextField fx:id="username" alignment="CENTER" editable="false" layoutX="345.0" layoutY="28.0" prefHeight="25.0" prefWidth="108.0">
+         <font>
+            <Font size="16.0" />
+         </font></JFXTextField>
+      <JFXButton fx:id="b1" buttonType="RAISED" layoutX="2.0" layoutY="157.0" onAction="#GererRecompense" prefHeight="56.0" prefWidth="207.0" ripplerFill="#fc0000" style="-fx-background-color: #9a9696;" text="Gérer Recompenses" textFill="#534d4d" />
+      <JFXButton fx:id="b2" buttonType="RAISED" layoutX="2.0" layoutY="221.0" onAction="#StatPari" prefHeight="56.0" prefWidth="207.0" ripplerFill="#fc0000" style="-fx-background-color: #9a9696;" text="Statistique des Paris" textFill="#534d4d" />
+      <JFXButton fx:id="b3" buttonType="RAISED" layoutX="3.0" layoutY="286.0" onAction="#StatRecompense" prefHeight="56.0" prefWidth="207.0" ripplerFill="#fc0000" style="-fx-background-color: #9a9696;" text="Statistique des Recompenses" textFill="#534d4d">
+         <graphic>
+            <ImageView fitHeight="33.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/stat.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="b4" buttonType="RAISED" layoutX="3.0" layoutY="350.0" onAction="#GererResultat" prefHeight="56.0" prefWidth="207.0" ripplerFill="#fc0000" style="-fx-background-color: #9a9696;" text="Gérer Matchs" textFill="#534d4d">
+         <padding>
+            <Insets right="30.0" />
+         </padding>
+      </JFXButton>
+      <JFXButton fx:id="b6" buttonType="RAISED" layoutX="4.0" layoutY="477.0" onAction="#GererRecom" prefHeight="56.0" prefWidth="207.0" ripplerFill="#fc0000" style="-fx-background-color: #9a9696;" text="      Gérer Recommandations" textFill="#534d4d" />
+      <JFXButton fx:id="b5" buttonType="RAISED" layoutX="3.0" layoutY="414.0" onAction="#GererEquipe" prefHeight="56.0" prefWidth="207.0" ripplerFill="#fc0000" style="-fx-background-color: #9a9696;" text="Gérer Equipes" textFill="#534d4d">
+         <padding>
+            <Insets right="30.0" />
+         </padding>
+      </JFXButton>
+      <JFXButton fx:id="b7" buttonType="RAISED" layoutX="4.0" layoutY="541.0" onAction="#GererActu" prefHeight="56.0" prefWidth="207.0" ripplerFill="#fc0000" style="-fx-background-color: #9a9696;" text="Gérer Actualités" textFill="#534d4d" />
+      <ImageView fitHeight="33.0" fitWidth="42.0" layoutX="9.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/gift1.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="33.0" fitWidth="42.0" layoutX="11.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/stat.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="33.0" fitWidth="42.0" layoutX="12.0" layoutY="362.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/match.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="33.0" fitWidth="42.0" layoutX="8.0" layoutY="420.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/equipe.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="33.0" fitWidth="42.0" layoutX="11.0" layoutY="486.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/hotel.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="33.0" fitWidth="42.0" layoutX="15.0" layoutY="551.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/news.png" />
+         </image>
+      </ImageView>
+      <Separator layoutX="215.0" layoutY="94.0" prefHeight="6.0" prefWidth="791.0" style="-fx-background-color: #36393B;" />
    </children>
 </AnchorPane>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.RealTimeController">
+   <children>
+      <ListView fx:id="list" fixedCellSize="0.0" layoutX="382.0" layoutY="276.0" prefHeight="303.0" prefWidth="440.0" />
+      <Label fx:id="score" layoutX="567.0" layoutY="187.0" />
+      <Label fx:id="time" layoutX="571.0" layoutY="179.0" />
+      <Label fx:id="away" layoutX="613.0" layoutY="138.0" />
+      <Label fx:id="home" layoutX="499.0" layoutY="138.0" />
+      <ImageView fx:id="imagehome" fitHeight="121.0" fitWidth="121.0" layoutX="351.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageaway" fitHeight="121.0" fitWidth="121.0" layoutX="736.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView layoutX="568.0" layoutY="136.0">
+         <image>
+            <Image url="@../imageHedi/minute.gif" />
+         </image>
+      </ImageView>
+      <Pane fx:id="pan" layoutX="382.0" layoutY="226.0" prefHeight="50.0" prefWidth="440.0" style="-fx-background-color: #fbd226;">
+         <children>
+            <Label layoutX="155.0" layoutY="12.0" text="Fiche de Pari">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="paneE" prefHeight="600.0" prefWidth="207.0" style="-fx-background-color: #36393B;">
+         <children>
+            <Label alignment="CENTER" layoutX="45.0" layoutY="238.0" prefHeight="27.0" prefWidth="150.0" text="Resultat En direct" textAlignment="RIGHT" textFill="#f2ebeb">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="33.0" fitWidth="42.0" layoutX="13.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8_Time_Limit_48px.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

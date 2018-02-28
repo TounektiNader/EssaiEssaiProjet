@@ -8,16 +8,38 @@ package Presentation;
 import Entity.Cadeau;
 import Entity.Partie;
 import Entity.Resultat;
+import Entity.User;
+import static Presentation.AccueilController.rootP;
 import static Presentation.ResultatMatchAController.idPartie;
 import Services.CadeauService;
 import Services.PartieService;
 import Services.ResultatService;
+import Utils.XML;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.JFXHamburger;
+import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
+import com.sun.javafx.fxml.builder.URLBuilder;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -36,9 +58,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javax.imageio.ImageIO;
+import javax.net.ssl.HttpsURLConnection;
 import org.controlsfx.control.Notifications;
+import org.xml.sax.SAXException;
 
 /**
  * FXML Controller class
@@ -93,19 +122,52 @@ public class GestionRecompenseController implements Initializable {
     
     String categorie[] = {"Voiture","Ticket","Telephone","Bon_Achat"};
     @FXML
-    private Label labes;
-    @FXML
     private ImageView imageV;
     @FXML
     private JFXButton join;
     @FXML
-    private JFXButton tele1;
+    private JFXDrawer drawer;
+    @FXML
+    private JFXHamburger hamburger;
+    @FXML
+    private AnchorPane root;
+    
+     public static AnchorPane rootP;
+    @FXML
+    private Pane paneE;
+    Random rd = new Random(); 
+    public int n ; 
+    final   File fileSave = new File("C:\\xampp\\htdocs\\java\\images");
+    public  static Stage stage ;
+     public  String nomFichier ; 
+    public static Stage getStage() {
+        return stage;
+    }
+ 
+    @FXML
+    private JFXTextField username;
+    @FXML
+    private ImageView imageVV;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        
+        XML x= new XML();
+         
+          User user = new User ();
+        try {
+            user = x.lire();
+            username.setText(user.getUsername());
+        } catch (SAXException ex) {
+            Logger.getLogger(StatPariController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(StatPariController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         comboCat.getItems().addAll(categorie);
         CadeauService cadeauService = new CadeauService();
         
@@ -119,6 +181,31 @@ public class GestionRecompenseController implements Initializable {
         
       remplierLabel();
         
+      
+        rootP = root;
+
+        try {
+            VBox box = FXMLLoader.load(getClass().getResource("SidePanelContent.fxml"));
+            drawer.setSidePane(box);
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(hamburger);
+        transition.setRate(-1);
+        hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
+            transition.setRate(transition.getRate() * -1);
+            transition.play();
+
+            if (drawer.isShown()) {
+                drawer.close();
+                paneE.setVisible(true);
+            } else {
+                drawer.open();
+                paneE.setVisible(false);
+            }
+        });
+      
     }
     
     public void remplierLabel(){
@@ -143,6 +230,9 @@ public class GestionRecompenseController implements Initializable {
         comboCat.setValue(resultatSelected.getCategorie());       
         txtType.setText(resultatSelected.getType());
         jeton.setText("" + resultatSelected.getJeton());
+        Image im = new Image(resultatSelected.getImg());
+        imageVV.setImage(im);
+        imageV.setImage(im);
         
         save.setDisable(true);
         delete.setDisable(false);
@@ -199,14 +289,14 @@ public class GestionRecompenseController implements Initializable {
     
     @FXML
     private void enregister(ActionEvent event) {
-        comboCat.setValue("");
+        //comboCat.setValue("");
        // String cat = txtCat.getText();
         String cat = comboCat.getSelectionModel().getSelectedItem();
         String type = txtType.getText();
         String ji = jeton.getText();
         
         
-        if((cat.equals(""))||(type.equals(""))||(ji.equals(""))){
+        if((cat.equals("Catégorie"))||(cat.equals("choissez Catégorie")) ||(type.equals(""))||(ji.equals(""))){
              Notifications notificationbuilder = Notifications.create()
                     .title("Alerte")
                     .text("Vous devez remplir tous les champs!!!!")
@@ -227,6 +317,23 @@ public class GestionRecompenseController implements Initializable {
         CadeauService cadeauService = new CadeauService();
         cadeauService.ajoutCadeau(cat, type, jet, type);
         
+        n=rd.nextInt(10000)+1;
+        
+            
+                    
+                    try {
+                          File nomfichier = new File("C:/xampp/htdocs/java/images/" + nomFichier+n + ".png");
+                        ImageIO.write(SwingFXUtils.fromFXImage(imageV.getImage(),
+                            null), "png", nomfichier);
+                        insertionBase(nomFichier+n+".png");
+                    } catch (URISyntaxException ex) {
+                        Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (MalformedURLException ex) {
+                        Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                    Logger.getLogger(GestionRecompenseController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+            
         
         loadData();
         remplierLabel();}
@@ -263,18 +370,19 @@ public class GestionRecompenseController implements Initializable {
         
     }
 
-    @FXML
     private void actualiser(ActionEvent event) {
         loadData();
     }
 
     @FXML
-    private void joindre(ActionEvent event) {
-        Stage stage =(Stage) join.getScene().getWindow();
-         setExtFilters(fileChooser);
-        File file = fileChooser.showOpenDialog(stage);
+    private void joindre(ActionEvent event) 
+    {
+      
+                setExtFilters(fileChooser);
+                File file = fileChooser.showOpenDialog(stage);
                 if (file != null) {
-                  labes.setText(file.getAbsolutePath());
+                  //labes.setText(file.getAbsolutePath());
+                
                   image = new Image(file.toURI().toString());
        
          
@@ -284,9 +392,63 @@ public class GestionRecompenseController implements Initializable {
         imageV.setSmooth(true);
         imageV.setCache(true);
        
+          nomFichier = file.getName().substring(0,file.getName().indexOf("."));
+          //String nomFichier2= nomFichier.substring(0, nomFichier.indexOf("."));
+          
+         
+          System.out.println(nomFichier);
+
+                }
+            }
+      
+    
+    public void insertionBase(String nomFile)throws URISyntaxException,
+            MalformedURLException,
+            IOException 
+     {
+         
+           URLBuilder urlb = new URLBuilder("localhost");
+        urlb.setConnectionType("http");
+        urlb.addSubfolder("java");
+        urlb.addSubfolder("insertionImageCadeau.php");
+        urlb.addParameter("image", "http://localhost/java/images/"+nomFile);
+        urlb.addParameter("Type",txtType.getText());
         
+        String url = urlb.getURL();
+        System.out.println(url);
+        
+        URL URl_Serveur = new URL(url);
+                HttpURLConnection conx = (HttpURLConnection) URl_Serveur.openConnection();
+                conx.setRequestMethod("POST");
+                conx.setDoOutput(true);
+                OutputStream os = conx.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os));
+
+ 
+      writer.flush();
+                writer.close();
+                conx.connect();
+
+
+                int reponse = conx.getResponseCode();
+
+                if (reponse == HttpsURLConnection.HTTP_OK) {
+
+
+                    InputStream is = conx.getInputStream();
+
+                    BufferedReader br = new BufferedReader(new InputStreamReader(is));
+
+                    String ligne = "", resultat = "";
+
+                    while ((ligne = br.readLine()) != null) {
+
+                        resultat += ligne;
+                    }
+
     }
-    }
+}  
+       
       
     private void setExtFilters(FileChooser chooser) {
         chooser.getExtensionFilters().addAll(
@@ -295,7 +457,6 @@ public class GestionRecompenseController implements Initializable {
         );
     }
 
-    @FXML
     private void afficheRecompense(ActionEvent event) throws IOException {
            Stage primaryStage= new Stage();
            Parent root = FXMLLoader.load(getClass().getResource("/Presentation/recompense.fxml"));
@@ -304,11 +465,89 @@ public class GestionRecompenseController implements Initializable {
       
            primaryStage.setScene(scene);
            primaryStage.show();
-                 
+                   primaryStage.setResizable(false);
     final Node source = (Node) event.getSource();
     final Stage stage = (Stage) source.getScene().getWindow();
     stage.close();
     
+    }
+
+    @FXML
+    private void RefrechAnchor(MouseEvent event) {
+        loadData();
+        comboCat.setValue("choissez Catégorie");
+        txtType.setText("");
+        jeton.setText("");
+        
+        comboCat.setDisable(false);
+        txtType.setDisable(false);
+        jeton.setDisable(false);
+        
+        
+        save.setDisable(false);
+        edit.setDisable(true);
+        delete.setDisable(true);
+        
+        
+    }
+
+   
+    @FXML
+    private void decon(ActionEvent event) throws IOException {
+           XML x =new XML();
+        x.Ecrire("0","0","0","0","0","0","0", 0, "0","0");
+     Stage primaryStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/Presentation/Accueil.fxml"));
+
+        Scene scene = new Scene(root);
+
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        final Node source = (Node) event.getSource();
+        final Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
+    }
+    
+    class URLBuilder {
+    private StringBuilder folders, params;
+    private String connType, host;
+
+    void setConnectionType(String conn) {
+        connType = conn;
+    }
+
+    URLBuilder(){
+        folders = new StringBuilder();
+        params = new StringBuilder();
+    }
+
+    URLBuilder(String host) {
+        this();
+        this.host = host;
+    }
+
+    void addSubfolder(String folder) {
+        folders.append("/");
+        folders.append(folder);
+    }
+
+    void addParameter(String parameter, String value) {
+        if(params.toString().length() > 0){params.append("&");}
+        params.append(parameter);
+        params.append("=");
+        params.append(value);
+    }
+
+    String getURL() throws URISyntaxException, MalformedURLException {
+        URI uri = new URI(connType, host, folders.toString(),
+                params.toString(), null);
+        return uri.toURL().toString();
+    }
+
+    String getRelativeURL() throws URISyntaxException, MalformedURLException{
+        URI uri = new URI(null, null, folders.toString(), params.toString(), null);
+        return uri.toString();
+    }
     }
     
 }

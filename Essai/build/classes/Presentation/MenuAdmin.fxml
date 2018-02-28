@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
@@ -10,15 +16,18 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1200.0" styleClass="mainFxmlClass" stylesheets="@overview.css" xmlns="http://javafx.com/javafx/8.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.MenuAdminController">
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="800.0" prefWidth="1200.0" styleClass="mainFxmlClass" stylesheets="@overview.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.MenuAdminController">
    <children>
-      <ScrollPane fitToWidth="true" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="1400.0" prefViewportHeight="800.0" prefViewportWidth="1200.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="1400.0" prefViewportHeight="800.0" prefViewportWidth="1200.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <content>
-            <BorderPane prefHeight="1026.0" prefWidth="1360.0" styleClass="borderContainer" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <BorderPane prefHeight="1026.0" prefWidth="1360.0" style="-fx-background-color: FCFCFC;" styleClass="borderContainer" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <bottom>
                   <AnchorPane prefHeight="45.0" prefWidth="1200.0" styleClass="footer" BorderPane.alignment="CENTER">
                      <opaqueInsets>
@@ -27,9 +36,9 @@
                   </AnchorPane>
                </bottom>
                <center>
-                  <AnchorPane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="960.0" style="-fx-background-color: #EBEBEB; -fx-background-radius: 5.0;" styleClass="tabbedPane" BorderPane.alignment="CENTER">
+                  <AnchorPane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="960.0" style="-fx-background-color: FFF8F8; -fx-background-radius: 5.0;" styleClass="tabbedPane" BorderPane.alignment="CENTER">
                      <children>
-                        <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="3326.0" prefWidth="960.0" style="-fx-background-color: #EBEBEB; -fx-background-radius: 5.0;" styleClass="toolbar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="3326.0" prefWidth="960.0" style="-fx-background-color: FBFBFB; -fx-background-radius: 5.0;" styleClass="toolbar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane maxWidth="-Infinity" minHeight="-Infinity" prefHeight="40.0">
                                  <opaqueInsets>
@@ -44,11 +53,11 @@
                                           <Insets left="28.0" right="10.0" />
                                        </padding>
                                     </ToolBar>
-                                    <ToolBar layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="960.0" style="-fx-background-color: transparent;">
+                                    <ToolBar layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="960.0" style="-fx-background-color: FBFBFB;">
                                        <items>
                                           <HBox alignment="CENTER_LEFT" minHeight="-Infinity" prefHeight="40.0" prefWidth="901.0" spacing="5.0">
                                              <children>
-                                                <Button fx:id="bt_menu" mnemonicParsing="false" onAction="#menu" prefHeight="31.0" prefWidth="78.0" textFill="#7f1673">
+                                                <Button fx:id="bt_menu" mnemonicParsing="false" onAction="#menu" prefHeight="32.0" prefWidth="78.0" style="-fx-background-color: e6f2ff;" textFill="#7f1673">
                                                    <graphic>
                                                       <ImageView fitHeight="21.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
@@ -57,7 +66,7 @@
                                                       </ImageView>
                                                    </graphic>
                                                 </Button>
-                                                <Button fx:id="hotels" mnemonicParsing="false" onAction="#hotels" prefHeight="32.0" prefWidth="160.0" text="Hotels">
+                                                <Button fx:id="hotels" mnemonicParsing="false" onAction="#hotels" prefHeight="32.0" prefWidth="160.0" style="-fx-background-color: #cce5ff;" text="Hotels">
                                                    <graphic>
                                                       <ImageView fitHeight="21.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
@@ -66,7 +75,7 @@
                                                       </ImageView>
                                                    </graphic>
                                                 </Button>
-                                                <Button fx:id="cafes" mnemonicParsing="false" onAction="#cafes" prefHeight="32.0" prefWidth="160.0" text="Cafés">
+                                                <Button fx:id="cafes" mnemonicParsing="false" onAction="#cafes" prefHeight="32.0" prefWidth="160.0" style="-fx-background-color: #b3d7ff;" text="Cafés">
                                                    <graphic>
                                                       <ImageView fitHeight="21.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
@@ -75,7 +84,7 @@
                                                       </ImageView>
                                                    </graphic>
                                                 </Button>
-                                                <Button fx:id="restos" mnemonicParsing="false" onAction="#restos" prefHeight="32.0" prefWidth="160.0" text="Restaurants">
+                                                <Button fx:id="restos" mnemonicParsing="false" onAction="#restos" prefHeight="32.0" prefWidth="160.0" style="-fx-background-color: #99c9ff;" text="Restaurants">
                                                    <graphic>
                                                       <ImageView fitHeight="21.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
@@ -84,7 +93,7 @@
                                                       </ImageView>
                                                    </graphic>
                                                 </Button>
-                                                <Button fx:id="stades" mnemonicParsing="false" onAction="#stades" prefHeight="32.0" prefWidth="160.0" text="Stades">
+                                                <Button fx:id="stades" mnemonicParsing="false" onAction="#stades" prefHeight="32.0" prefWidth="160.0" style="-fx-background-color: #80bbff;" text="Stades">
                                                    <graphic>
                                                       <ImageView fitHeight="21.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
@@ -93,7 +102,7 @@
                                                       </ImageView>
                                                    </graphic>
                                                 </Button>
-                                                <Button fx:id="villes" mnemonicParsing="false" onAction="#villes" prefHeight="32.0" prefWidth="160.0" text="Villes">
+                                                <Button fx:id="villes" mnemonicParsing="false" onAction="#villes" prefHeight="32.0" prefWidth="160.0" style="-fx-background-color: #66adff;" text="Villes">
                                                    <graphic>
                                                       <ImageView fitHeight="21.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
@@ -115,57 +124,122 @@
                                  <children>
                                     <VBox fx:id="mainContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="770.0" prefWidth="960.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <AnchorPane prefHeight="602.0" prefWidth="960.0">
+                                          <AnchorPane prefHeight="602.0" prefWidth="960.0" style="-fx-background-color: FCFCFC;">
                                              <children>
-                                                <Button fx:id="btrestos" layoutX="97.0" layoutY="351.0" mnemonicParsing="false" onAction="#Listrestos" prefHeight="250.0" prefWidth="250.0" AnchorPane.rightAnchor="85.0" AnchorPane.topAnchor="400.0">
-                                                   <graphic>
-                                                      <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                <GridPane layoutX="91.0" layoutY="101.0" style="-fx-background-color: FFFEF4; -fx-border-color: black;">
+                                                  <columnConstraints>
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" />
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="118.39998779296873" minWidth="10.0" prefWidth="118.39998779296873" />
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.20001220703125" minWidth="10.0" prefWidth="82.40001220703124" />
+                                                  </columnConstraints>
+                                                  <rowConstraints>
+                                                      <RowConstraints maxHeight="-Infinity" minHeight="75.0" percentHeight="0.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints maxHeight="-Infinity" minHeight="75.0" percentHeight="0.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                                    <RowConstraints maxHeight="-Infinity" minHeight="75.0" percentHeight="0.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                                    <RowConstraints maxHeight="-Infinity" minHeight="75.0" percentHeight="0.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                                    <RowConstraints maxHeight="-Infinity" minHeight="75.0" percentHeight="0.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                                  </rowConstraints>
+                                                   <children>
+                                                      <Label text="Villes :" GridPane.columnIndex="1">
+                                                         <font>
+                                                            <Font size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label text="Stades :" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                         <font>
+                                                            <Font size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label text="Cafés :" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                         <font>
+                                                            <Font size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label text="Hotels :" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                         <font>
+                                                            <Font size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label text="Restaurants :" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                                         <font>
+                                                            <Font size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
-                                                            <Image url="@../img/rest3d.png" />
+                                                            <Image url="@../img/city.png" />
                                                          </image>
+                                                         <GridPane.margin>
+                                                            <Insets left="5.0" />
+                                                         </GridPane.margin>
                                                       </ImageView>
-                                                   </graphic>
-                                                </Button>
-                                                <Button fx:id="btvilles" layoutX="314.0" layoutY="485.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Listvilles" prefHeight="250.0" prefWidth="250.0" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="125.0">
-                                                   <graphic>
-                                                      <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                      <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
                                                          <image>
-                                                            <Image url="@../img/acco.png" />
+                                                            <Image url="@../img/stad1.png" />
                                                          </image>
+                                                         <GridPane.margin>
+                                                            <Insets left="5.0" />
+                                                         </GridPane.margin>
                                                       </ImageView>
-                                                   </graphic>
-                                                </Button>
-                                                <Button fx:id="btstades" layoutX="548.0" layoutY="485.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Liststades" prefHeight="250.0" prefWidth="250.0" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="125.0">
-                                                   <graphic>
-                                                      <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                      <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
                                                          <image>
-                                                            <Image url="@../img/stade.png" />
+                                                            <Image url="@../img/cafe.png" />
                                                          </image>
+                                                         <GridPane.margin>
+                                                            <Insets left="5.0" />
+                                                         </GridPane.margin>
                                                       </ImageView>
-                                                   </graphic>
-                                                </Button>
-                                                <Button fx:id="bthotels" layoutX="85.0" layoutY="375.0" mnemonicParsing="false" onAction="#Listhotels" prefHeight="250.0" prefWidth="250.0" AnchorPane.leftAnchor="85.0" AnchorPane.topAnchor="400.0">
-                                                   <graphic>
-                                                      <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                      <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3">
                                                          <image>
-                                                            <Image url="@../img/hotel3d.png" />
+                                                            <Image url="@../img/hotel.png" />
                                                          </image>
+                                                         <GridPane.margin>
+                                                            <Insets left="5.0" />
+                                                         </GridPane.margin>
                                                       </ImageView>
-                                                   </graphic>
-                                                </Button>
-                                                <Button fx:id="btcafes" layoutX="355.0" layoutY="400.0" mnemonicParsing="false" onAction="#Listcafes" prefHeight="250.0" prefWidth="250.0" AnchorPane.topAnchor="400.0">
-                                                   <graphic>
-                                                      <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                      <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="4">
                                                          <image>
-                                                            <Image url="@../img/coffee3d.png" />
+                                                            <Image url="@../img/resto.png" />
                                                          </image>
+                                                         <GridPane.margin>
+                                                            <Insets left="5.0" />
+                                                         </GridPane.margin>
                                                       </ImageView>
-                                                   </graphic>
-                                                </Button>
-                                                
-                                               
-                                                
-                                                
+                                                      <Label fx:id="v1" text="Label" textFill="#83a1fc" GridPane.columnIndex="2">
+                                                         <font>
+                                                            <Font size="18.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="v2" text="Label" textFill="#83a1fc" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                                         <font>
+                                                            <Font size="18.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="v3" text="Label" textFill="#83a1fc" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                                         <font>
+                                                            <Font size="18.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="v4" text="Label" textFill="#83a1fc" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                                         <font>
+                                                            <Font size="18.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="v5" text="Label" textFill="#83a1fc" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                                         <font>
+                                                            <Font size="18.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </GridPane>
+                                                <BarChart fx:id="chrt" layoutX="403.0" layoutY="101.0" prefHeight="377.6" prefWidth="500.0" style="-fx-background-color: FFFEF4; -fx-border-color: black;">
+                                                  <xAxis>
+                                                    <CategoryAxis side="BOTTOM" />
+                                                  </xAxis>
+                                                  <yAxis>
+                                                    <NumberAxis side="LEFT" />
+                                                  </yAxis>
+                                                </BarChart>
                                              </children></AnchorPane>
                                        </children></VBox>
                                  </children>
@@ -192,7 +266,7 @@
                      <children>
                         <BorderPane prefHeight="200.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <center>
-                              <AnchorPane minWidth="-Infinity" prefHeight="70.0" prefWidth="350.0" BorderPane.alignment="CENTER">
+                              <AnchorPane minWidth="-Infinity" prefHeight="70.0" prefWidth="350.0" style="-fx-background-color: FFF8F8;" BorderPane.alignment="CENTER">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -200,17 +274,19 @@
                                     <Insets />
                                  </BorderPane.margin>
                                  <children>
-                                    <Label layoutX="14.0" layoutY="37.0" prefHeight="56.0" prefWidth="610.0" text="Dashboard" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
+                                    <Label layoutX="486.0" layoutY="15.0" prefHeight="100.0" prefWidth="226.0" text="Dashboard" textFill="#0b23b0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="486.0" AnchorPane.topAnchor="15.0">
                                        <font>
                                           <Font name="Lucida Calligraphy Italic" size="36.0" />
                                        </font>
                                     </Label>
-                                    <ImageView fitHeight="75.0" fitWidth="150.0" layoutX="1021.0" layoutY="27.0" pickOnBounds="true" AnchorPane.bottomAnchor="26.80000000000001" AnchorPane.rightAnchor="13.799999999999955" AnchorPane.topAnchor="27.0">
+                                    <Separator layoutX="5.0" layoutY="127.0" prefWidth="200.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="127.0" />
+                                    <JFXHamburger fx:id="hamburger" layoutX="980.0" layoutY="53.0" AnchorPane.rightAnchor="15.0" />
+                                    <ImageView fitHeight="90.0" fitWidth="150.0" layoutX="14.0" layoutY="20.0" pickOnBounds="true">
                                        <image>
                                           <Image url="@../img/logo.png" />
                                        </image>
                                     </ImageView>
-                                    <Separator layoutX="492.0" layoutY="115.0" prefWidth="200.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="115.0" />
+                                    <Hyperlink fx:id="logout" layoutX="1085.0" layoutY="53.0" text="Logout" />
                                  </children>
                               </AnchorPane>
                            </center>
@@ -218,6 +294,9 @@
                      </children>
                   </AnchorPane>
                </top>
+               <left>
+                  <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" prefHeight="792.0" prefWidth="111.0" BorderPane.alignment="CENTER" />
+               </left>
             </BorderPane>
          </content>
       </ScrollPane>

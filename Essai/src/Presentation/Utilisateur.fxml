@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.UtilisateurController">
+   <children>
+      <ImageView fitHeight="607.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/russia2018.jpg" />
+         </image>
+      </ImageView>
+      <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" layoutY="-1.0" prefHeight="608.0" prefWidth="120.0" />
+      <JFXHamburger fx:id="hamburger" layoutX="928.0" layoutY="68.0" />
+      <JFXButton layoutX="860.0" layoutY="14.0" text="Se déconnecter" />
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="835.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/logout.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="253.0" layoutY="17.0" prefHeight="23.0" prefWidth="59.0" text="Username" />
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="221.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/username.png" />
+         </image>
+      </ImageView>
+      <JFXTextField fx:id="username" alignment="CENTER" editable="false" focusColor="#1a1a1b" layoutX="321.0" layoutY="9.0" prefHeight="25.0" prefWidth="108.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </JFXTextField>
+      <Label layoutX="262.0" layoutY="61.0" prefHeight="23.0" prefWidth="48.0" text="Jetons" />
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="225.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/coins.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="jeton" alignment="CENTER" layoutX="320.0" layoutY="61.0" prefHeight="23.0" prefWidth="108.0" text="Label" textAlignment="CENTER" textFill="#e1e42e">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="769.0" layoutY="9.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#updateProfil" prefHeight="33.0" prefWidth="48.0" text="Button">
+         <graphic>
+            <ImageView fitHeight="33.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/editProfil.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <VBox fx:id="vb" layoutX="245.0" layoutY="140.0" prefHeight="369.0" prefWidth="655.0" style="-fx-background-color: transparent;" />
+   </children>
+</AnchorPane>

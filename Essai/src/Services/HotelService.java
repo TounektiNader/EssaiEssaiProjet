@@ -68,18 +68,23 @@ public class HotelService implements Ihotel
     {
         try
         {
-        String update = "UPDATE hotels SET positionhotel = ? WHERE nomhotel = ?";
+        String update = "UPDATE hotels SET nomhotel = ?, detailshotel = ?, positionhotel = ?, photohotel = ?, idville = ? WHERE idhotel = ?";
         PreparedStatement statement2 = connexion.prepareStatement(update);
-        statement2.setString(1, "Hamza");
-        statement2.setString(2, p.getNom());
+        statement2.setString(1, p.getNom());
+        statement2.setString(2, p.getDetails());
+        statement2.setString(3, p.getPosition());
+        statement2.setString(4, p.getPhoto());
+        statement2.setInt(5, p.getHotelVille().getId());
+        statement2.setInt(6, p.getId());
+        System.out.println(p.getId());
         statement2.executeUpdate();
         System.out.println("Hôtel "+p.getNom()+" modifié !!!");
         
         }
-        catch (Exception e)
-                {
-                    System.err.println("Hôtel "+p.getNom()+" non modifié");
-                }
+        catch (SQLException e)
+        {
+            System.err.println("SQLException: "+e.getMessage());
+        }
     }
 
     @Override
@@ -174,6 +179,31 @@ public class HotelService implements Ihotel
                     System.err.println("VnedorError: "+e.getErrorCode());
                 }
         return lv;
+    }
+
+    @Override
+    public int Nmbr() 
+    {
+        int res=0;
+        try 
+        {
+        String select = "SELECT count(idhotel) FROM hotels;";
+        Statement statement1 = connexion.createStatement();
+      
+        ResultSet result = statement1.executeQuery(select);
+        
+        while (result.next()) 
+        {
+            res = result.getInt("count(idhotel)");
+        }
+}
+        catch (SQLException e)
+                {
+                    System.err.println("SQLException: "+e.getMessage());
+                    System.err.println("SQLSTATE: "+e.getSQLState());
+                    System.err.println("VnedorError: "+e.getErrorCode());
+                }
+        return res;
     }
 
 }

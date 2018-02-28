@@ -1,16 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Presentation;
 
 import Entity.User;
 import Services.ServiceUser;
+import Utils.XML;
 import Utils.mail;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.JFXHamburger;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,28 +23,89 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Alert;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.xml.sax.SAXException;
 
-/**
- * FXML Controller class
- *
- * @author hedih
- */
 public class MotdepasseController implements Initializable {
-  
-    /**
-     * Initializes the controller class.
-     */
+    
+    private void Vide() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Informations");
+        alert.setHeaderText("Informations");
+        alert.setContentText("L'un des champs est vide");
+        alert.showAndWait();
+    }
+     private void Vide2() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Informations");
+        alert.setHeaderText("Informations");
+        alert.setContentText("Ce Pseudo n'existe pas");
+        alert.showAndWait();
+    }
     @FXML
-    private TextField pseudo;
+    private JFXDrawer drawer;
     @FXML
-    private void oublie(ActionEvent event) throws IOException
-    {
-        ServiceUser u= new ServiceUser();
+    private JFXTextField pseudo;
+    
+    @FXML
+    private JFXHamburger hamburger;
+    
+    @FXML
+    private AnchorPane root;
+
+    public static AnchorPane rootP;
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+       
+                          
+        rootP = root;
+
+        try {
+            VBox box = FXMLLoader.load(getClass().getResource("SidePanelContent.fxml"));
+            drawer.setSidePane(box);
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(hamburger);
+        transition.setRate(-1);
+        hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
+            transition.setRate(transition.getRate() * -1);
+            transition.play();
+
+            if (drawer.isShown()) {
+                drawer.close();
+            } else {
+                drawer.open();
+            }
+        });
+    }
+   @FXML
+   public void valider(ActionEvent event) throws IOException, SAXException
+   {
+       ServiceUser u= new ServiceUser();
         User U;
-        U=u.rechercheUser(pseudo.getText());
-        mail m=new mail();
+        if(pseudo.getText().isEmpty())
+        {
+            Vide();
+        }
+        else
+        {
+         U=u.rechercheUser(pseudo.getText());
+         if(U.getStatus()==null)
+         {
+             Vide2();
+         }
+         else
+         {
+           mail m=new mail();
         
         m.send(U.getMail(),"Mot de passe",U.getMdp());
         Stage SecondStage= new Stage();
@@ -50,11 +116,15 @@ public class MotdepasseController implements Initializable {
         
         final Node source =(Node) event.getSource();
         final Stage stage= (Stage)source.getScene().getWindow();
-        stage.close();   
-    }
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+        stage.close();  
+         }
+        
+            
+        }
+        
+   }
 }
+    
+
+
+

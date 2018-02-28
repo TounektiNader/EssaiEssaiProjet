@@ -19,6 +19,28 @@ public class User {
     private String status; 
     private int jeton ; 
     private String nationalite;
+
+    public void setNum(String num) {
+        this.num = num;
+    }
+    private String num;
+
+    public User(String username, String nom, String prenom, String mdp, String role, String mail, String status, int jeton, String nationalite, String num) {
+        this.username = username;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.mdp = mdp;
+        this.role = role;
+        this.mail = mail;
+        this.status = status;
+        this.jeton = jeton;
+        this.nationalite = nationalite;
+        this.num = num;
+    }
+
+    public String getNum() {
+        return num;
+    }
     
     public String getNationalite() {
         return nationalite;

@@ -58,6 +58,16 @@ public class Partie {
         this.away = away;
     }
     
+       public Partie( String HeurePartie, String tour,String etiquette, EntiteStade stade, Equipe home, Equipe away) {
+        this.HeurePartie = HeurePartie;
+        this.tour = tour;
+        this.etiquette = etiquette;
+        this.stade = stade;
+        this.home = home;
+        this.away = away;
+    }
+    
+    
      
     public int getIdMatch() {
         return idMatch;

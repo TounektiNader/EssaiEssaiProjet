@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox fx:id="hbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="673.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="49.0">
+         <children>
+            <ImageView fx:id="imageDrapeau" fitHeight="34.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </HBox>
+      <HBox prefHeight="34.0" prefWidth="615.0">
+         <children>
+            <Label fx:id="NEquipe" alignment="CENTER" prefHeight="34.0" prefWidth="159.0" text=" Nom Equipe " textAlignment="CENTER" />
+            <Label fx:id="trainer" alignment="CENTER" prefHeight="34.0" prefWidth="159.0" text=" Entraineur " />
+            <Label fx:id="Continant" alignment="CENTER" prefHeight="34.0" prefWidth="143.0" text="Continant" />
+            <Label fx:id="group" alignment="CENTER" prefHeight="34.0" prefWidth="185.0" text=" Groupe " />
+         </children>
+      </HBox>
+   </children>
+</HBox>

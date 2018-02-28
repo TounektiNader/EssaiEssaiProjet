@@ -29,6 +29,7 @@ public class ServiceBet implements iBet {
     Connection conn;
     ResultSet rs, rss;
     private ObservableList<Bet> data;
+    private ObservableList<User> dataUser;
 
     public ServiceBet() {
         conn = MyConnection.getInstance().getConnexion();
@@ -37,7 +38,7 @@ public class ServiceBet implements iBet {
     @Override
     public User getUser(String username) {
         User user = new User();
-     
+
         try {
 
             String sql = "Select * from User where username=? ";
@@ -56,7 +57,7 @@ public class ServiceBet implements iBet {
                 user.setMail(rs.getString("mail"));
                 user.setJeton(rs.getInt("jeton"));
                 user.setStatus(rs.getString("status"));
-              
+                 user.setNationalite(rs.getString("nationalite"));
 
             }
         } catch (SQLException ex) {
@@ -218,7 +219,7 @@ public class ServiceBet implements iBet {
     @Override
     public void AugmenterJeton(String username) {
 
-        int nbJetonn =(getNombreJeton(username)+2);
+        int nbJetonn = (getNombreJeton(username) + 2);
 
         try {
 
@@ -380,7 +381,7 @@ public class ServiceBet implements iBet {
         Boolean test = false;
         ResultatService resultatService = new ResultatService();
         Equipe equipeGagne = resultatService.EquipeGagne(idPartie);
-          
+
         String sql = "SELECT * FROM bet WHERE idPartie=?  ";
         try {
             stmt = conn.prepareStatement(sql);
@@ -389,7 +390,7 @@ public class ServiceBet implements iBet {
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                        
+
                 int idEquipeValeur = rs.getInt("valeur");
                 if (idEquipeValeur == equipeGagne.getIDEquipe()) {
                     AugmenterJeton(rs.getString("username"));
@@ -482,4 +483,259 @@ public class ServiceBet implements iBet {
 //            System.out.println("Vous n'avez plus de jeton ");
 //        }
 //    }
+    @Override
+    public ObservableList<Bet> listBetGain(String username) {
+        PartieService partieService = new PartieService();
+        User user = new User();
+        user = getUser(username);
+
+        data = FXCollections.observableArrayList();
+
+        try {
+            String sql = "select * from  bet where username=? and etat=?;";
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, username);
+            stmt.setString(2, "Gain");
+
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+
+                Bet bet = new Bet(rs.getInt("valeur"), rs.getString("etat"), user, partieService.DetailsPartie(rs.getInt("idPartie")));
+                data.add(bet);
+            }
+
+        } catch (SQLException ex) {
+        }
+        return data;
+
+    }
+
+    @Override
+    public ObservableList<Bet> listBetPerte(String username) {
+        PartieService partieService = new PartieService();
+        User user = new User();
+        user = getUser(username);
+
+        data = FXCollections.observableArrayList();
+
+        try {
+            String sql = "select * from  bet where username=? and etat=?;";
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, username);
+            stmt.setString(2, "Perte");
+
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+
+                Bet bet = new Bet(rs.getInt("valeur"), rs.getString("etat"), user, partieService.DetailsPartie(rs.getInt("idPartie")));
+                data.add(bet);
+            }
+
+        } catch (SQLException ex) {
+        }
+        return data;
+
+    }
+
+    @Override
+    public int NombreTotalBet() {
+        int nombreBet = 0;
+            String rq1 = " SELECT Count(idBet) FROM bet;";
+        try {
+            
+            
+
+            Statement stmt1 = conn.createStatement();
+            rs = stmt1.executeQuery(rq1);
+            
+            while (rs.next()) {
+                System.out.println(rs.getInt(1));
+                nombreBet = rs.getInt(1);
+            }
+
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceBet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return nombreBet;
+    }
+@Override
+    public int NombreBetGain() {
+        int nombreBet = 0;
+            String rq1 = " SELECT Count(idBet) FROM bet where etat='Gain';";
+        try {
+            
+            
+
+            Statement stmt1 = conn.createStatement();
+            rs = stmt1.executeQuery(rq1);
+            
+            while (rs.next()) {
+                System.out.println(rs.getInt(1));
+                nombreBet = rs.getInt(1);
+            }
+
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceBet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return nombreBet;
+    }
+    
+    @Override
+    public int NombreBetPerte() {
+        int nombreBet = 0;
+            String rq1 = " SELECT Count(idBet) FROM bet where etat='Perte';";
+        try {
+            
+            
+
+            Statement stmt1 = conn.createStatement();
+            rs = stmt1.executeQuery(rq1);
+            
+            while (rs.next()) {
+                System.out.println(rs.getInt(1));
+                nombreBet = rs.getInt(1);
+            }
+
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceBet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return nombreBet;
+    }
+@Override
+    public int NombreBetTraite() {
+        int nombreBet = 0;
+            String rq1 = " SELECT Count(idBet) FROM bet where etat='Traite';";
+        try {
+            
+            
+
+            Statement stmt1 = conn.createStatement();
+            rs = stmt1.executeQuery(rq1);
+            
+            while (rs.next()) {
+                System.out.println(rs.getInt(1));
+                nombreBet = rs.getInt(1);
+            }
+
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceBet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return nombreBet;
+    }
+
+     public ObservableList<User> GetUser() {
+       dataUser = FXCollections.observableArrayList();
+             
+         String req="select * from user where role='Utilisateur'";
+        
+        try {   
+            Statement stm = conn.createStatement();
+            
+            
+           ResultSet result= stm.executeQuery(req);
+            
+           while(result.next()){
+               
+               int jeton=result.getInt("jeton");
+               String status=result.getString("status");
+               String mail=result.getString("mail");
+               String role=result.getString("role");
+               String mdp=result.getString("mdp");
+                String pseudo=result.getString("username");
+                 String prenom=result.getString("prenom");
+                  String nom=result.getString("nom");
+                   String nationalite=result.getString("nationalite");
+                
+              
+               
+               
+               
+               dataUser.add(new User(pseudo,nom,prenom,mdp,role,mail,status,jeton,nationalite));
+           }
+            
+        } catch (SQLException e) {
+            System.err.println("probleme"+e.getMessage());
+        }
+       return dataUser;
+    }
+    
+     
+         @Override
+    public List<Bet> listBetParPersonne() {
+        PartieService partieService = new PartieService();
+
+        List<Bet> list = new ArrayList<Bet>();
+
+        try {
+
+            String sql = " SELECT username,COUNT(idBet) from bet GROUP BY username ";
+            stmt = conn.prepareStatement(sql);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+
+                Bet bet = new Bet(getUser(rs.getString("username")),rs.getInt(2));
+                list.add(bet);
+
+            }
+
+        } catch (SQLException ex) {
+
+        }
+        return list;
+
+    }
+
+      @Override
+    public int nombreBetPerte(String username) {
+       int   nombreBetPerte=0;
+       
+
+        data = FXCollections.observableArrayList();
+
+        try {
+            String sql = "select count(idBet) from  bet where username=? and etat=?;";
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, username);
+            stmt.setString(2, "Perte");
+
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+            nombreBetPerte = rs.getInt(1);
+                
+            }
+
+        } catch (SQLException ex) {
+        }
+        return nombreBetPerte;
+
+    }
+    
+    @Override
+    public int nombreBetGain(String username) {
+       int   nombreBetPerte=0;
+       
+
+        data = FXCollections.observableArrayList();
+
+        try {
+            String sql = "select count(idBet) from  bet where username=? and etat=?;";
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, username);
+            stmt.setString(2, "Gain");
+
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+            nombreBetPerte = rs.getInt(1);
+                
+            }
+
+        } catch (SQLException ex) {
+        }
+        return nombreBetPerte;
+
+    }
 }

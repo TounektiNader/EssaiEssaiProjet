@@ -1,33 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Presentation;
 
-import DateStroge.MyConnection;
-import Entity.Joueurs;
-import Entity.Partie;
-import Entity.RealTime;
 import Entity.User;
-import Services.EquipeService;
-import Services.JoueurService;
-import Services.PartieService;
-import Services.ServiceRealTime;
 import Services.ServiceUser;
 import Utils.XML;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.JFXHamburger;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,78 +22,90 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.xml.sax.SAXException;
 
-/**
- * FXML Controller class
- *
- * @author hedih
- */
 public class AdminController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
-    private ObservableList<User> data2;
-     @FXML
-    private TableView<User> table;
     @FXML
-    private TableColumn<User, String> columnNom;
-    @FXML
-    private TableColumn<User, String> columnPrenom;
-    @FXML
-    private TableColumn<User, String> columnMdp;
-    @FXML
-    private TableColumn<User, String> columnStatus;
-    @FXML
-    private Label nom;
-    @FXML
-    private AnchorPane AnchorPane;
+    private Label nombreTel;
+
+  
     
+    private void Vide() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Informations");
+        alert.setHeaderText("Informations");
+        alert.setContentText("L'un des champs est vide");
+        alert.showAndWait();
+    }
+    @FXML
+    private JFXDrawer drawer;
+    
+    @FXML
+    private JFXHamburger hamburger;
+    
+    @FXML
+    private AnchorPane root;
+
+    public static AnchorPane rootP;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       XML x= new XML();
-        User u=new User();
-         try {
-             u=x.lire();
-         } catch (SAXException ex) {
-             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-         } catch (IOException ex) {
-             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-         }
-           //--------------------------------------------------------------------------------------------------------------  ---------------------- u=x.lire();
-        System.out.println(u.getUsername());
-        nom.setText(u.getUsername());
-        ServiceUser service = new ServiceUser();
-        data2 =service.GetAdmin();
-        columnNom.setCellValueFactory(new PropertyValueFactory("nom"));
-        columnPrenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-        columnMdp.setCellValueFactory(new PropertyValueFactory<>("mdp"));
-        columnStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-        table.setItems(null);
-        table.setItems(data2);
-        loadData();
-    }    
-    @FXML
-    public void loadData() {
-       ServiceUser Service = new ServiceUser();
-        data2.addAll(Service.GetAdmin());
-        if (!data2.isEmpty()) {
-            data2.clear();
+       
+        ServiceUser service =new ServiceUser();
+        int n = service.nbrAdmin();
+        nombreTel.setText(""+n);
+                          
+        rootP = root;
+
+        try {
+            VBox box = FXMLLoader.load(getClass().getResource("SidePanelContent.fxml"));
+            drawer.setSidePane(box);
+           
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        data2.addAll(Service.GetAdmin());
-        table.setItems(data2);
-    }  
-    }    
+
+        HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(hamburger);
+        transition.setRate(-1);
+        hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
+            transition.setRate(transition.getRate() * -1);
+            transition.play();
+
+            if (drawer.isShown()) {
+                drawer.close();
+            } else {
+                drawer.open();
+            }
+        });
+    }
+
+    @FXML
+    private void affichierValider(MouseEvent event) throws IOException {
+        Stage primaryStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/Presentation/AdminVerification.fxml"));
+
+        Scene scene = new Scene(root);
+
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        final Node source = (Node) event.getSource();
+        final Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
+     
+    }
+
+   
+}
     
+
+
 

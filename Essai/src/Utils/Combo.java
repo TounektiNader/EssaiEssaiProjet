@@ -101,6 +101,43 @@ public class Combo {
         }
     return list ; 
     }
+        
+        public List<String> fillUser(){
+        List<String> list = new ArrayList<String>();
+        String sql ="select * from user";
+    try{
+        
+       stmt=conn.prepareStatement(sql);
+       rs=stmt.executeQuery();
+       while(rs.next()){
+           String username = rs.getString("username");
+           list.add(username);
+       }
+    }catch (SQLException ex) {
+
+        }
+    return list ; 
+    }
+    
+        
+         public List<String> fillUserUser(){
+        List<String> list = new ArrayList<String>();
+        String sql ="select * from user where role=? ;";
+    try{
+        
+       stmt=conn.prepareStatement(sql);
+         stmt.setString(1,"Utilisateur");
+       rs=stmt.executeQuery();
+       while(rs.next()){
+           String username = rs.getString("username");
+           list.add(username);
+       }
+    }catch (SQLException ex) {
+
+        }
+    return list ; 
+    }
+    
       
       
 }

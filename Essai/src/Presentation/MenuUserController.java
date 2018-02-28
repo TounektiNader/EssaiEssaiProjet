@@ -5,12 +5,19 @@
  */
 package Presentation;
 
+import Entity.EntiteVille;
+import static Presentation.AddCafeController.rootP;
 import Services.VilleService;
+import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.JFXHamburger;
+import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,11 +27,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 /**
  * FXML Controller class
@@ -32,98 +46,84 @@ import javafx.stage.Stage;
  * @author Ouss'Hr
  */
 public class MenuUserController implements Initializable {
-
+    
     @FXML
-    private VBox mainContainer;
+    private ListView<EntiteVille> ListView;
     @FXML
-    private Button v1;
+    private Label title;
     @FXML
-    private ImageView v1View;
+    private AnchorPane root;
     @FXML
-    private Button v2;
+    private JFXHamburger hamburger;
     @FXML
-    private ImageView v2View;
+    private JFXDrawer drawer;
+    
+    public static AnchorPane rootP;
     @FXML
-    private Button v3;
+    private MediaView pag;
+    
+    private static final String MEDIA_URL = "/img/vid.mp4";
+    
+    private MediaPlayer MediaPlayer;
     @FXML
-    private ImageView v3View;
-    @FXML
-    private Button v4;
-    @FXML
-    private ImageView v4View;
-    @FXML
-    private Button v5;
-    @FXML
-    private ImageView v5View;
-    @FXML
-    private Button v6;
-    @FXML
-    private ImageView v6View;
-    @FXML
-    private Button v7;
-    @FXML
-    private ImageView v7View;
-    @FXML
-    private Button v8;
-    @FXML
-    private ImageView v8View;
-    @FXML
-    private Button v9;
-    @FXML
-    private ImageView v9View;
-    @FXML
-    private Button v10;
-    @FXML
-    private ImageView v10View;
-    @FXML
-    private Button v11;
-    @FXML
-    private ImageView v11View;
-    @FXML
-    private Label l1;
-    @FXML
-    private Label l2;
-    @FXML
-    private Label l3;
-    @FXML
-    private Label l4;
-    @FXML
-    private Label l5;
-    @FXML
-    private Label l6;
-    @FXML
-    private Label l7;
-    @FXML
-    private Label l8;
-    @FXML
-    private Label l9;
-    @FXML
-    private Label l10;
-    @FXML
-    private Label l11;
-
+    private ProgressBar prgrs;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
+        System.out.println(url.toString());
+        System.out.println(this.getClass().getResource(MEDIA_URL).toExternalForm());
+        MediaPlayer = new MediaPlayer(new Media(this.getClass().getResource(MEDIA_URL).toExternalForm()));
+        MediaPlayer.setAutoPlay(true);
+        pag.setMediaPlayer(MediaPlayer);
+        pag.setFitWidth(700);
+        pag.setFitHeight(500);
+        
+        
+        rootP = root;
+
+        try {
+            VBox box = FXMLLoader.load(getClass().getResource("/Presentation/SidePanelContent.fxml"));
+            drawer.setSidePane(box);
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(hamburger);
+        transition.setRate(-1);
+        hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
+            transition.setRate(transition.getRate() * -1);
+            transition.play();
+
+            if (drawer.isShown()) {
+                drawer.close();
+            } else {
+                drawer.open();
+            }
+        });
+        
         try 
         {
         VilleService cs = new VilleService();
-        List<String> lscafes = cs.ReturnNames();
-        ObservableList<String> lc = FXCollections.observableArrayList();
+        List<EntiteVille> lscafes = cs.listVilles();
+        ObservableList<EntiteVille> lc = FXCollections.observableArrayList();
         lscafes.stream().forEach((j)->{
             lc.add(j);
         });
-        l1.setText(lc.get(0));
-        l2.setText(lc.get(1));
-        l3.setText(lc.get(2));
-        l4.setText(lc.get(3));
-        l5.setText(lc.get(4));
-        l6.setText(lc.get(5));
-        l7.setText(lc.get(6));
-        l8.setText(lc.get(7));
-        l9.setText(lc.get(8));
-        l10.setText(lc.get(9));
-        l11.setText(lc.get(10));
+        ListView.setItems(lc);
+        ListView.setCellFactory(new Callback<ListView<EntiteVille>, ListCell<EntiteVille>>() {
+            @Override
+            public ListCell<EntiteVille> call(ListView<EntiteVille> param) {
+                return  new ListCellVille();
+            }
+        });
+        ListView.getSelectionModel().selectedItemProperty().addListener((ObservableList,oldvalue,newvalue)->{
+
+                showVilleDetails(newvalue);
+
+        });
+        
+
         }
         catch (SQLException e) 
         {
@@ -132,158 +132,47 @@ public class MenuUserController implements Initializable {
 
     }    
 
-    @FXML
     private void Showville1(ActionEvent event) throws IOException 
     {
-        Parent homePage = FXMLLoader.load(getClass().getResource("ShowVille1.fxml"));
+        Parent homePage = FXMLLoader.load(getClass().getResource("/Presentation/ShowVille1.fxml"));
 
         Scene homePage_scene = new Scene(homePage);
 
         Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        
+        
 
         app_stage.setScene(homePage_scene);
 
         app_stage.show();
     }
-    
-    @FXML
-    private void Showville2(ActionEvent event) throws IOException 
-    {
-        Parent homePage = FXMLLoader.load(getClass().getResource("ShowVille2.fxml"));
 
-        Scene homePage_scene = new Scene(homePage);
-
-        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        app_stage.setScene(homePage_scene);
-
-        app_stage.show();
+    private void showVilleDetails(EntiteVille object){
+        
+        System.out.println(object.toString());
+        try {
+            FXMLLoader homePage = new FXMLLoader();;
+            homePage.setLocation(getClass().getResource("/Presentation/ShowVille1.fxml"));
+            Parent root = (Parent) homePage.load();
+            
+              ShowVille1Controller controller = homePage.getController();
+            System.out.println(controller.toString());
+            
+            controller.setVille(object);
+            
+             Scene homePage_scene = new Scene(root);
+            // Stage stage = new Stage();
+            // stage.setScene(homePage_scene);
+            // stage.show();
+             Stage s = (Stage) ( ListView.getScene().getWindow());
+             s.setScene(homePage_scene);
+             s.show();
+             
+        } catch (IOException ex) {
+            Logger.getLogger(MenuUserController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }
-    
-    @FXML
-    private void Showville3(ActionEvent event) throws IOException 
-    {
-        Parent homePage = FXMLLoader.load(getClass().getResource("ShowVille3.fxml"));
 
-        Scene homePage_scene = new Scene(homePage);
-
-        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        app_stage.setScene(homePage_scene);
-
-        app_stage.show();
-    }
-    
-    @FXML
-    private void Showville4(ActionEvent event) throws IOException 
-    {
-        Parent homePage = FXMLLoader.load(getClass().getResource("ShowVille4.fxml"));
-
-        Scene homePage_scene = new Scene(homePage);
-
-        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        app_stage.setScene(homePage_scene);
-
-        app_stage.show();
-    }
-    
-    @FXML
-    private void Showville5(ActionEvent event) throws IOException 
-    {
-        Parent homePage = FXMLLoader.load(getClass().getResource("ShowVille5.fxml"));
-
-        Scene homePage_scene = new Scene(homePage);
-
-        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        app_stage.setScene(homePage_scene);
-
-        app_stage.show();
-    }
-    
-    @FXML
-    private void Showville6(ActionEvent event) throws IOException 
-    {
-        Parent homePage = FXMLLoader.load(getClass().getResource("ShowVille6.fxml"));
-
-        Scene homePage_scene = new Scene(homePage);
-
-        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        app_stage.setScene(homePage_scene);
-
-        app_stage.show();
-    }
-    
-    @FXML
-    private void Showville7(ActionEvent event) throws IOException 
-    {
-        Parent homePage = FXMLLoader.load(getClass().getResource("ShowVille7.fxml"));
-
-        Scene homePage_scene = new Scene(homePage);
-
-        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        app_stage.setScene(homePage_scene);
-
-        app_stage.show();
-    }
-    
-    @FXML
-    private void Showville8(ActionEvent event) throws IOException 
-    {
-        Parent homePage = FXMLLoader.load(getClass().getResource("ShowVille8.fxml"));
-
-        Scene homePage_scene = new Scene(homePage);
-
-        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        app_stage.setScene(homePage_scene);
-
-        app_stage.show();
-    }
-    
-    @FXML
-    private void Showville9(ActionEvent event) throws IOException 
-    {
-        Parent homePage = FXMLLoader.load(getClass().getResource("ShowVille9.fxml"));
-
-        Scene homePage_scene = new Scene(homePage);
-
-        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        app_stage.setScene(homePage_scene);
-
-        app_stage.show();
-    }
-    
-    @FXML
-    private void Showville10(ActionEvent event) throws IOException 
-    {
-        Parent homePage = FXMLLoader.load(getClass().getResource("ShowVille10.fxml"));
-
-        Scene homePage_scene = new Scene(homePage);
-
-        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        app_stage.setScene(homePage_scene);
-
-        app_stage.show();
-    }
-    
-    @FXML
-    private void Showville11(ActionEvent event) throws IOException 
-    {
-        Parent homePage = FXMLLoader.load(getClass().getResource("ShowVille11.fxml"));
-
-        Scene homePage_scene = new Scene(homePage);
-
-        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        app_stage.setScene(homePage_scene);
-
-        app_stage.show();
-    }
-    
 }
+
+

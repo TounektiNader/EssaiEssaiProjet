@@ -14,7 +14,7 @@ public interface iPartie {
   public Equipe getEquipe(int idEquipe);
   public EntiteStade getStade(int idStade);
    public ObservableList<Partie> getPartie() ;
-     public void ajoutPartie(String groupe, String date, String heure, String tour, String etiquette, int idStade, int home, int away);
+     public void ajoutPartie(String groupe, String date, String heure, String tour,int idStade, int home, int away) ;
      public void supprimer(int idPartie);
      public int geIdHome(int idPartie) ;
      public int geIdAway(int idPartie) ;
@@ -23,5 +23,8 @@ public interface iPartie {
      public Partie DetailsPartie(int idPartie) ;
      public void updateEtatPartie(int idPartie);
      public int  getIdStade(String nomStade);
+     public int geIdPartie(int idHome , int idAway);
+      public ObservableList<Partie> partiegTour(String tour) ;public ObservableList<Partie> partiegNonJouee() ;
+       public ObservableList<Partie> partiegJouee();
   
  }

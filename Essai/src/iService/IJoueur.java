@@ -7,16 +7,25 @@ package iService;
 
 import java.util.List;
 import Entity.Joueurs;
+import javafx.collections.ObservableList;
 
 /**
  *
  * @author Amouri Aziz
  */
 public interface IJoueur {
-   public void ajouterJoueur(Joueurs J);
-   public void supprimerJoueur(Joueurs J);
-   public void ModifierJoueur(Joueurs J);
-   public  List<Joueurs> affichersJoueurs();
-       public List<Joueurs> affichersJoueurs(int IdEquipe);
-    public Joueurs affichersJoueur(int Id);
+    
+    public void supprimerJoueur() ;
+    public void ajouterJoueur(Joueurs J,String path);
+    
+
+  
+
+    public List<Joueurs> affichersJoueurs();
+
+   // public List<Joueurs> affichersJoueurs(int IdEquipe);
+
+  //  public Joueurs affichersJoueur(int Id);
+
+    public ObservableList<Joueurs> getJouurs(int id);
 }

@@ -39,4 +39,20 @@ public interface iBet {
     public void updateJetonEtat(int idPartie);
 
     public void parier(int idPartie, String username, String choix);
+
+    public ObservableList<Bet> listBetPerte(String username);
+
+    public ObservableList<Bet> listBetGain(String username);
+
+    public int NombreTotalBet();
+
+    public int NombreBetPerte();
+
+    public int NombreBetGain();
+
+    public int NombreBetTraite();
+    
+    public List<Bet> listBetParPersonne();
+     public int nombreBetPerte(String username);
+     public int nombreBetGain(String username);
 }

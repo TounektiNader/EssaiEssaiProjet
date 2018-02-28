@@ -6,18 +6,23 @@
 package Services;
 
 import DateStroge.MyConnection;
+import Entity.Bet;
 import Entity.Cadeau;
 import Entity.Recompense;
 import Entity.User;
+import iService.IRecompense;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
-public class RecompenseService {
+public class RecompenseService implements IRecompense{
     PreparedStatement stmt;
     Connection conn;
     ResultSet rs;
@@ -27,6 +32,7 @@ public class RecompenseService {
 
     }
     
+    @Override
     public User getUser(String username) {
         User user = new User();
 
@@ -59,7 +65,7 @@ public class RecompenseService {
     }
 
     
-     
+      @Override
     public List<Recompense> listRecompense() {
 
         List<Recompense> list = new ArrayList<Recompense>();
@@ -85,7 +91,7 @@ public class RecompenseService {
 
     }
 
-         
+        @Override 
     public List<Recompense> listRecompense(String username) {
 
         List<Recompense> list = new ArrayList<Recompense>();
@@ -112,7 +118,7 @@ public class RecompenseService {
         return list;
 
     }
-
+@Override
    public void ajouterRecompense(String username,String typeRecomense){
        
        CadeauService cadeauService = new CadeauService() ; 
@@ -142,6 +148,54 @@ public class RecompenseService {
             }
    
    }
+   
+   @Override
+    public int NombreMesCadeau(String username) {
+        int nombreBet = 0;
+            String rq1 = " SELECT Count(idRecompense) FROM recompense where username='"+username+"';";
+        try {
+            
+            
 
+            Statement stmt1 = conn.createStatement();
+            rs = stmt1.executeQuery(rq1);
+            
+            while (rs.next()) {
+                System.out.println(rs.getInt(1));
+                nombreBet = rs.getInt(1);
+            }
+
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceBet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return nombreBet;
+    }
+
+    
+     public void deminuerJeton(String username,int nbJeton,int nbJetonCadeau) {
+      
+      int nb = nbJeton-nbJetonCadeau;  
+
+        try {
+
+            Statement statement = conn.createStatement();
+            int rs = statement.executeUpdate("UPDATE  user  SET jeton='" + nb + "' WHERE username='" + username + "' ");
+            if (rs < 0) {
+                System.out.println("Echec");
+            } else {
+                System.out.println("Modification avec succès");
+            }
+
+        } catch (SQLException ex) {
+
+        }
+
+    }
+     
+    
+     
+     
+ 
 
 }

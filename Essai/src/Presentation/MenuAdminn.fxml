@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="760.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.MenuAdsmin">
+   <children>
+      <AnchorPane prefHeight="760.0" prefWidth="247.0">
+         <children>
+            <AnchorPane prefHeight="760.0" prefWidth="247.0" style="-fx-background-color: #36393B;">
+               <children>
+                  <Pane layoutX="1.0" prefHeight="56.0" prefWidth="246.0" style="-fx-background-color: #36393B;">
+                     <children>
+                        <Label fx:id="actualités" layoutX="57.0" layoutY="10.0" text="Actualités" textFill="WHITE">
+                           <font>
+                              <Font name="Lucida Calligraphy Italic" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Button fx:id="bt_ajouté" layoutX="5.0" layoutY="410.0" mnemonicParsing="false" onAction="#AddActu" prefHeight="25.0" prefWidth="238.0" style="-fx-background-color: #9a9696;" text="Ajout Actualité">
+                     <font>
+                        <Font name="Lucida Calligraphy Italic" size="16.0" />
+                     </font>
+                     
+                  </Button>
+                  <ImageView fitHeight="172.0" fitWidth="238.0" layoutX="5.0" layoutY="73.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../imageHedi/Ultimate-Soccer-icon.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="22.0" fitWidth="24.0" layoutX="24.0" layoutY="419.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imageHedi/Fairytale_button_add.svg.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children></AnchorPane>
+      <AnchorPane layoutX="240.0" layoutY="4.0" prefHeight="751.0" prefWidth="954.0">
+         <children>
+            <ScrollPane layoutX="4.0" layoutY="1.0" prefHeight="751.0" prefWidth="946.0">
+               <content>
+                  <BorderPane prefHeight="731.0" prefWidth="948.0">
+                     <top>
+                        <AnchorPane prefHeight="199.0" prefWidth="934.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <BorderPane prefHeight="200.0" prefWidth="931.0">
+                                 <center>
+                                    <AnchorPane prefHeight="200.0" prefWidth="948.0" style="-fx-background-color: #e6e6e6;" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <Label layoutX="121.0" layoutY="3.0" prefHeight="112.0" prefWidth="437.0" text="liste des actualités" AnchorPane.bottomAnchor="85.0" AnchorPane.leftAnchor="121.0" AnchorPane.topAnchor="3.0">
+                                             <font>
+                                                <Font name="Lucida Calligraphy Italic" size="36.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="14.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="91.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="9.0">
+                                             <image>
+                                                <Image url="@../imageHedi/ispit_500x500.png" />
+                                             </image></ImageView>
+                                          <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="826.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../imageHedi/Soccer_Ball%5B1%5D.png" />
+                                             </image></ImageView>
+                                          <Separator layoutX="492.0" layoutY="115.0" prefWidth="200.0" style="-fx-background-color: #36393B;" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+                                       </children>
+                                    </AnchorPane>
+                                 </center>
+                              </BorderPane>
+                           </children>
+                        </AnchorPane>
+                     </top>
+                     <center>
+                        <AnchorPane prefHeight="531.0" prefWidth="906.0" style="-fx-background-color: #EBEBEB;" BorderPane.alignment="CENTER">
+                           <padding>
+                              <Insets bottom="20.0" />
+                           </padding>
+                           <opaqueInsets>
+                              <Insets bottom="25.0" />
+                           </opaqueInsets>
+                           <children>
+                              <VBox prefHeight="475.0" prefWidth="890.0" style="-fx-background-color: #EBEBEB;">
+                                 <children>
+                                    <AnchorPane layoutX="44.0" prefHeight="493.0" prefWidth="890.0">
+                                       <children>
+                                          <Label layoutX="232.0" text="Mes actualités" textAlignment="CENTER">
+                                             <font>
+                                                <Font name="Lucida Calligraphy Italic" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Separator layoutX="232.0" layoutY="36.0" prefHeight="3.0" prefWidth="187.0" style="-fx-background-color: #36393B;" />
+                                          <ListView fx:id="listview" layoutX="14.0" layoutY="47.0" prefHeight="448.0" prefWidth="621.0" />
+                                          <ImageView fx:id="ph" fitHeight="150.0" fitWidth="262.0" layoutX="582.0" layoutY="349.0" pickOnBounds="true" preserveRatio="true" />
+                                          <Label fx:id="url" layoutX="872.0" layoutY="453.0" prefHeight="17.0" prefWidth="1.0" />
+                                          <ImageView fitHeight="442.0" fitWidth="238.0" layoutX="650.0" layoutY="52.0" pickOnBounds="true">
+                                             <image>
+                                                <Image url="@../imageHedi/58430032a6515b1e0ad75b3f%5B1%5D.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </center>
+                  </BorderPane>
+               </content>
+            </ScrollPane>
+         </children></AnchorPane>
+   </children>
+</AnchorPane>

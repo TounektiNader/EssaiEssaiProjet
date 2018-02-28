@@ -22,5 +22,8 @@ public interface iServicesUser {
     public void validerCompte(String code,User u);
     public User getUser(String pseudo) ;
     public ObservableList<User> GetAdmin();
+     public User afficherUser(String pseudo);
+     public int nbrAdmin();
+     public void validerAdmin(User u);
    
 }

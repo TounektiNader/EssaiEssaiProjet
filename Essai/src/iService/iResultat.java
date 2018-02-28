@@ -17,6 +17,7 @@ import javafx.collections.ObservableList;
 public interface iResultat {
 
     //bech na7iha emba3ed 
+  public void supprimerRsultat(int idPartie);
     public void ajoutResultat(int idPArtie);
 
     public void modifierResulltat(int idPartie, int butHome, int butAway);

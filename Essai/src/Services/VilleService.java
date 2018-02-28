@@ -72,17 +72,26 @@ public class VilleService implements Iville
     {
         try
         {
-        String update = "UPDATE villes SET coordonnees = ? WHERE nomville = ?";
+        String update = "UPDATE villes SET nomville = ?, fondationville = ?, populationville = ?, timezone = ?, photoville = ?, equipelocale = ?, logoville = ?, logoequipe = ?, coordonnees = ? WHERE idville = ?";
         PreparedStatement statement2 = connexion.prepareStatement(update);
-        statement2.setString(1, "Hamza");
-        statement2.setString(2, p.getNom());
+        statement2.setString(1, p.getNom());
+        statement2.setString(2, p.getFondation());
+        statement2.setString(3, p.getPopulation());
+        statement2.setString(4, p.getTimezone());
+        statement2.setString(5, p.getPhotoville());
+        statement2.setString(6, p.getEquipelocale());
+        statement2.setString(7, p.getLogoville());
+        statement2.setString(8, p.getLogoequipe());
+        statement2.setString(9, p.getCoordonnees());
+        statement2.setInt(10, p.getId());
+        System.out.println(p.getId());
         statement2.executeUpdate();
         System.out.println("Ville "+p.getNom()+" modifiée !!!");
         
         }
-        catch (Exception e)
+        catch (SQLException e)
                 {
-                    System.err.println("Ville "+p.getNom()+" non modifiée");
+                    System.err.println("SQLException: "+e.getMessage());
                 }
     }
 
@@ -207,4 +216,30 @@ public class VilleService implements Iville
                 }
         return res;
     }
+
+    @Override
+    public int Nmbr() 
+    {
+        int res=0;
+        try 
+        {
+        String select = "SELECT count(idville) FROM villes;";
+        Statement statement1 = connexion.createStatement();
+      
+        ResultSet result = statement1.executeQuery(select);
+        
+        while (result.next()) 
+        {
+            res = result.getInt("count(idville)");
+        }
+}
+        catch (SQLException e)
+                {
+                    System.err.println("SQLException: "+e.getMessage());
+                    System.err.println("SQLSTATE: "+e.getSQLState());
+                    System.err.println("VnedorError: "+e.getErrorCode());
+                }
+        return res;
+    }
+
 }

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.StatPariController">
+   <children>
+      <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" prefHeight="600.0" prefWidth="207.0" />
+      <Pane fx:id="paneE" prefHeight="600.0" prefWidth="207.0" style="-fx-background-color: #36393B;">
+         <children>
+            <JFXButton fx:id="b1" buttonType="RAISED" layoutX="-2.0" layoutY="147.0" onAction="#GererRecompense" prefHeight="56.0" prefWidth="207.0" ripplerFill="#fc0000" style="-fx-background-color: #9a9696;" text="Gérer Recompense" textAlignment="CENTER" textFill="#534d4d" />
+            <Label alignment="CENTER" layoutX="19.0" layoutY="14.0" prefHeight="105.0" prefWidth="180.0" textAlignment="RIGHT" textFill="#f2ebeb">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Text fill="#fcfcfc" layoutX="56.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Statistique des Paris" textAlignment="CENTER" wrappingWidth="127.00001287460327">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Text>
+            <JFXButton fx:id="b11" buttonType="RAISED" layoutX="-2.0" layoutY="211.0" onAction="#StatRecompense" prefHeight="56.0" prefWidth="207.0" ripplerFill="#fc0000" style="-fx-background-color: #9a9696;" text="Statistique des Recompenses" textFill="#534d4d">
+               <graphic>
+                  <ImageView fitHeight="33.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/stat.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="b12" buttonType="RAISED" layoutX="-1.0" layoutY="276.0" onAction="#GererMatch" prefHeight="56.0" prefWidth="207.0" ripplerFill="#fc0000" style="-fx-background-color: #9a9696;" text="Gérer Match" textFill="#534d4d">
+               <padding>
+                  <Insets right="30.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton fx:id="b13" buttonType="RAISED" layoutX="-1.0" layoutY="340.0" onAction="#GererResultat" prefHeight="56.0" prefWidth="207.0" ripplerFill="#fc0000" style="-fx-background-color: #9a9696;" text="Gérer Resultat" textFill="#534d4d">
+               <padding>
+                  <Insets right="30.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton fx:id="b15" buttonType="RAISED" layoutY="467.0" onAction="#GererRecom" prefHeight="56.0" prefWidth="207.0" ripplerFill="#fc0000" style="-fx-background-color: #9a9696;" text="          Gérer Recommandations" textFill="#534d4d" />
+            <JFXButton fx:id="b14" buttonType="RAISED" layoutX="-2.0" layoutY="404.0" onAction="#GererEquipe" prefHeight="56.0" prefWidth="207.0" ripplerFill="#fc0000" style="-fx-background-color: #9a9696;" text="Gérer Equipes" textFill="#534d4d">
+               <padding>
+                  <Insets right="30.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton fx:id="b151" buttonType="RAISED" layoutX="-1.0" layoutY="531.0" onAction="#GererActu" prefHeight="56.0" prefWidth="207.0" ripplerFill="#fc0000" style="-fx-background-color: #9a9696;" text="Gérer Actualités" textFill="#534d4d">
+               <padding>
+                  <Insets right="30.0" />
+               </padding>
+            </JFXButton>
+            <ImageView fitHeight="45.0" fitWidth="42.0" layoutX="9.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/stat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="33.0" fitWidth="42.0" layoutX="7.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/gift1.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="33.0" fitWidth="42.0" layoutX="9.0" layoutY="290.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/match.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="33.0" fitWidth="42.0" layoutX="9.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/resultat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="33.0" fitWidth="42.0" layoutX="9.0" layoutY="414.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/equipe.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="33.0" fitWidth="42.0" layoutX="8.0" layoutY="484.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/hotel.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="33.0" fitWidth="42.0" layoutX="8.0" layoutY="548.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/news.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Label layoutX="266.0" layoutY="23.0" prefHeight="23.0" prefWidth="59.0" text="Username" />
+      <JFXButton layoutX="894.0" layoutY="13.0" text="Se déconnecter" />
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="231.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/admiUSer.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="869.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/logout.png" />
+         </image>
+      </ImageView>
+      <JFXTextField fx:id="username" alignment="CENTER" editable="false" layoutX="340.0" layoutY="16.0" prefHeight="25.0" prefWidth="108.0">
+         <font>
+            <Font size="16.0" />
+         </font></JFXTextField>
+      <HBox layoutX="219.0" layoutY="160.0" prefHeight="137.0" prefWidth="630.0" spacing="50.0">
+         <children>
+            <VBox prefHeight="121.0" prefWidth="267.0">
+               <children>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="107.0" prefWidth="217.0" style="-fx-background-color: #2A2E37; -fx-border-color: #13a1ee;">
+                     <children>
+                        <StackPane>
+                           <children>
+                              <Circle fill="#1f93ff00" radius="50.0" rotate="270.0" stroke="#13a1ee" strokeType="INSIDE" style="-fx-stroke-dash-offset: 120;" />
+                              <Text fx:id="pourcentageGain" fill="#13a1ee" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="50%" />
+                           </children>
+                        </StackPane>
+                        <VBox alignment="CENTER" prefHeight="107.0" prefWidth="122.0">
+                           <children>
+                              <Text fill="#13a1ee" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Pari gagnée" />
+                              <Text fx:id="nombreGain" fill="#13a1ee" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="20" />
+                              <Text fx:id="nombreTotal1" fill="#13a1ee" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="/100" />
+                           </children>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </VBox>
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="107.0" prefWidth="214.0" style="-fx-background-color: #2A2E37; -fx-border-color: #13a1ee;">
+               <children>
+                  <StackPane>
+                     <children>
+                        <Circle fill="#1f93ff00" radius="50.0" rotate="270.0" stroke="#13a1ee" strokeType="INSIDE" style="-fx-stroke-dash-offset: 120;" />
+                        <Text fx:id="pourcentagePerte" fill="#13a1ee" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="50%" />
+                     </children>
+                  </StackPane>
+                  <VBox alignment="CENTER" prefHeight="107.0" prefWidth="125.0">
+                     <children>
+                        <Text fill="#13a1ee" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Pari perdu" />
+                        <Text fx:id="nombrePerte" fill="#13a1ee" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="20" />
+                        <Text fx:id="nombreTotal2" fill="#13a1ee" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="/100" />
+                     </children>
+                  </VBox>
+               </children>
+               <HBox.margin>
+                  <Insets top="10.0" />
+               </HBox.margin>
+            </HBox>
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="107.0" prefWidth="200.0" style="-fx-background-color: #2A2E37; -fx-border-color: #13a1ee;">
+               <children>
+                  <StackPane>
+                     <children>
+                        <Circle fill="#1f93ff00" radius="50.0" rotate="270.0" stroke="#13a1ee" strokeType="INSIDE" style="-fx-stroke-dash-offset: 120;" />
+                        <Text fx:id="pourcentageTraite" fill="#13a1ee" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="50%" />
+                     </children>
+                  </StackPane>
+                  <VBox alignment="CENTER" prefHeight="107.0" prefWidth="125.0">
+                     <children>
+                        <Text fill="#13a1ee" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Pari En Cours" />
+                        <Text fx:id="nombreEnCours" fill="#13a1ee" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="20" />
+                        <Text fx:id="nombreTotal3" fill="#13a1ee" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="/100" />
+                     </children>
+                  </VBox>
+               </children>
+               <HBox.margin>
+                  <Insets top="10.0" />
+               </HBox.margin>
+            </HBox>
+         </children>
+      </HBox>
+      <BarChart fx:id="chartComp" layoutX="239.0" layoutY="317.0" prefHeight="242.0" prefWidth="380.0" style="-fx-border-color: #13a1ee;">
+        <xAxis>
+          <CategoryAxis fx:id="Axis" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="absis" side="LEFT" tickLabelFill="#13a1ee" />
+        </yAxis>
+      </BarChart>
+      <PieChart fx:id="chart" layoutX="669.0" layoutY="355.0" prefHeight="190.0" prefWidth="247.0" style="-fx-border-color: #13a1ee;" stylesheets="@../CSS/pieChart.css" />
+      <Text fill="#13a1ee" layoutX="203.0" layoutY="436.0" rotate="270.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 14px;" text="Nombre Jeton" />
+      <JFXButton layoutX="856.0" layoutY="307.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="18.0" text="Button" />
+      <JFXComboBox fx:id="comboUser" layoutX="728.0" layoutY="305.0" prefHeight="25.0" prefWidth="108.0" />
+      <ImageView fitHeight="27.0" fitWidth="32.0" layoutX="685.0" layoutY="304.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/usercombo.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="850.0" layoutY="309.0" onMouseClicked="#afficherChart" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/chart.png" />
+         </image>
+      </ImageView>
+      <Text fill="#13a1ee" layoutX="353.0" layoutY="552.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 14px;" text="Users" />
+      <JFXButton layoutX="859.0" layoutY="553.0" onAction="#pdff" prefHeight="45.0" prefWidth="156.0" text="Générer PDF" textFill="#cd720b">
+         <graphic>
+            <ImageView fitHeight="34.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/pdf.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXHamburger fx:id="hamburger" layoutX="950.0" layoutY="68.0" />
+      <Separator layoutX="208.0" layoutY="99.0" prefHeight="8.0" prefWidth="802.0" style="-fx-background-color: #36393B;" />
+   </children>
+</AnchorPane>

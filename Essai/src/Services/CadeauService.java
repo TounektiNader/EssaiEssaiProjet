@@ -207,6 +207,52 @@ public class CadeauService implements iCadeau {
 
     }
       
+       public int nombreRecompenseParPersonne(String username) {
+       int   nombreRecompense=0;
+       
+
+        data = FXCollections.observableArrayList();
+
+        try {
+            String sql = "select count(idRecompense) from  recompense where username=? ;";
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, username);
+            
+
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+            nombreRecompense = rs.getInt(1);
+                System.out.println(nombreRecompense);
+                
+            }
+
+        } catch (SQLException ex) {
+        }
+        return nombreRecompense;
+
+    }
+      
+       
+       public String categorieCadeau(String idCadeau) {
+       String cat = "";
+
+        try {
+
+            String sql = " SELECT Catégorie from cadeau where idCadeau='"+idCadeau+"' ;";
+            stmt = conn.prepareStatement(sql);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+
+              cat = rs.getString("Catégorie");
+
+            }
+
+        } catch (SQLException ex) {
+
+        }
+        return cat;
+
+    }
       
    
 

@@ -10,4 +10,6 @@ public interface Iresto
     public EntiteResto FindResto(String nom);
     public List<EntiteResto> FindRestoVille(String ville);
     public List<EntiteResto> ListRestos();
+    public int Nmbr();
+
 }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.FXMLDocumentController">
+    <children>
+      <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" layoutY="-1.0" prefHeight="608.0" prefWidth="120.0" />
+      <JFXHamburger fx:id="hamburger" layoutX="936.0" layoutY="26.0" />
+      <JFXTextField layoutX="317.0" layoutY="247.0" />
+    </children>
+</AnchorPane>

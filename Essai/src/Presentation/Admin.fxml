@@ -1,20 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.AdminController">
-   <children>
-      <Label fx:id="nom" layoutX="286.0" layoutY="25.0" text="Label" />
-      <TableView fx:id="table" layoutX="30.0" layoutY="79.0" onSort="#loadData" prefHeight="200.0" prefWidth="367.0">
-        <columns>
-          <TableColumn fx:id="columnNom" prefWidth="75.0" text="C1" />
-          <TableColumn fx:id="columnPrenom" prefWidth="75.0" text="C2" />
-            <TableColumn fx:id="columnMdp" prefWidth="75.0" text="C1" />
-            <TableColumn fx:id="columnStatus" prefWidth="75.0" text="C1" />
-        </columns>
-      </TableView>
-   </children>
+<AnchorPane id="AnchorPane" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="595.0" prefWidth="952.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.AdminController">
+    <children>
+      <ImageView fitHeight="607.0" fitWidth="969.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/russia2018.jpg" />
+         </image>
+      </ImageView>
+      <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" layoutY="-1.0" prefHeight="608.0" prefWidth="120.0" />
+      <JFXHamburger fx:id="hamburger" layoutX="918.0" layoutY="17.0" />
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="864.0" layoutY="15.0" onMouseClicked="#affichierValider" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/notif.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="nombreTel" alignment="CENTER" layoutX="882.0" layoutY="7.0" prefHeight="20.0" prefWidth="20.0" style="-fx-background-color: red; -fx-background-radius: 10;" text="2" textAlignment="CENTER" textFill="#f8f4f4">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+    </children>
 </AnchorPane>

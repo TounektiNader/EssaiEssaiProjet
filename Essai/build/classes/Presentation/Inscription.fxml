@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="962.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.InscriptionController">
+    <children>
+      <ImageView fitHeight="607.0" fitWidth="976.0" layoutX="-5.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/russia2018.jpg" />
+         </image>
+      </ImageView>
+      <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" layoutY="-1.0" prefHeight="608.0" prefWidth="120.0" />
+      <JFXHamburger fx:id="hamburger" layoutX="924.0" layoutY="21.0" />
+      <AnchorPane layoutX="380.0" layoutY="49.0" opacity="0.9" prefHeight="535.0" prefWidth="380.0" style="-fx-background-color: silver;">
+         <children>
+            <JFXButton layoutX="137.0" layoutY="489.0" onAction="#inscription" prefHeight="25.0" prefWidth="126.0" style="-fx-background-color: #E45652; -fx-font-weight: bold;" text="S'inscrire" textFill="WHITE" />
+            <JFXComboBox fx:id="role" focusColor="WHITE" labelFloat="true" layoutX="126.0" layoutY="276.0" prefHeight="25.0" prefWidth="135.0" promptText="Rôle" style="-fx-font-weight: bold; -fx-font-size: 14;" unFocusColor="WHITE" />
+            <Label layoutX="170.0" layoutY="275.0" style="-fx-font-weight: bold;" textFill="WHITE" />
+            <Label layoutX="171.0" layoutY="332.0" style="-fx-font-weight: bold;" textFill="WHITE" />
+            <JFXTextField fx:id="nom" alignment="CENTER" focusColor="WHITE" labelFloat="true" layoutX="128.0" layoutY="65.0" prefHeight="28.0" prefWidth="135.0" promptText="Nom" style="-fx-font-weight: bold; -fx-font-size: 14;" unFocusColor="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font></JFXTextField>
+            <JFXTextField fx:id="prenom" alignment="CENTER" focusColor="WHITE" labelFloat="true" layoutX="127.0" layoutY="118.0" prefHeight="28.0" prefWidth="135.0" promptText="Prenom" style="-fx-font-weight: bold; -fx-font-size: 14;" unFocusColor="WHITE" />
+            <JFXTextField fx:id="pseudo" alignment="CENTER" focusColor="WHITE" labelFloat="true" layoutX="128.0" layoutY="172.0" prefHeight="28.0" prefWidth="135.0" promptText="Pseudo" style="-fx-font-weight: bold; -fx-font-size: 14;" unFocusColor="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font></JFXTextField>
+            <JFXTextField fx:id="email" alignment="CENTER" focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="330.0" prefHeight="28.0" prefWidth="143.0" promptText="Email" style="-fx-font-weight: bold; -fx-font-size: 14;" unFocusColor="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font></JFXTextField>
+            <JFXComboBox fx:id="nationalite" focusColor="WHITE" labelFloat="true" layoutX="132.0" layoutY="387.0" prefHeight="30.0" prefWidth="135.0" promptText="Nationalité" style="-fx-font-weight: bold; -fx-font-size: 14;" unFocusColor="WHITE" />
+            <ImageView fitHeight="50.0" fitWidth="56.0" layoutX="168.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/addUser.png" />
+               </image>
+            </ImageView>
+            <JFXTextField fx:id="num" alignment="CENTER" focusColor="WHITE" labelFloat="true" layoutX="121.0" layoutY="435.0" promptText="Numero" style="-fx-font-weight: bold; -fx-font-size: 14;" unFocusColor="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXTextField>
+            <JFXPasswordField fx:id="mdp" alignment="CENTER" focusColor="WHITE" labelFloat="true" layoutX="126.0" layoutY="229.0" prefHeight="25.0" prefWidth="143.0" promptText="Mot De Passe" style="-fx-font-weight: bold; -fx-font-size: 14;" unFocusColor="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXPasswordField>
+         </children>
+      </AnchorPane>
+    </children>
+</AnchorPane>

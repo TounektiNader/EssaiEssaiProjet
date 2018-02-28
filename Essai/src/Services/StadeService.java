@@ -68,17 +68,24 @@ public class StadeService implements Istade
     {
         try
         {
-        String update = "UPDATE stades SET positionstade = ? WHERE nomstade = ?";
+        String update = "UPDATE stades SET nomstade = ?, fondationstade = ?, capacitestade = ?, photostade = ?, equipestade = ?, positionstade = ?, idville = ? WHERE idstade = ?";
         PreparedStatement statement2 = connexion.prepareStatement(update);
-        statement2.setString(1, "Hamza");
-        statement2.setString(2, p.getNom());
+        statement2.setString(1, p.getNom());
+        statement2.setString(2, p.getFondation());
+        statement2.setString(3, p.getCapacite());
+        statement2.setString(4, p.getPhoto());
+        statement2.setString(5, p.getEquipelocale());
+        statement2.setString(6, p.getPosition());
+        statement2.setInt(7, p.getStadeVille().getId());
+        statement2.setInt(8, p.getId());
+        System.out.println(p.getId());
         statement2.executeUpdate();
         System.out.println("Stade "+p.getNom()+" modifié !!!");
         
         }
-        catch (Exception e)
+        catch (SQLException ex)
                 {
-                    System.err.println("Stade "+p.getNom()+" non modifié");
+                    System.err.println(ex.getMessage());
                 }
     }
 
@@ -147,7 +154,6 @@ public class StadeService implements Istade
         return lv;
     }
 
-    @Override
     public List<EntiteStade> FindStadeVille(String ville) 
     {
         List<EntiteStade> lv=new ArrayList<>();
@@ -180,6 +186,55 @@ public class StadeService implements Istade
                     System.err.println("VnedorError: "+e.getErrorCode());
                 }
         return lv;
+    }
+
+    @Override
+    public String FindStadeVille(int id) 
+    {
+        String lv = "";
+        try 
+        {
+        String select = "SELECT positionstade FROM stades s, villes v WHERE v.idville = s.idville and v.idville ='"+id+"'";
+        Statement statement1 = connexion.createStatement();
+        ResultSet result = statement1.executeQuery(select);
+        
+        while (result.next()) 
+        {
+            lv = result.getString("positionstade");
+        } 
+    }   
+        catch (SQLException e)
+                {
+                    System.err.println("SQLException: "+e.getMessage());
+                    System.err.println("SQLSTATE: "+e.getSQLState());
+                    System.err.println("VnedorError: "+e.getErrorCode());
+                }
+        return lv;
+    }
+
+    @Override
+    public int Nmbr() 
+    {
+        int res=0;
+        try 
+        {
+        String select = "SELECT count(idstade) FROM stades;";
+        Statement statement1 = connexion.createStatement();
+      
+        ResultSet result = statement1.executeQuery(select);
+        
+        while (result.next()) 
+        {
+            res = result.getInt("count(idstade)");
+        }
+}
+        catch (SQLException e)
+                {
+                    System.err.println("SQLException: "+e.getMessage());
+                    System.err.println("SQLSTATE: "+e.getSQLState());
+                    System.err.println("VnedorError: "+e.getErrorCode());
+                }
+        return res;
     }
     
 }

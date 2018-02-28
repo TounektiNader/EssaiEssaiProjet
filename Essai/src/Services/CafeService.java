@@ -70,17 +70,22 @@ public class CafeService implements Icafe
     {
         try
         {
-        String update = "UPDATE cafes SET positioncafe = ? WHERE nomcafe = ?";
+        String update = "UPDATE cafes SET nomcafe = ?, detailscafe = ?, positioncafe = ?, photocafe = ?, idville = ? WHERE idcafe = ?";
         PreparedStatement statement2 = connexion.prepareStatement(update);
-        statement2.setString(1, "Hamza");
-        statement2.setString(2, p.getNom());
+        statement2.setString(1, p.getNom());
+        statement2.setString(2, p.getDetails());
+        statement2.setString(3, p.getPosition());
+        statement2.setString(4, p.getPhoto());
+        statement2.setInt(5, p.getCafeVille().getId());
+        statement2.setInt(6, p.getId());
+        System.out.println(p.getId());
         statement2.executeUpdate();
         System.out.println("Café "+p.getNom()+" modifié !!!");
         
         }
-        catch (Exception e)
+        catch (SQLException ex)
                 {
-                    System.err.println("Café "+p.getNom()+" non modifié");
+                    System.err.println(ex.getMessage());
                 }
     }
 
@@ -176,5 +181,30 @@ public class CafeService implements Icafe
                     System.err.println("VnedorError: "+e.getErrorCode());
                 }
         return lv;
+    }
+
+    @Override
+    public int Nmbr() 
+    {
+        int res=0;
+        try 
+        {
+        String select = "SELECT count(idcafe) FROM cafes;";
+        Statement statement1 = connexion.createStatement();
+      
+        ResultSet result = statement1.executeQuery(select);
+        
+        while (result.next()) 
+        {
+            res = result.getInt("count(idcafe)");
+        }
+}
+        catch (SQLException e)
+                {
+                    System.err.println("SQLException: "+e.getMessage());
+                    System.err.println("SQLSTATE: "+e.getSQLState());
+                    System.err.println("VnedorError: "+e.getErrorCode());
+                }
+        return res;
     }
     }

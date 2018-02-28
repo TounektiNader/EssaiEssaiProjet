@@ -1,45 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="479.0" prefWidth="1078.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.AffichageListEquipeController">
+<AnchorPane id="AnchorPane" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="594.0" prefWidth="1004.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.AffichagListEquipeController">
    <children>
-      <TableView fx:id="tabEquipe" layoutX="83.0" layoutY="68.0" onMouseClicked="#tableCliked" prefHeight="200.0" prefWidth="977.0">
-        <columns>
-            <TableColumn fx:id="idEquipe" prefWidth="75.0" text="IDequipe" />
-            <TableColumn fx:id="NE" prefWidth="75.0" text="Nom equipe" />
-          <TableColumn fx:id="E" prefWidth="75.0" text="Entraineur" />
-          <TableColumn fx:id="Drap" prefWidth="75.0" text="Drapeau" />
-            <TableColumn fx:id="Conti" prefWidth="75.0" text="Continant" />
-            <TableColumn fx:id="grop" prefWidth="75.0" text="groupe" />
-            <TableColumn fx:id="MJ" prefWidth="75.0" text="MJ" />
-            <TableColumn fx:id="MG" prefWidth="75.0" text="MG" />
-            <TableColumn fx:id="MP" prefWidth="75.0" text="MP" />
-            <TableColumn fx:id="MN" prefWidth="75.0" text="MN" />
-            <TableColumn fx:id="BE" prefWidth="75.0" text="BE" />
-            <TableColumn fx:id="BM" prefWidth="75.0" text="BM" />
-            <TableColumn fx:id="PTS" prefWidth="75.0" text="PTS" />
-        </columns>
-      </TableView>
-      <TextField fx:id="EN" layoutX="51.0" layoutY="371.0" />
-      <TextField fx:id="Drapo" layoutX="365.0" layoutY="371.0" />
-      <TextField fx:id="JM" layoutX="868.0" layoutY="371.0" />
-      <TextField fx:id="entrain" layoutX="207.0" layoutY="371.0" prefWidth="149.0" />
-      <Button fx:id="Ajout" layoutX="813.0" layoutY="282.0" mnemonicParsing="false" onAction="#valider" text="Ajouter" />
-      <Button fx:id="modif" layoutX="909.0" layoutY="282.0" mnemonicParsing="false" onAction="#modifierequipe" text="modifier" />
-      <Button fx:id="supprimer" layoutX="992.0" layoutY="282.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
-      <Label layoutX="83.0" layoutY="345.0" text="Nom Equipe" />
-      <Label layoutX="268.0" layoutY="344.0" text="Entraineur" />
-      <Label layoutX="426.0" layoutY="353.0" text="Drapeau" />
-      <Label layoutX="587.0" layoutY="353.0" text="Continant" />
-      <Label layoutX="757.0" layoutY="353.0" text="Groupe" />
-      <ComboBox fx:id="Groupa" layoutX="702.0" layoutY="371.0" prefWidth="150.0" />
-      <ComboBox fx:id="continant" layoutX="539.0" layoutY="371.0" prefWidth="150.0" />
+      <JFXDrawer fx:id="drawer" prefHeight="600.0" prefWidth="207.0" />
+      <JFXHamburger fx:id="hamburger" layoutX="963.0" layoutY="64.0" />
+      <TextField fx:id="EN" layoutX="231.0" layoutY="442.0" />
+      <TextField fx:id="entrain" layoutX="407.0" layoutY="442.0" prefWidth="149.0" />
+      <Label layoutX="272.0" layoutY="425.0" text="Nom Equipe" />
+      <Label layoutX="454.0" layoutY="425.0" text="Entraineur" />
+      <Label layoutX="275.0" layoutY="512.0" text="Drapeau" />
+      <Label layoutX="627.0" layoutY="426.0" text="Continant" />
+      <Label layoutX="633.0" layoutY="507.0" text="Groupe" />
+      <ComboBox fx:id="Groupa" layoutX="620.0" layoutY="527.0" prefHeight="25.0" prefWidth="66.0" />
+      <ComboBox fx:id="continant" layoutX="578.0" layoutY="444.0" prefWidth="150.0" />
+      <ListView fx:id="ListEquipe" layoutX="231.0" layoutY="120.0" onMouseClicked="#tableCliked" prefHeight="235.0" prefWidth="669.0" />
+      <Pane fx:id="paneE" prefHeight="600.0" prefWidth="214.0" style="-fx-background-color: #36393B;">
+         <children>
+            <Label alignment="CENTER" layoutX="41.0" layoutY="21.0" prefHeight="81.0" prefWidth="166.0" text="Gérer equipes" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="47.0" fitWidth="45.0" layoutX="16.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/equipe.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
+      <JFXButton fx:id="Ajout" layoutX="805.0" layoutY="423.0" onAction="#valider" prefHeight="33.0" prefWidth="133.0" style="-fx-background-color: #E45652;" text="Ajouter" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="supprimer" layoutX="804.0" layoutY="532.0" onAction="#supprimer" prefHeight="33.0" prefWidth="133.0" style="-fx-background-color: #E45652; -fx-font-weight: Bold;" text="Supprimer" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="modif" layoutX="805.0" layoutY="474.0" onAction="#modifierequipe" prefHeight="33.0" prefWidth="133.0" style="-fx-background-color: #E45652;" text="Modifier" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <Separator layoutX="769.0" layoutY="388.0" orientation="VERTICAL" prefHeight="206.0" prefWidth="5.0" style="-fx-background-color: #36393B;" />
+      <ImageView fx:id="img" fitHeight="103.0" fitWidth="176.0" layoutX="378.0" layoutY="484.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="url" layoutX="291.0" layoutY="476.0" text="Label" visible="false" />
+      <Separator layoutX="217.0" layoutY="98.0" prefHeight="4.0" prefWidth="785.0" style="-fx-background-color: #36393B;" />
+      <Label layoutX="274.0" layoutY="23.0" prefHeight="23.0" prefWidth="59.0" text="Username" />
+      <JFXButton layoutX="906.0" layoutY="18.0" onAction="#decon" text="Se déconnecter" />
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="233.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/admiUSer.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="881.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/logout.png" />
+         </image>
+      </ImageView>
+      <JFXTextField fx:id="username" alignment="CENTER" editable="false" layoutX="343.0" layoutY="17.0" prefHeight="25.0" prefWidth="108.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </JFXTextField>
+      <JFXButton fx:id="Drapo" layoutX="239.0" layoutY="535.0" onAction="#Browse" style="-fx-background-color: #1D702D;" text="Joindre Fichier" textFill="#eeeeee">
+         <graphic>
+            <ImageView fitHeight="27.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/iconUpload.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <Separator layoutX="214.0" layoutY="386.0" prefHeight="4.0" prefWidth="785.0" style="-fx-background-color: #36393B;" />
+      <JFXButton layoutX="22.0" layoutY="456.0" onAction="#interfaceJoueur" prefHeight="47.0" prefWidth="184.0" text="    Gérer Joueurs" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <ImageView fitHeight="41.0" fitWidth="45.0" layoutX="14.0" layoutY="454.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/player.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

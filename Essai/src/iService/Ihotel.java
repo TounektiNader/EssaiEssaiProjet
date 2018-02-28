@@ -10,4 +10,6 @@ public interface Ihotel
     public EntiteHotel FindHotel(String nom);
     public List<EntiteHotel> FindHotelVille(String ville);
     public List<EntiteHotel> ListHotels();
+    public int Nmbr();
+
 }

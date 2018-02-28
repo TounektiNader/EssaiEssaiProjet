@@ -121,15 +121,17 @@ public class ActualiteService implements iActualite {
     @Override
     public List<Actualite> lireActualite() {
         List<Actualite> la = new ArrayList<>();
-          User user = new User();
+        
         ServiceUser service = new ServiceUser();
-           Actualite a = new Actualite();
+           
         try {
             String select = "SELECT * FROM actualite";
             Statement statement1 = connection.createStatement();
             ResultSet result = statement1.executeQuery(select);
 
             while (result.next()) {
+                  User user = new User();
+                  Actualite a = new Actualite();
               user = service.getUser(result.getString("username"));
 
                 a.setIdactualite(result.getInt("idactualite"));

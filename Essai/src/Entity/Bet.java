@@ -15,7 +15,9 @@ public class Bet {
     private String etat;
     private User user;
     private Partie partie;
-
+     
+    private int nombreBetPersonne ; 
+    
     public Bet() {
     }
 
@@ -73,6 +75,22 @@ public class Bet {
     public void setPartie(Partie partie) {
         this.partie = partie;
     }
+
+    public Bet(User user, int nombreBetPersonne) {
+    
+        this.user = user;
+        
+        this.nombreBetPersonne = nombreBetPersonne;
+    }
+
+    public int getNombreBetPersonne() {
+        return nombreBetPersonne;
+    }
+
+    public void setNombreBetPersonne(int nombreBetPersonne) {
+        this.nombreBetPersonne = nombreBetPersonne;
+    }
+    
     
    
 }

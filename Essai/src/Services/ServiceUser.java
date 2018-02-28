@@ -9,19 +9,34 @@ import DateStroge.MyConnection;
 import Entity.User;
 import Utils.mail;
 import iService.iServicesUser;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import sun.misc.BASE64Encoder;
 
 /**
  *
  * @author Nader
  */
 public class ServiceUser implements iServicesUser  {
-     private ObservableList<User> data;
+    
+    
+    private final static String username = "russiarussia";
+    private final static String password = "NADERnader27";
+     
+    
+    private ObservableList<User> data;
     Connection connexion;
 
     public ServiceUser() {
@@ -31,8 +46,8 @@ public class ServiceUser implements iServicesUser  {
     @Override
     public void ajouterUser(User u) {
         try {
-            String query = "INSERT INTO user (username,nom,prenom,mdp,role,mail,status,jeton,nationalite) "
-                    + "values ( '" + u.getUsername()+ "','" + u.getNom()+ "', '" + u.getPrenom()+ "','" + u.getMdp()+ "' , '" + u.getRole() + "','" + u.getMail() + "','false','"+u.getJeton()+"','"+u.getNationalite()+"')";
+            String query = "INSERT INTO user (username,nom,prenom,mdp,role,mail,status,jeton,nationalite,num) "
+                    + "values ( '" + u.getUsername()+ "','" + u.getNom()+ "', '" + u.getPrenom()+ "','" + u.getMdp()+ "' , '" + u.getRole() + "','" + u.getMail() + "','false','"+u.getJeton()+"','"+u.getNationalite()+"','"+u.getNum()+"')";
             Statement stm = connexion.createStatement();
             stm.executeUpdate(query);
             int b;
@@ -44,6 +59,12 @@ public class ServiceUser implements iServicesUser  {
             c.ajouterCode(code);
             mail a = new mail();
             a.send(u.getMail(), "Validation", code);
+            
+            try {
+                envoieSMS(code,u.getNum());
+            } catch (IOException ex) {
+                Logger.getLogger(ServiceUser.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
             System.out.println("Ajout effectué");
         } catch (SQLException ex) {
@@ -54,7 +75,7 @@ public class ServiceUser implements iServicesUser  {
     @Override
     public void modifierUser(User u) {
         try {
-            String query = "UPDATE user SET nom='" + u.getNom() + "',prenom='" + u.getPrenom() + "',mdp='" + u.getMdp() + "',role='" + u.getRole() + "',mail='" + u.getMail() +"',jeton='"+u.getJeton() +"' where username='" +u.getUsername() + "'";
+            String query = "UPDATE user SET nom='" + u.getNom() + "',prenom='" + u.getPrenom() + "',mdp='" + u.getMdp() + "',role='" + u.getRole() + "',mail='" + u.getMail() +"',jeton='"+u.getJeton() +"',num='"+u.getNum()+"' where username='" +u.getUsername() + "'";
 
             Statement stm = connexion.createStatement();
             stm.executeUpdate(query);
@@ -83,6 +104,7 @@ public class ServiceUser implements iServicesUser  {
                 user.setMail(resultat.getString("mail"));
                 user.setStatus(resultat.getString("status"));
                 user.setJeton(resultat.getInt("jeton"));
+                user.setNum(resultat.getString("num"));
                 
             }
 
@@ -111,6 +133,7 @@ public class ServiceUser implements iServicesUser  {
                 user.setStatus(resultat.getString("status"));
                 user.setJeton(resultat.getInt("jeton"));
                 user.setNationalite(resultat.getString("nationalite"));
+                user.setNum(resultat.getString("num"));
                 
             }
 
@@ -156,7 +179,7 @@ public class ServiceUser implements iServicesUser  {
     public ObservableList<User> GetAdmin() {
        data = FXCollections.observableArrayList();
              
-         String req="select * from user where role='Admin'";
+         String req="select * from user where role='Admin' and status='false' ;";
         
         try {   
             Statement stm = connexion.createStatement();
@@ -175,12 +198,13 @@ public class ServiceUser implements iServicesUser  {
                  String prenom=result.getString("prenom");
                   String nom=result.getString("nom");
                    String nationalite=result.getString("nationalite");
+                   String num=result.getString("num");
                 
               
                
                
                
-               data.add(new User(nom,prenom,pseudo,mdp,role,mail,status,jeton,nationalite));
+               data.add(new User(nom,prenom,pseudo,mdp,role,mail,status,jeton,nationalite,num));
            }
             
         } catch (SQLException e) {
@@ -207,6 +231,8 @@ public class ServiceUser implements iServicesUser  {
                 user.setMail(resultat.getString("mail"));
                 user.setStatus(resultat.getString("status"));
                 user.setJeton(resultat.getInt("jeton"));
+                user.setNationalite(resultat.getString("nationalite"));
+                user.setNum(resultat.getString("num"));
                 
             }
 
@@ -214,6 +240,111 @@ public class ServiceUser implements iServicesUser  {
             System.out.println("Echec d'ajout");
         }
         return user;
+    }
+    
+         @Override
+    public User afficherUser(String pseudo) {
+        User user = new User();
+        try {
+
+            String query = "Select * FROM user WHERE username='" + pseudo + "'";
+            Statement stm = connexion.createStatement();
+            ResultSet resultat = stm.executeQuery(query);
+            while (resultat.next()) {
+
+               user.setUsername( resultat.getString("username")); 
+                user.setNom(resultat.getString("nom"));
+               user.setPrenom(resultat.getString("prenom"));
+                   user.setMdp(resultat.getString("mdp"));
+                user.setRole(resultat.getString("role"));
+                user.setMail(resultat.getString("mail"));
+                user.setStatus(resultat.getString("status"));
+                user.setJeton(resultat.getInt("jeton"));
+               
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Echec d'ajout");
+        }
+        return user;
+    }
+    
+    @Override
+    public int nbrAdmin() {
+       int nbr=0;
+     try {
+         String query = "SELECT COUNT(*) FROM user where role='Admin' and status='false'";
+         Statement stm = connexion.createStatement();
+         ResultSet resultat = stm.executeQuery(query);
+         while (resultat.next())
+			{
+			nbr=resultat.getInt(1);
+			}
+     } catch (SQLException ex) {
+      
+     }
+     return nbr;
+    }
+    
+    @Override
+    public void validerAdmin(User u) {
+        if (u.getRole().equals("Admin")) {
+            try {
+                String query = "UPDATE user SET status='true' where username='" + u.getUsername() + "' ";
+
+                Statement stm = connexion.createStatement();
+                
+                stm.executeUpdate(query);
+                System.out.println("Ajout effectué");
+            } catch (SQLException ex) {
+                System.out.println("Echec d'ajout");
+            }
+        } 
+    }
+    
+    
+    public void envoieSMS (String code,String num ) throws IOException{
+        
+        int result = send(username, password, num, code);  
+        System.out.println("Result code: " + result);
+    
+        
+        
+    
+    }
+    
+     public static int send(String user, String pass, String to,  String body) throws IOException {
+        URL url = new URL("https://www.bulletinmessenger.net/api/3/sms/out");
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        try {
+            
+            con.setRequestMethod("POST");
+            con.setRequestProperty("Authorization", encodeBasicAuth(user, pass));
+            con.setDoOutput(true);
+ 
+            StringBuffer form = new StringBuffer();
+            form.append("to=");
+            form.append(to);
+           // form.append("&messageId=").append(messageId);
+            form.append("&body=");
+ 
+            form.append (URLEncoder.encode(body, "UTF-8"));
+ 
+            OutputStream out = con.getOutputStream();
+            try {
+                out.write(form.toString().getBytes("US-ASCII"));
+            } finally {
+                out.close();
+            }
+            return con.getResponseCode();
+        } finally {
+            con.disconnect();
+        }
+    }
+ 
+    public static String encodeBasicAuth(String user, String pass) throws UnsupportedEncodingException {
+        byte[] credentials = (user + ':' + pass).getBytes("US-ASCII");
+        return "Basic " + new BASE64Encoder().encode(credentials);
     }
     
 }

@@ -10,4 +10,6 @@ public interface Icafe
     public EntiteCafe FindCafe(String nom);
     public List<EntiteCafe> FindCafeVille(String ville);
     public List<EntiteCafe> ListCafes();
+    public int Nmbr();
+
 }

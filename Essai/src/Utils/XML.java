@@ -54,7 +54,7 @@ public class XML {
 	    /*
 	     * Etape 3 : création d'un Document
 	     */
-	    final Document document= builder.parse(new File("C:/Users/Nader/Documents/NetBeansProjects/Essai/src/Presentation/newXMLDocument.xml"));
+	    final Document document= builder.parse(new File("C:/Users/Nader/Documents/GitHub/EssaiEssaiProjet/Essai/src/Presentation/newXMLDocument.xml"));
 			
 	    //Affichage du prologue
 	    System.out.println("*************PROLOGUE************");
@@ -96,13 +96,14 @@ public class XML {
                     final Element jeton = (Element) personne.getElementsByTagName("jeton").item(0);
                     final Element mail = (Element) personne.getElementsByTagName("mail").item(0);
                     final Element nationalite = (Element) personne.getElementsByTagName("nationalite").item(0);
+                    final Element num = (Element) personne.getElementsByTagName("num").item(0);
 					
 		    //Affichage du nom et du prénom
 		    System.out.println("nom : " + nom.getTextContent());
 		    System.out.println("prénom : " + prenom.getTextContent());
                     String j=jeton.getTextContent(); 
                     int h=Integer.parseInt(j);
-			User x=new User(pseudo.getTextContent(), nom.getTextContent(), prenom.getTextContent(),mdp.getTextContent(),role.getTextContent(),mail.getTextContent(),status.getTextContent(), h, nationalite.getTextContent());
+			User x=new User(pseudo.getTextContent(), nom.getTextContent(), prenom.getTextContent(),mdp.getTextContent(),role.getTextContent(),mail.getTextContent(),status.getTextContent(), h, nationalite.getTextContent(),num.getTextContent());
 		    /*
 		     * Etape 7 : récupération des numéros de téléphone
 		     */
@@ -122,7 +123,7 @@ public class XML {
         return null;
     }
 
-   public void Ecrire(String username, String nom2, String prenom2, String mdp2, String role2, String mail2, String status2, int jeton2,String nationalite2) {
+   public void Ecrire(String username, String nom2, String prenom2, String mdp2, String role2, String mail2, String status2, int jeton2,String nationalite2,String num2) {
         /*
 	 * Etape 1 : récupération d'une instance de la classe "DocumentBuilderFactory"
 	 */
@@ -183,6 +184,8 @@ public class XML {
 	    jeton.appendChild(document.createTextNode(j));
             final Element status = document.createElement("status");
 	    status.appendChild(document.createTextNode(status2));
+            final Element num = document.createElement("num");
+	    num.appendChild(document.createTextNode(num2));
 			
 	    personne.appendChild(nom);
 	    personne.appendChild(prenom);			
@@ -193,6 +196,7 @@ public class XML {
             personne.appendChild(nationalite);
             personne.appendChild(jeton);
             personne.appendChild(status);
+            personne.appendChild(num);
 	    /*
 	     * Etape 7 : création des numéros de téléphone
 	     */
@@ -204,7 +208,7 @@ public class XML {
 	    final TransformerFactory transformerFactory = TransformerFactory.newInstance();
 	    final Transformer transformer = transformerFactory.newTransformer();
 	    final DOMSource source = new DOMSource(document);
-	    final StreamResult sortie = new StreamResult(new File("C:/Users/Nader/Documents/NetBeansProjects/Essai/src/Presentation/newXMLDocument.xml"));
+	    final StreamResult sortie = new StreamResult(new File("C:/Users/Nader/Documents/GitHub/EssaiEssaiProjet/Essai/src/Presentation/newXMLDocument.xml"));
 	    //final StreamResult result = new StreamResult(System.out);
 			
 	    //prologue
@@ -228,5 +232,9 @@ public class XML {
 	catch (TransformerException e) {
 	    e.printStackTrace();
 	}			
-    }  
+    }
+   
+   
+   
+
 }

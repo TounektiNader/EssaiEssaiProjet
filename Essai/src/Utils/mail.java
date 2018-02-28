@@ -30,6 +30,9 @@ import javax.mail.internet.MimeMessage;
  * @author raed
  */
 public class mail {
+    
+    static boolean  verif  = false ; 
+    
     public void send(String to, String subject, String text) {
                /* final String username = "tunisiamallcondors@gmail.com";
 		final String password = "testcondors";*/
@@ -59,9 +62,16 @@ public class mail {
 			message.setText(text);
 			Transport.send(message);
 			System.out.println("Done");
+                        verif = true ; 
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
 		}
                 }
+
+    public static boolean isVerif() {
+        return verif;
+    }
+    
+    
     
 }

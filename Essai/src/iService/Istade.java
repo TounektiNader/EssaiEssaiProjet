@@ -9,6 +9,8 @@ public interface Istade
     public void DeleteStade(EntiteStade p);
     public void EditStade(EntiteStade p);
     public EntiteStade FindStade(String nom);
-    public List<EntiteStade> FindStadeVille(String ville);
+    public String FindStadeVille(int id);
     public List<EntiteStade> ListStades();
+    public int Nmbr();
+
 }

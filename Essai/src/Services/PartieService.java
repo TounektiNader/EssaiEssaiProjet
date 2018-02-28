@@ -4,6 +4,7 @@ import DateStroge.MyConnection;
 import Entity.EntiteStade;
 import Entity.Equipe;
 import Entity.Partie;
+import Entity.Resultat;
 import Entity.Stade;
 import iService.iPartie;
 import java.sql.Connection;
@@ -164,7 +165,25 @@ public class PartieService implements iPartie {
 
         data = FXCollections.observableArrayList();
         try {
-            ResultSet rs = conn.createStatement().executeQuery("select * from partie;");
+            ResultSet rs = conn.createStatement().executeQuery("select * from partie ;");
+            while (rs.next()) {
+
+                data.add(new Partie(rs.getInt("id"), rs.getString("groupe"), rs.getDate("datePartie"), rs.getString("heurePartie"),
+                        rs.getString("tour"), rs.getString("etatMatch"), rs.getString("etiquette"), getStade(rs.getInt("idstade")),
+                        getEquipe(rs.getInt("home")), getEquipe(rs.getInt("away"))));
+            }
+        } catch (SQLException ex) {
+
+        }
+
+        return data;
+    }
+    
+      public ObservableList<Partie> getPartieAparier() {
+
+        data = FXCollections.observableArrayList();
+        try {
+            ResultSet rs = conn.createStatement().executeQuery("select * from partie where etatMatch='PasEncore';");
             while (rs.next()) {
 
                 data.add(new Partie(rs.getInt("id"), rs.getString("groupe"), rs.getDate("datePartie"), rs.getString("heurePartie"),
@@ -179,7 +198,7 @@ public class PartieService implements iPartie {
     }
 
     @Override
-    public void ajoutPartie(String groupe, String date, String heure, String tour, String etiquette, int idStade, int home, int away) {
+    public void ajoutPartie(String groupe, String date, String heure, String tour,int idStade, int home, int away) {
 
         String sql = "INSERT INTO partie(groupe,datePartie,heurePartie,tour,etatMatch,etiquette,idStade,home,away) VALUES(?,?,?,?,?,?,?,?,?);";
         try {
@@ -189,7 +208,7 @@ public class PartieService implements iPartie {
             stmt.setString(3, heure);
             stmt.setString(4, tour);
             stmt.setString(5, "PasEncore");
-            stmt.setString(6, etiquette);
+            stmt.setString(6, "");
             stmt.setInt(7, idStade);
             stmt.setInt(8, home);
             stmt.setInt(9, away);
@@ -210,6 +229,37 @@ public class PartieService implements iPartie {
 
     }
 
+    
+     
+    public void insertPartie(Partie partie,String d) {
+
+        String sql = "INSERT INTO partie(datePartie,heurePartie,tour,etatMatch,etiquette,idStade,home,away) VALUES(?,?,?,?,?,?,?,?);";
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1,d);
+            stmt.setString(2, partie.getHeurePartie());
+            stmt.setString(3, partie.getTour());
+            stmt.setString(4,"PasEncore");
+            stmt.setString(5, partie.getEtiquette());
+            stmt.setInt(6, partie.getStade().getId());
+            stmt.setInt(7, partie.getHome().getIDEquipe());
+            stmt.setInt(8, partie.getAway().getIDEquipe());
+
+            int rss = stmt.executeUpdate();
+
+            if (rss < 0) {
+                System.out.println("Echec");
+            } else {
+                System.out.println("Insert de bet avec succès");
+
+            }
+
+            // loadData();
+        } catch (SQLException ex) {
+
+        }
+
+    }
     @Override
     public void supprimer(int idPartie) {
 
@@ -301,6 +351,29 @@ public class PartieService implements iPartie {
         return data;
     }
 
+    
+    @Override
+    public ObservableList<Partie> partiegTour(String tour) {
+
+        data = FXCollections.observableArrayList();
+        try {
+            ResultSet rs = conn.createStatement().executeQuery("select * from partie where tour='" +tour + "'");
+            while (rs.next()) {
+
+                data.add(new Partie(rs.getInt("id"), rs.getString("groupe"), rs.getDate("datePartie"), rs.getString("heurePartie"),
+                        rs.getString("tour"), rs.getString("etatMatch"), rs.getString("etiquette"), getStade(rs.getInt("idStade")),
+                        getEquipe(rs.getInt("home")), getEquipe(rs.getInt("away"))));
+
+            }
+        } catch (SQLException ex) {
+
+        }
+
+        return data;
+    }
+
+    
+    
     @Override
     public ObservableList<Partie> partieEquipe(int id) {
 
@@ -451,6 +524,78 @@ public class PartieService implements iPartie {
         }
         return p;
 }
+
+     
+
+        @Override
+    public int geIdPartie(int idHome , int idAway) {
+
+        int id = 0;
+
+        try {
+
+            String sql = "select * from partie where home=? and away=? ;";
+
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, idHome);
+            stmt.setInt(2, idAway);
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                id = rs.getInt("id");
+
+            }
+        } catch (SQLException ex) {
+
+        }
+
+        return id;
+    }
     
     
+    
+    @Override
+    public ObservableList<Partie> partiegJouee() {
+          String joue = "Jouee";
+        data = FXCollections.observableArrayList();
+        try {
+            ResultSet rs = conn.createStatement().executeQuery("select * from partie where etatMatch='" + joue + "'");
+            while (rs.next()) {
+
+                data.add(new Partie(rs.getInt("id"), rs.getString("groupe"), rs.getDate("datePartie"), rs.getString("heurePartie"),
+                        rs.getString("tour"), rs.getString("etatMatch"), rs.getString("etiquette"), getStade(rs.getInt("idStade")),
+                        getEquipe(rs.getInt("home")), getEquipe(rs.getInt("away"))));
+
+            }
+        } catch (SQLException ex) {
+
+        }
+
+        return data;
+    }
+    
+    
+    @Override
+    public ObservableList<Partie> partiegNonJouee() {
+          String joue = "PasEncore";
+        data = FXCollections.observableArrayList();
+        try {
+            ResultSet rs = conn.createStatement().executeQuery("select * from partie where etatMatch='" + joue + "'");
+            while (rs.next()) {
+
+                data.add(new Partie(rs.getInt("id"), rs.getString("groupe"), rs.getDate("datePartie"), rs.getString("heurePartie"),
+                        rs.getString("tour"), rs.getString("etatMatch"), rs.getString("etiquette"), getStade(rs.getInt("idStade")),
+                        getEquipe(rs.getInt("home")), getEquipe(rs.getInt("away"))));
+
+            }
+        } catch (SQLException ex) {
+
+        }
+
+        return data;
+    }
+  
+    
+
 }

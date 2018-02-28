@@ -1,0 +1,7 @@
+.table-view{
+    -fx-table-color: rgba(0, 150, 0, 0.8);
+    -fx-table-rippler-color : rgba(255, 0, 0, 0.9);
+}
+
+ .table-view .column-header-background{ -fx-background-color: linear-gradient(#470bed 0%, #424141 100%); }
+ .table-view .column-header-background .label{ -fx-background-color: transparent; -fx-text-fill: white; } 
