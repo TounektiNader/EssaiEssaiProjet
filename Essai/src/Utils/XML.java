@@ -54,7 +54,7 @@ public class XML {
 	    /*
 	     * Etape 3 : création d'un Document
 	     */
-	    final Document document= builder.parse(new File("C:/Users/Nader/Documents/GitHub/EssaiEssaiProjet/Essai/src/Presentation/newXMLDocument.xml"));
+	    final Document document= builder.parse(new File("C:/Users/21650/Documents/GitHub/EssaiEssaiProjet/Essai/src/Presentation/newXMLDocument.xml"));
 			
 	    //Affichage du prologue
 	    System.out.println("*************PROLOGUE************");
@@ -208,7 +208,7 @@ public class XML {
 	    final TransformerFactory transformerFactory = TransformerFactory.newInstance();
 	    final Transformer transformer = transformerFactory.newTransformer();
 	    final DOMSource source = new DOMSource(document);
-	    final StreamResult sortie = new StreamResult(new File("C:/Users/Nader/Documents/GitHub/EssaiEssaiProjet/Essai/src/Presentation/newXMLDocument.xml"));
+	    final StreamResult sortie = new StreamResult(new File("C:/Users/21650/Documents/GitHub/EssaiEssaiProjet/Essai/src/Presentation/newXMLDocument.xml"));
 	    //final StreamResult result = new StreamResult(System.out);
 			
 	    //prologue

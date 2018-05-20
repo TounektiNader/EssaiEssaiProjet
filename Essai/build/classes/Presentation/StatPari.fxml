@@ -107,7 +107,7 @@
          </children>
       </Pane>
       <Label layoutX="266.0" layoutY="23.0" prefHeight="23.0" prefWidth="59.0" text="Username" />
-      <JFXButton layoutX="894.0" layoutY="13.0" text="Se déconnecter" />
+      <JFXButton layoutX="894.0" layoutY="13.0" onAction="#decon" text="Se déconnecter" />
       <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="231.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/admiUSer.png" />

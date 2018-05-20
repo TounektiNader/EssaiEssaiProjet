@@ -31,12 +31,12 @@ public class CadeauService implements iCadeau {
 
         data = FXCollections.observableArrayList();
         try {
-            String sql = "select * from  cadeau ;";
+            String sql = "select * from  cadeau;";
             stmt = conn.prepareStatement(sql);
 
             rs = stmt.executeQuery();
             while (rs.next()) {
-                Cadeau cadeau = new Cadeau(rs.getInt("idCadeau"), rs.getString("Catégorie"), rs.getString("Type"), rs.getInt("jeton"), rs.getString("image"));
+                Cadeau cadeau = new Cadeau(rs.getInt("id"), rs.getString("Categorie"), rs.getString("Type"), rs.getInt("jeton"), rs.getString("image"));
                 data.add(cadeau);
             }
 
@@ -52,13 +52,13 @@ public class CadeauService implements iCadeau {
         data = FXCollections.observableArrayList();
 
         try {
-            String sql = "select * from  cadeau where Catégorie=? ;";
+            String sql = "select * from  cadeau where Categorie=? ;";
             stmt = conn.prepareStatement(sql);
             stmt.setString(1,categorie);
 
             rs = stmt.executeQuery();
             while (rs.next()) {
-                Cadeau cadeau = new Cadeau(rs.getInt("idCadeau"),rs.getString("Catégorie") ,rs.getString("Type"), rs.getInt("jeton"), rs.getString("image"));
+                Cadeau cadeau = new Cadeau(rs.getInt("id"),rs.getString("Categorie") ,rs.getString("Type"), rs.getInt("jeton"), rs.getString("image"));
                 data.add(cadeau);
             }
 
@@ -80,9 +80,9 @@ public class CadeauService implements iCadeau {
             rs = stmt.executeQuery();
             while (rs.next()) {
 
-                cadeau.setIdCadeau(rs.getInt("idCadeau"));
+                cadeau.setIdCadeau(rs.getInt("id"));
                 cadeau.setType(type);
-                cadeau.setCategorie(rs.getString("Catégorie"));
+                cadeau.setCategorie(rs.getString("Categorie"));
                 cadeau.setImg(rs.getString("image"));
                 cadeau.setJeton(rs.getInt("jeton"));
 
@@ -106,7 +106,7 @@ public class CadeauService implements iCadeau {
 
             rs = stmt.executeQuery();
             while (rs.next()) {
-                Cadeau cadeau = new Cadeau(rs.getInt("idCadeau"), rs.getString("Categorie"), rs.getString("Type"), rs.getInt("jeton"), rs.getString("image"));
+                Cadeau cadeau = new Cadeau(rs.getInt("id"), rs.getString("Categorie"), rs.getString("Type"), rs.getInt("jeton"), rs.getString("image"));
                 list.add(cadeau);
             }
 
@@ -119,7 +119,7 @@ public class CadeauService implements iCadeau {
     @Override
     public void ajoutCadeau(String categorie, String type, int jeton, String image) {
 
-        String sql = "INSERT INTO cadeau(Catégorie,Type,jeton,image) VALUES(?,?,?,?);";
+        String sql = "INSERT INTO cadeau(Categorie,Type,jeton,image) VALUES(?,?,?,?);";
         try {
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, categorie);
@@ -138,7 +138,7 @@ public class CadeauService implements iCadeau {
     @Override
     public void supprimer(int idCadeau) {
 
-        String sql = "Delete from cadeau where idCadeau=? ;";
+        String sql = "Delete from cadeau where id=? ;";
 
         try {
             stmt = conn.prepareStatement(sql);
@@ -161,7 +161,7 @@ public class CadeauService implements iCadeau {
 
         try {
 
-            String sql = "Upadate cadeau SET Categorie=?,Type=?,jeton=?,image=?) where idCadeau=?;";
+            String sql = "Upadate cadeau SET Categorie=?,Type=?,jeton=?,image=?) where id=?;";
             stmt = conn.prepareStatement(sql);
             stmt.setInt(5, idCadeau);
             stmt.setString(1, categorie);
@@ -186,16 +186,16 @@ public class CadeauService implements iCadeau {
         Cadeau cadeau = new Cadeau();
         try {
 
-            String sql = "select * from  cadeau where idCadeau=? ;";
+            String sql = "select * from  cadeau where id=? ;";
             stmt = conn.prepareStatement(sql);
             stmt.setInt(1, idCadeau);
 
             rs = stmt.executeQuery();
             while (rs.next()) {
 
-                cadeau.setIdCadeau(rs.getInt("idCadeau"));
+                cadeau.setIdCadeau(rs.getInt("id"));
                 cadeau.setType(rs.getString("Type"));
-                cadeau.setCategorie(rs.getString("Catégorie"));
+                cadeau.setCategorie(rs.getString("Categorie"));
                 cadeau.setImg(rs.getString("image"));
                 cadeau.setJeton(rs.getInt("jeton"));
 
@@ -238,12 +238,12 @@ public class CadeauService implements iCadeau {
 
         try {
 
-            String sql = " SELECT Catégorie from cadeau where idCadeau='"+idCadeau+"' ;";
+            String sql = " SELECT Catégorie from cadeau where id='"+idCadeau+"' ;";
             stmt = conn.prepareStatement(sql);
             rs = stmt.executeQuery();
             while (rs.next()) {
 
-              cat = rs.getString("Catégorie");
+              cat = rs.getString("Categorie");
 
             }
 

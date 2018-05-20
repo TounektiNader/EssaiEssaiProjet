@@ -22,7 +22,7 @@
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.ParierrrrController">
    <children>
       <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" layoutX="-3.0" prefHeight="600.0" prefWidth="207.0" />
-      <JFXHamburger fx:id="hamburger" layoutX="948.0" layoutY="40.0" />
+      <JFXHamburger fx:id="hamburger" layoutX="948.0" layoutY="43.0" />
       <TableView fx:id="table" layoutX="243.0" layoutY="176.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#userClickedOnTable" prefHeight="226.0" prefWidth="478.0" style="-fx-border-color: #36393B;" stylesheets="@../CSS/cssTAbleViewPari.css">
          <columns>
             <TableColumn fx:id="columDate" prefWidth="129.0" text="Date Match" />
@@ -34,7 +34,7 @@
       <Pane fx:id="paneE" layoutY="-1.0" prefHeight="608.0" prefWidth="207.0" style="-fx-background-color: #36393B;">
          <children>
             <Separator layoutX="19.0" layoutY="496.0" prefHeight="6.0" prefWidth="169.0" />
-            <Label layoutX="53.0" layoutY="528.0" style="-fx-border-color: #ffffff;" text="Contact US" textFill="#fcf8f8">
+            <Label layoutX="53.0" layoutY="528.0" onMouseClicked="#contact" style="-fx-border-color: #ffffff;" text="Contact US" textFill="#fcf8f8">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -141,7 +141,7 @@
          </font>
       </Label>
       <Separator layoutX="552.0" layoutY="418.0" orientation="VERTICAL" prefHeight="173.0" prefWidth="6.0" style="-fx-background-color: #36393B;" />
-      <JFXButton layoutX="893.0" layoutY="7.0" text="Se déconnecter" />
+      <JFXButton layoutX="893.0" layoutY="7.0" onAction="#decon" text="Se déconnecter" />
       <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="868.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/logout.png" />

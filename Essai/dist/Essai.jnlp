@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Essai.jar" size="72585288" download="eager" />
+    <jar href="Essai.jar" size="87989549" download="eager" />
     <jar href="lib\GMapsFX-2.12.0-sources.jar" size="180752" download="eager" />
     <jar href="lib\GMapsFX-2.12.0.jar" size="207618" download="eager" />
     <jar href="lib\commons-codec-1.10.jar" size="284184" download="eager" />
@@ -35,6 +35,7 @@
     <jar href="lib\poi-ooxml-schemas-3.17.jar" size="5924600" download="eager" />
     <jar href="lib\poi-scratchpad-3.17.jar" size="1390360" download="eager" />
     <jar href="lib\slf4j-api-1.7.23.jar" size="41105" download="eager" />
+    <jar href="lib\sun.misc.base64decoder.jar" size="7471" download="eager" />
     <jar href="lib\xmlbeans-2.6.0.jar" size="2730866" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Essai" >

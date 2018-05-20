@@ -137,7 +137,10 @@ public class GestionRecompenseController implements Initializable {
     private Pane paneE;
     Random rd = new Random(); 
     public int n ; 
-    final   File fileSave = new File("C:\\xampp\\htdocs\\java\\images");
+    final   File fileSave = new File("C:/Users/21650/Documents/GitHub/ValidationWeb/russia/web/uploads/images/");
+    final   File fileSave2 = new File("C:/Users/21650/Documents/GitHub/EssaiEssaiProjet/Essai/src/img/");
+
+    
     public  static Stage stage ;
      public  String nomFichier ; 
     public static Stage getStage() {
@@ -322,9 +325,12 @@ public class GestionRecompenseController implements Initializable {
             
                     
                     try {
-                          File nomfichier = new File("C:/xampp/htdocs/java/images/" + nomFichier+n + ".png");
+                          File nomfichier = new File("C:/Users/21650/Documents/GitHub/ValidationWeb/russia/web/uploads/images/" + nomFichier+n + ".png");
                         ImageIO.write(SwingFXUtils.fromFXImage(imageV.getImage(),
                             null), "png", nomfichier);
+                        File nomfichier2 = new File("C:/Users/21650/Documents/GitHub/EssaiEssaiProjet/Essai/src/img/" + nomFichier+n + ".png");
+                        ImageIO.write(SwingFXUtils.fromFXImage(imageV.getImage(),
+                            null), "png", nomfichier2);
                         insertionBase(nomFichier+n+".png");
                     } catch (URISyntaxException ex) {
                         Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
@@ -411,7 +417,7 @@ public class GestionRecompenseController implements Initializable {
         urlb.setConnectionType("http");
         urlb.addSubfolder("java");
         urlb.addSubfolder("insertionImageCadeau.php");
-        urlb.addParameter("image", "http://localhost/java/images/"+nomFile);
+        urlb.addParameter("image", nomFile);
         urlb.addParameter("Type",txtType.getText());
         
         String url = urlb.getURL();

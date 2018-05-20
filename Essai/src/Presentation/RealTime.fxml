@@ -14,20 +14,20 @@
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.RealTimeController">
    <children>
       <ListView fx:id="list" fixedCellSize="0.0" layoutX="382.0" layoutY="276.0" prefHeight="303.0" prefWidth="440.0" />
-      <Label fx:id="score" layoutX="575.0" layoutY="178.0" />
-      <Label fx:id="time" layoutX="571.0" layoutY="118.0" />
-      <Label fx:id="away" layoutX="634.0" layoutY="136.0" />
-      <Label fx:id="home" layoutX="499.0" layoutY="138.0" />
-      <ImageView fx:id="imagehome" fitHeight="121.0" fitWidth="121.0" layoutX="351.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="imageaway" fitHeight="121.0" fitWidth="121.0" layoutX="736.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView layoutX="568.0" layoutY="144.0">
+      <Label fx:id="score" layoutX="583.0" layoutY="193.0" prefHeight="17.0" prefWidth="198.0" textAlignment="CENTER" />
+      <Label fx:id="time" layoutX="583.0" layoutY="122.0" prefHeight="17.0" prefWidth="198.0" textAlignment="CENTER" />
+      <Label fx:id="away" layoutX="702.0" layoutY="156.0" prefHeight="17.0" prefWidth="159.0" textAlignment="CENTER" />
+      <Label fx:id="home" layoutX="371.0" layoutY="156.0" prefHeight="17.0" prefWidth="159.0" textAlignment="CENTER" />
+      <ImageView fx:id="imagehome" fitHeight="121.0" fitWidth="121.0" layoutX="234.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageaway" fitHeight="121.0" fitWidth="121.0" layoutX="861.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView layoutX="583.0" layoutY="161.0">
          <image>
             <Image url="@../imageHedi/minute.gif" />
          </image>
       </ImageView>
       <Pane fx:id="pan" layoutX="382.0" layoutY="226.0" prefHeight="50.0" prefWidth="440.0" style="-fx-background-color: #fbd226;">
          <children>
-            <Label layoutX="155.0" layoutY="12.0" text="Actions">
+            <Label layoutX="191.0" layoutY="12.0" text="Actions">
                <font>
                   <Font size="18.0" />
                </font>

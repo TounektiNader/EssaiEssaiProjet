@@ -44,7 +44,7 @@
                <font>
                   <Font name="AbrilFatface-Regular" size="16.0" />
                </font></Hyperlink>
-            <Hyperlink layoutX="144.0" layoutY="418.0" onAction="#oublier" text="Mot de pass Oublié" textFill="#141414">
+            <Hyperlink layoutX="144.0" layoutY="418.0" onAction="#oublier" text="Mot de passe Oublié" textFill="#141414">
                <font>
                   <Font name="AbrilFatface-Regular" size="15.0" />
                </font></Hyperlink>

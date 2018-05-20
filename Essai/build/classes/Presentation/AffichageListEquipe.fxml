@@ -62,7 +62,7 @@
       <Label fx:id="url" layoutX="291.0" layoutY="476.0" text="Label" visible="false" />
       <Separator layoutX="217.0" layoutY="98.0" prefHeight="4.0" prefWidth="785.0" style="-fx-background-color: #36393B;" />
       <Label layoutX="274.0" layoutY="23.0" prefHeight="23.0" prefWidth="59.0" text="Username" />
-      <JFXButton layoutX="906.0" layoutY="18.0" text="Se déconnecter" />
+      <JFXButton layoutX="906.0" layoutY="18.0" onAction="#decon" text="Se déconnecter" />
       <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="233.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/admiUSer.png" />

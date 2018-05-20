@@ -64,7 +64,7 @@
          </font>
       </JFXButton>
       <Label layoutX="269.0" layoutY="21.0" prefHeight="23.0" prefWidth="59.0" text="Username" />
-      <JFXButton layoutX="913.0" layoutY="8.0" text="Se déconnecter" />
+      <JFXButton layoutX="913.0" layoutY="8.0" onAction="#decon" text="Se déconnecter" />
       <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="888.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/logout.png" />
