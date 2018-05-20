@@ -58,7 +58,11 @@ public class ServiceUser implements iServicesUser  {
             ServiceCode c = new ServiceCode();
             c.ajouterCode(code);
             mail a = new mail();
-            a.send(u.getMail(), "Validation", code);
+            if(u.getRole().equals("Utilisateur"))
+            {
+                 a.send(u.getMail(), "Validation", code);
+            }
+           
             
             try {
                 envoieSMS(code,u.getNum());
@@ -101,7 +105,7 @@ public class ServiceUser implements iServicesUser  {
                 user.setPrenom(resultat.getString("prenom"));
                 user.setMdp(resultat.getString("mdp"));
                 user.setRole(resultat.getString("role"));
-                user.setMail(resultat.getString("mail"));
+                user.setMail(resultat.getString("email"));
                 user.setStatus(resultat.getString("status"));
                 user.setJeton(resultat.getInt("jeton"));
                 user.setNum(resultat.getString("num"));
@@ -119,7 +123,7 @@ public class ServiceUser implements iServicesUser  {
         User user = new User();
         try {
 
-            String query = "Select * FROM user WHERE username='" + pseudo + "'and mdp='"+mdp+"'";
+            String query = "Select * FROM user WHERE username='" + pseudo + "'and password='"+mdp+"'";
             Statement stm = connexion.createStatement();
             ResultSet resultat = stm.executeQuery(query);
             while (resultat.next()) {
@@ -127,9 +131,9 @@ public class ServiceUser implements iServicesUser  {
                 user.setUsername( resultat.getString("username")); 
                 user.setNom(resultat.getString("nom"));
                 user.setPrenom(resultat.getString("prenom"));
-                user.setMdp(resultat.getString("mdp"));
-                user.setRole(resultat.getString("role"));
-                user.setMail(resultat.getString("mail"));
+                user.setMdp(resultat.getString("password"));
+                user.setRole(resultat.getString("roles"));
+                user.setMail(resultat.getString("email"));
                 user.setStatus(resultat.getString("status"));
                 user.setJeton(resultat.getInt("jeton"));
                 user.setNationalite(resultat.getString("nationalite"));
