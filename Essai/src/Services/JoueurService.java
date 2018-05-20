@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import DateStroge.MyConnection;
 import iService.IJoueur;
 import Entity.Joueurs;
+import java.io.File;
 
 
 
@@ -47,12 +48,11 @@ public class JoueurService implements IJoueur{
     }
     
 @Override
-    public void ajouterJoueur(Joueurs J,String path)/*--------------------------------------------------*/{
-        
+    public void ajouterJoueur(Joueurs J,File path)/*--------------------------------------------------*/{
         try {
             System.out.println("Adding file now");
             Statement pstm=conn.createStatement();
-            FileInputStream input = new FileInputStream("testing.xlsx");
+            FileInputStream input = new FileInputStream(path);
             OPCPackage fs = null;
             try {
                 fs = OPCPackage.open(input);

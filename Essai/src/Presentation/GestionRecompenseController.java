@@ -38,6 +38,8 @@ import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
@@ -49,6 +51,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -152,6 +156,8 @@ public class GestionRecompenseController implements Initializable {
     @FXML
     private ImageView imageVV;
 
+    
+   public static Cadeau resultatSelected = new Cadeau();
     /**
      * Initializes the controller class.
      */
@@ -229,7 +235,8 @@ public class GestionRecompenseController implements Initializable {
         jeton.setDisable(true);
         txtType.setDisable(true);
         
-        Cadeau resultatSelected = table.getSelectionModel().getSelectedItem();
+         resultatSelected = table.getSelectionModel().getSelectedItem();
+         //System.out.println(resultatSelected.getIdCadeau());
         comboCat.setValue(resultatSelected.getCategorie());       
         txtType.setText(resultatSelected.getType());
         jeton.setText("" + resultatSelected.getJeton());
@@ -316,6 +323,25 @@ public class GestionRecompenseController implements Initializable {
             notificationbuilder.showError();
         
         }else{
+            if(validateNumber()==false){
+            
+              
+                    Notifications notificationbuilder = Notifications.create()
+                    .title("Alerte Jeton")
+                    .text("Vous devez remplir un nombre de jeton Valid")
+                    .graphic(null)
+                    .position(Pos.CENTER)
+                    .onAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                             
+                              
+                        }
+                    });
+
+            notificationbuilder.showError();
+                }
+            else{
             int jet = Integer.parseInt(ji);
         CadeauService cadeauService = new CadeauService();
         cadeauService.ajoutCadeau(cat, type, jet, type);
@@ -340,38 +366,141 @@ public class GestionRecompenseController implements Initializable {
                     Logger.getLogger(GestionRecompenseController.class.getName()).log(Level.SEVERE, null, ex);
                     }
             
-        
+            }
         loadData();
         remplierLabel();}
     }
     
     @FXML
     private void supprimer(ActionEvent event) {
-        Cadeau resultatSelected = table.getSelectionModel().getSelectedItem();
+         //resultatSelected = table.getSelectionModel().getSelectedItem();
         
         CadeauService cadeauService = new CadeauService();
         cadeauService.supprimer(resultatSelected.getIdCadeau());
         loadData();
+         remplierLabel();
     }
     
     @FXML
     private void update(ActionEvent event) {
+         
+         System.out.println(resultatSelected.getIdCadeau());
+         CadeauService cadeauService = new CadeauService();
         
         comboCat.setDisable(false);
         jeton.setDisable(false);
         txtType.setDisable(false);
         
-          Cadeau resultatSelected = table.getSelectionModel().getSelectedItem();
-        edit.setText("Save");
+         String cat = comboCat.getSelectionModel().getSelectedItem();
+        String type = txtType.getText();
+        String ji = jeton.getText();
+           int jett = Integer.parseInt(ji);
         
+          // resultatSelected = table.getSelectionModel().getSelectedItem();
+       
+        
+        if(edit.getText().equals("Edit")){
+      
+            edit.setText("Save");
+               
         Image img = new Image("/images/save.png");
         imagEdit.setImage(img);
         delete.setDisable(true);
-         String ji = jeton.getText();
-        int jet = Integer.parseInt(ji);
+        comboCat.setDisable(true);
+     //   txtType.setDisable(true);
         
-        CadeauService cadeauService = new CadeauService();
-        cadeauService.modifierCadeau(resultatSelected.getIdCadeau(),  comboCat.getSelectionModel().getSelectedItem(), txtType.getText(),jet,"qsdqsdqs");
+        }
+        
+        else{
+          
+        if((cat.equals("Catégorie"))||(cat.equals("choissez Catégorie")) ||(type.equals(""))||(ji.equals(""))){
+             Notifications notificationbuilder = Notifications.create()
+                    .title("Alerte")
+                    .text("Vous devez remplir tous les champs!!!!")
+                    .graphic(null)
+                    .position(Pos.CENTER)
+                    .onAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                             
+                              
+                        }
+                    });
+
+            notificationbuilder.showError();}
+          
+          else{
+        
+        if(validateNumber()==false){
+        
+                
+                    Notifications notificationbuilder = Notifications.create()
+                    .title("Alerte Jeton")
+                    .text("Vous devez remplir un nombre de jeton Valid")
+                    .graphic(null)
+                    .position(Pos.CENTER)
+                    .onAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                             
+                              
+                        }
+                    });
+
+            notificationbuilder.showError();
+        
+        
+        }
+        else{
+        
+           String typeNouveau = txtType.getText();
+           String jetonNouveau = jeton.getText();
+           int jettt = Integer.parseInt(jetonNouveau);
+         
+                 System.out.println(resultatSelected.getIdCadeau());
+        cadeauService.modifierCadeau(resultatSelected.getIdCadeau(),cat,typeNouveau,jettt);
+          
+        n=rd.nextInt(10000)+1;
+        
+            
+                    
+                    try {
+                          File nomfichier = new File("C:/xampp/htdocs/java/images/" + nomFichier+n + ".png");
+                        ImageIO.write(SwingFXUtils.fromFXImage(imageV.getImage(),
+                            null), "png", nomfichier);
+                        insertionBase(nomFichier+n+".png");
+                        
+                    } catch (MalformedURLException ex) {
+                        Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                    Logger.getLogger(GestionRecompenseController.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (URISyntaxException ex) {
+              Logger.getLogger(GestionRecompenseController.class.getName()).log(Level.SEVERE, null, ex);
+          }
+                edit.setText("Edit");
+         Image img2 = new Image("/images/editt.png");
+         imagEdit.setImage(img2);
+      
+           comboCat.setValue("choissez Catégorie");
+        txtType.setText("");
+        jeton.setText("");
+        
+        comboCat.setDisable(false);
+        txtType.setDisable(false);
+        jeton.setDisable(false);
+        
+        
+        save.setDisable(false);
+        edit.setDisable(true);
+        delete.setDisable(true);
+            
+        }
+          }
+       
+        }
+     
+         
+         
         loadData();
         
     }
@@ -494,6 +623,11 @@ public class GestionRecompenseController implements Initializable {
         edit.setDisable(true);
         delete.setDisable(true);
         
+        edit.setText("Edit");
+          Image img2 = new Image("/images/editt.png");
+         imagEdit.setImage(img2);
+      
+        
         
     }
 
@@ -512,6 +646,23 @@ public class GestionRecompenseController implements Initializable {
         final Node source = (Node) event.getSource();
         final Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    private void ouvrirFiche(ActionEvent event) throws IOException {
+        
+         Stage primaryStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/Presentation/StatCadeau.fxml"));
+
+        Scene scene = new Scene(root);
+
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        final Node source = (Node) event.getSource();
+        final Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
+        
+        
     }
     
     class URLBuilder {
@@ -554,6 +705,19 @@ public class GestionRecompenseController implements Initializable {
         URI uri = new URI(null, null, folders.toString(), params.toString(), null);
         return uri.toString();
     }
+    }
+    
+    
+  private boolean validateNumber(){
+        Pattern p = Pattern.compile("[0-9]+");
+        Matcher m = p.matcher(jeton.getText());
+        if(m.find() && m.group().equals(jeton.getText())){
+            return true;
+        }else{
+               
+            
+            return false;            
+        }
     }
     
 }

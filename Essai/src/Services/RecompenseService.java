@@ -173,7 +173,7 @@ public class RecompenseService implements IRecompense{
         return nombreBet;
     }
 
-    
+    @Override
      public void deminuerJeton(String username,int nbJeton,int nbJetonCadeau) {
       
       int nb = nbJeton-nbJetonCadeau;  
@@ -194,6 +194,36 @@ public class RecompenseService implements IRecompense{
 
     }
      
+     
+       public List<Recompense> listRecompenseTrie() {
+
+        List<Recompense> list = new ArrayList<Recompense>();
+        CadeauService cadeauService = new CadeauService();
+      
+        
+        try {
+            String sql = "SELECT idRecompense,idCadeau,username,count(idRecompense) as cou FROM recompense GROUP BY username;";
+            stmt = conn.prepareStatement(sql);
+         
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                 User user = new User();
+       
+                 Cadeau cadeau = new Cadeau();
+                 cadeau=cadeauService.cadeau(rs.getInt("idCadeau"));
+                  user=getUser(rs.getString("username"));
+               
+                Recompense recompense = new Recompense(rs.getInt("idRecompense"),cadeau ,user,rs.getInt("cou"));
+                recompense.toString();
+                list.add(recompense);
+            }
+
+        } catch (SQLException ex) {
+        }
+        return list;
+
+    }
+
     
      
      

@@ -81,6 +81,11 @@ public class Cadeau {
     public void setCategorie(String categorie) {
         this.categorie = categorie;
     }
+
+    @Override
+    public String toString() {
+        return "Cadeau{" + "idCadeau=" + idCadeau + ", categorie=" + categorie + ", type=" + type + ", jeton=" + jeton + ", img=" + img + '}';
+    }
     
 
 }

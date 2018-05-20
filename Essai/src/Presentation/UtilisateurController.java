@@ -108,10 +108,9 @@ public class UtilisateurController implements Initializable {
                 drawer.open();
             }
         });
-        String iconten ="<iframe style=\"background-color: transparent\" width=\"100%\" height=\"400px\" src=\"https://www.watchisup.fr/compte-a-rebours/embed/2018-06-16-00-00-10?backgroundcolor=rgba(255%2C255%2C255%2C.4)&color=\" frameborder=\"0\" allowfullscreen></iframe>";
+        String iconten ="<iframe scrolling=\"auto\" allowtransparency=\"true\"   width=\"100%\" height=\"400px\" src=\"https://www.watchisup.fr/compte-a-rebours/embed/2018-06-16-00-00-10?backgroundcolor=rgba(255%2C255%2C255%2C.4)&color=\" frameborder=\"0\" allowfullscreen></iframe>";
         WebView webView = new WebView();
-        webView.setStyle("background-color:#fff");
-
+       
         WebEngine engine = webView.getEngine();
         
                

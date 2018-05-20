@@ -160,7 +160,7 @@ public class AddActualitéController implements Initializable {
     @FXML
     private void Close(ActionEvent event) throws IOException {
         
-        Parent homePage = FXMLLoader.load(getClass().getResource("/Presentation/UserMenu.fxml"));
+        Parent homePage = FXMLLoader.load(getClass().getResource("/Presentation/MenuAdminn.fxml"));
 
         Scene homePage_scene = new Scene(homePage);
 

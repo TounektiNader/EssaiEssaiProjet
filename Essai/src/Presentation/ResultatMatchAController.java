@@ -118,6 +118,20 @@ public class ResultatMatchAController implements Initializable {
     private JFXButton b7;
     @FXML
     private JFXTextField username;
+    @FXML
+    private ImageView imStatReco;
+    @FXML
+    private ImageView imRec;
+    @FXML
+    private ImageView imStatPari;
+    @FXML
+    private ImageView imMatch;
+    @FXML
+    private ImageView imEquip;
+    @FXML
+    private ImageView imRecomm;
+    @FXML
+    private ImageView imActu;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -177,6 +191,15 @@ public class ResultatMatchAController implements Initializable {
                 b5.setVisible(true);
                 b6.setVisible(true);
                 b7.setVisible(true);
+                
+                imActu.setVisible(true);
+                imEquip.setVisible(true);
+                imMatch.setVisible(true);
+                imRec.setVisible(true);
+                imRecomm.setVisible(true);
+                imStatPari.setVisible(true);
+                imStatReco.setVisible(true);
+                
             } else {
                 drawer.open();
                 
@@ -188,6 +211,15 @@ public class ResultatMatchAController implements Initializable {
                 b5.setVisible(false);
                 b6.setVisible(false);
                 b7.setVisible(false);
+            
+                imActu.setVisible(false);
+                imEquip.setVisible(false);
+                imMatch.setVisible(false);
+                imRec.setVisible(false);
+                imRecomm.setVisible(false);
+                imStatPari.setVisible(false);
+                imStatReco.setVisible(false);
+                
             }
         });
     }
@@ -236,48 +268,48 @@ public class ResultatMatchAController implements Initializable {
             CBH.setValue(null);
             
       
-          if(resultatService.isBolAB()){
+          if(resultatService.getTest(1)){
             resultatService.affectationGroupeAB18Eme();
                         
             }
-          if(resultatService.isBolCD()){
+          if(resultatService.getTest(2)){
             resultatService.affectationGroupeCD8Eme();
                
           }
-          if(resultatService.isBolEF()){
+          if(resultatService.getTest(3)){
           resultatService.affectationGroupeEF8Eme();
              
                       }  
-          if(resultatService.isBolGH()){
+          if(resultatService.getTest(4)){
           resultatService.affectationGroupeGH8Eme();
           // bolGH= false ;
           }
           
-          if(resultatService.isBol41()){
+          if(resultatService.getTest(5)){
             resultatService.affectation4eme1();
             // bol41=false ;
           }
-          if(resultatService.isBol42()){
+          if(resultatService.getTest(6)){
             resultatService.affectation4eme2();
           //   bol42=false ; 
           }
-          if(resultatService.isBol43()){
+          if(resultatService.getTest(7)){
             resultatService.affectation4eme3();
           //  bol43=false ; 
           }
-          if(resultatService.isBol44()){
+          if(resultatService.getTest(8)){
             resultatService.affectation4eme4();
           //  bol44=false ; 
           }
-          if(resultatService.isBol21()){
+          if(resultatService.getTest(9)){
             resultatService.affectation2eme1();
           }
          
-          if(resultatService.isBol22()){ 
+          if(resultatService.getTest(10)){ 
           resultatService.affectation2eme2();
           
           }
-          if(resultatService.isBolfinal()){
+          if(resultatService.getTest(11)){
             resultatService.affectionfinal();
           
           }

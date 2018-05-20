@@ -48,6 +48,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javax.swing.JFileChooser;
 import org.xml.sax.SAXException;
 
 
@@ -212,24 +213,21 @@ public class ListJoueursController implements Initializable {
 
     @FXML
     private void Browse(ActionEvent event) throws MalformedURLException {
-         
-          FileChooser fileChooser = new FileChooser();
-        File file = fileChooser.showOpenDialog(drawer.getScene().getWindow());
-        if (file != null) {
-            
-            
-           String path = file.toURI().toURL().toString();
-           
+   JFileChooser fileChooser = new JFileChooser();
             JoueurService JS=new JoueurService();
-       JS.supprimerJoueur();
-       Joueurs J=new Joueurs();
-            
-        Stage s = new Stage();
+    Joueurs J= new Joueurs();
+    int returnValue = fileChooser.showOpenDialog(null);
+    if (returnValue == JFileChooser.APPROVE_OPTION) {
+        File selectedFile = fileChooser.getSelectedFile();
+        String keep = selectedFile.getName();
+        File excel = new File(keep);
+        System.out.println(keep);
+        JS.supprimerJoueur();
+    JS.ajouterJoueur(J,excel);
     
-      
-       JS.ajouterJoueur(J,path);
-       this.initialize(null, null);
-        }
+        initialize(null, null);
+
+    }
     }
 
     @FXML

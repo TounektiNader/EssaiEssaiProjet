@@ -365,6 +365,20 @@ public class ParierrrrController implements Initializable {
             x.Ecrire(u.getUsername(), u.getNom(), u.getPrenom(), u.getMdp(), u.getRole(), u.getMail(), u.getStatus(), u.getJeton(), u.getNationalite(),u.getNum());
 
             nmbJeton.setText("" + u.getJeton());
+            
+             Notifications notificationbuilder = Notifications.create()
+                    .title("Succès")
+                    .text("Votre Pari a été bien enregistrer ! ")
+                    .graphic(null)
+                    .position(Pos.CENTER)
+                    .onAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+
+                        }
+                    });
+
+            notificationbuilder.showConfirm();
 
             choix = "";
         }

@@ -222,14 +222,31 @@ public class ServiceBet implements iBet {
         int nbJetonn = (getNombreJeton(username) + 2);
 
         try {
+             String sql = "Update user SET jeton=? where username=?;";
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, nbJetonn);
+            stmt.setString(2, username);
 
-            Statement statement = conn.createStatement();
-            int rs = statement.executeUpdate("UPDATE  user  SET jeton='" + nbJetonn + "' WHERE username='" + username + "' ");
-            if (rs < 0) {
+            
+             int s = stmt.executeUpdate();
+            if (s < 0) {
                 System.out.println("Echec");
             } else {
-                System.out.println("Modification avec succès");
+                System.out.println(" Modification avec succès");
+           
             }
+       
+
+//            while (rs.next()) {
+//                nbJeton = rs.getInt("jeton");
+//                    
+//            Statement statement = conn.createStatement();
+//            int rs = statement.executeUpdate("UPDATE  user  SET jeton='" + nbJetonn + "' WHERE username='" + username + "' ");
+//            if (rs < 0) {
+//                System.out.println("Echec");
+//            } else {
+//                System.out.println("Modification avec succès");
+//            }
 
         } catch (SQLException ex) {
 
@@ -626,7 +643,7 @@ public class ServiceBet implements iBet {
         }
         return nombreBet;
     }
-
+    @Override
      public ObservableList<User> GetUser() {
        dataUser = FXCollections.observableArrayList();
              

@@ -127,12 +127,12 @@ private String passwordValue() {
          User u;
         try {
             u=x.lire();
-                if(u.getNationalite().equals("Tunisie"))
+                if(u.getNationalite().equals("Tunisien"))
                 {
                 Image i= new Image("/images/tn.png");
                 image2.setImage(i);
                 }
-                if(u.getNationalite().equals("France"))
+                if(u.getNationalite().equals("Français"))
                 {
                 Image i= new Image("/images/fr.png");
                 image2.setImage(i);

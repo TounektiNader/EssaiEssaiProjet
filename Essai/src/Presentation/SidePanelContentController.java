@@ -166,7 +166,7 @@ public class SidePanelContentController implements Initializable {
         u = a.lire();
         if (u.getRole().equals("0")) {
             Stage primarya = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("/Presentation/ProgrammeMatch.fxml"));
+          Parent root = FXMLLoader.load(getClass().getResource("/Presentation/Accueil.fxml"));
             Scene scene = new Scene(root);
             primarya.setScene(scene);
             primarya.show();
@@ -211,7 +211,7 @@ public class SidePanelContentController implements Initializable {
         u = a.lire();
         if (u.getRole().equals("0")) {
             Stage primarya = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("/Presentation/ViewAffGroupe.fxml"));
+           Parent root = FXMLLoader.load(getClass().getResource("/Presentation/Accueil.fxml"));
             Scene scene = new Scene(root);
             primarya.setScene(scene);
             primarya.show();

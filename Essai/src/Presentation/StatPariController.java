@@ -30,6 +30,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +58,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.xml.sax.SAXException;
 
@@ -225,14 +227,32 @@ public class StatPariController implements Initializable {
         return d;
 
     }
+    
+        @FXML
+    private void pdff (ActionEvent event) throws IOException, SQLException {
 
-    @FXML
-    private void pdff(ActionEvent event) throws IOException {
+        Node source = (Node) event.getSource();
+
+        FileChooser chooser = new FileChooser();
+
+        FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("PDF Files(*.pdf)", "*.pdf");
+        chooser.getExtensionFilters().add(filter);
+
+        File file = chooser.showSaveDialog(source.getScene().getWindow());
+        if (file != null) {
+            exporterPdf(file);
+
+        }
+    }
+
+
+    
+    public void exporterPdf(File file) throws IOException {
          Document doc = new Document();
 
         try {
             try {
-                PdfWriter.getInstance(doc, new FileOutputStream("C:\\Users\\Nader\\Desktop\\rapportMaha.pdf"));
+                PdfWriter.getInstance(doc, new FileOutputStream(file));
                 doc.open();
 
 //                doc.add(new Paragraph("-------------"));
@@ -257,32 +277,32 @@ public class StatPariController implements Initializable {
 
                 cell = new PdfPCell(new Phrase("Username", FontFactory.getFont("Comic Sans MS", 12)));
                 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell.setBackgroundColor(BaseColor.DARK_GRAY);
+                cell.setBackgroundColor(BaseColor.GRAY);
                 table.addCell(cell);
 
                 cell = new PdfPCell(new Phrase("Nationalite", FontFactory.getFont("Comic Sans MS", 12)));
                 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell.setBackgroundColor(BaseColor.DARK_GRAY);
+                cell.setBackgroundColor(BaseColor.GRAY);
                 table.addCell(cell);
 
                 cell = new PdfPCell(new Phrase("Jeton", FontFactory.getFont("Comic Sans MS", 12)));
                 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell.setBackgroundColor(BaseColor.DARK_GRAY);
+                cell.setBackgroundColor(BaseColor.GRAY);
                 table.addCell(cell);
                 
                 cell = new PdfPCell(new Phrase("Nb_Bet_Tot", FontFactory.getFont("Comic Sans MS", 12)));
                 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell.setBackgroundColor(BaseColor.DARK_GRAY);
+                cell.setBackgroundColor(BaseColor.GRAY);
                 table.addCell(cell);
                 
                 cell = new PdfPCell(new Phrase("Nb_Bet_Gain", FontFactory.getFont("Comic Sans MS", 12)));
                 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell.setBackgroundColor(BaseColor.DARK_GRAY);
+                cell.setBackgroundColor(BaseColor.GRAY);
                 table.addCell(cell);
                 
                 cell = new PdfPCell(new Phrase("Nb_Bet_Perte", FontFactory.getFont("Comic Sans MS", 12)));
                 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell.setBackgroundColor(BaseColor.DARK_GRAY);
+                cell.setBackgroundColor(BaseColor.GRAY);
                  table.addCell(cell);
                 
                  ////////////////////////////////////////////////////////////////////////////
@@ -301,7 +321,7 @@ public class StatPariController implements Initializable {
                     cell = new PdfPCell(new Phrase(bet.getUser().getNationalite(), FontFactory.getFont("Comic Sans MS", 12)));
 
                     cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                    cell.setBackgroundColor(BaseColor.GRAY);
+                    cell.setBackgroundColor(BaseColor.WHITE);
                     table.addCell(cell);
 
                      cell = new PdfPCell(new Phrase(""+bet.getUser().getJeton(), FontFactory.getFont("Comic Sans MS", 12)));
@@ -313,7 +333,7 @@ public class StatPariController implements Initializable {
                     cell = new PdfPCell(new Phrase(""+bet.getNombreBetPersonne(), FontFactory.getFont("Comic Sans MS", 12)));
 
                     cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                    cell.setBackgroundColor(BaseColor.GRAY);
+                    cell.setBackgroundColor(BaseColor.WHITE);
                     table.addCell(cell);
                       
                       cell = new PdfPCell(new Phrase(""+serviceBet.nombreBetGain(bet.getUser().getUsername()), FontFactory.getFont("Comic Sans MS", 12)));
@@ -325,14 +345,14 @@ public class StatPariController implements Initializable {
                       cell = new PdfPCell(new Phrase(""+serviceBet.nombreBetPerte(bet.getUser().getUsername()), FontFactory.getFont("Comic Sans MS", 12)));
 
                     cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                    cell.setBackgroundColor(BaseColor.GRAY);
+                    cell.setBackgroundColor(BaseColor.WHITE);
                     table.addCell(cell);
                 }
                 /////////////////////////////////////////////////////////////////////////////
       
                 doc.add(table);
                 doc.close();
-                Desktop.getDesktop().open(new File("C:\\Users\\Nader\\Desktop\\rapport.pdf"));
+                Desktop.getDesktop().open(file);
 
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(StatPariController.class.getName()).log(Level.SEVERE, null, ex);

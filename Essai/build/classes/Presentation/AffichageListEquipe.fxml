@@ -41,6 +41,16 @@
                   <Image url="@../images/equipe.png" />
                </image>
             </ImageView>
+            <JFXButton layoutX="6.0" layoutY="510.0" onAction="#interfaceJoueur" prefHeight="47.0" prefWidth="184.0" text="    Gérer Joueurs" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </JFXButton>
+            <ImageView fitHeight="41.0" fitWidth="45.0" layoutX="6.0" layoutY="510.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/player.png" />
+               </image>
+            </ImageView>
          </children></Pane>
       <JFXButton fx:id="Ajout" layoutX="805.0" layoutY="423.0" onAction="#valider" prefHeight="33.0" prefWidth="133.0" style="-fx-background-color: #E45652;" text="Ajouter" textFill="WHITE">
          <font>
@@ -91,15 +101,5 @@
          </font>
       </JFXButton>
       <Separator layoutX="214.0" layoutY="386.0" prefHeight="4.0" prefWidth="785.0" style="-fx-background-color: #36393B;" />
-      <JFXButton layoutX="22.0" layoutY="456.0" onAction="#interfaceJoueur" prefHeight="47.0" prefWidth="184.0" text="    Gérer Joueurs" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </JFXButton>
-      <ImageView fitHeight="41.0" fitWidth="45.0" layoutX="14.0" layoutY="454.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/player.png" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>

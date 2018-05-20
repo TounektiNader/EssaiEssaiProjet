@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="871.0" stylesheets="@../CSS/cssParis.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.MesParisController">
+<AnchorPane id="AnchorPane" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="871.0" stylesheets="@../CSS/cssParis.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.MesParisController">
    <children>
       <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" layoutX="-1.0" prefHeight="600.0" prefWidth="207.0" />
       <JFXHamburger fx:id="hamburger" layoutX="827.0" layoutY="49.0" />
@@ -34,7 +34,7 @@
                </font>
             </Label>
             <Separator layoutX="27.0" layoutY="524.0" prefHeight="6.0" prefWidth="150.0" />
-            <Label layoutX="61.0" layoutY="550.0" style="-fx-border-color: #ffffff;" text="Contact US" textFill="#fcf8f8">
+            <Label layoutX="61.0" layoutY="550.0" onMouseClicked="#contact" style="-fx-border-color: #ffffff;" text="Contact US" textFill="#fcf8f8">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -59,7 +59,7 @@
          </children>
       </Pane>
       <JFXListView fx:id="list" layoutX="353.0" layoutY="176.0" prefHeight="322.0" prefWidth="393.0" style="-fx-background-color: #00000017;" />
-      <JFXButton layoutX="769.0" layoutY="7.0" text="Se déconnecter" />
+      <JFXButton layoutX="769.0" layoutY="7.0" onAction="#decon" text="Se déconnecter" />
       <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="744.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/logout.png" />
