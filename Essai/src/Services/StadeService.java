@@ -2,6 +2,8 @@ package Services;
 
 import DateStroge.MyConnection;
 import Entity.EntiteStade;
+import Entity.Partie;
+import Entity.User;
 import iService.Istade;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -186,6 +188,43 @@ public class StadeService implements Istade
                     System.err.println("VnedorError: "+e.getErrorCode());
                 }
         return lv;
+    }
+    
+    public List<String> Metier(String u)
+    {
+        List<String> l = new ArrayList<>();
+        String n1 = null;
+        String n2 = null;
+        String d = null;
+        String h = null;
+        try 
+        {
+            String select = "SELECT p1.NomEquipe, p2.NomEquipe, c.datePartie, c.heurePartie "
+                    + "FROM partie c JOIN equipe p1 ON p1.idEquipe = c.home JOIN equipe p2 on p2.idEquipe = c.away "
+                    + "WHERE p1.NomEquipe ='"+u+"' OR p2.NomEquipe = '"+u+"' ORDER by c.datePartie ASC;";
+            Statement statement1 = connexion.createStatement();
+            ResultSet result = statement1.executeQuery(select);
+            
+            while (result.next()) 
+        {
+            n1 = result.getString("p1.NomEquipe");
+            n2 = result.getString("p2.NomEquipe");
+            d = result.getString("c.datePartie");
+            h = result.getString("c.heurePartie");
+            l.add(n1);
+            l.add(n2);
+            l.add(d);
+            l.add(h);
+
+        } 
+        }
+        catch (SQLException e)
+                {
+                    System.err.println("SQLException: "+e.getMessage());
+                    System.err.println("SQLSTATE: "+e.getSQLState());
+                    System.err.println("VnedorError: "+e.getErrorCode());
+                }
+        return l;
     }
 
     @Override
