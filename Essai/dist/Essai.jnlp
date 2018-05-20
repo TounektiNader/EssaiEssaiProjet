@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Essai.jar" size="72606763" download="eager" />
+    <jar href="Essai.jar" size="72607259" download="eager" />
     <jar href="lib\GMapsFX-2.12.0-sources.jar" size="180752" download="eager" />
     <jar href="lib\GMapsFX-2.12.0.jar" size="207618" download="eager" />
     <jar href="lib\controlsfx-8.40.14.jar" size="1215643" download="eager" />

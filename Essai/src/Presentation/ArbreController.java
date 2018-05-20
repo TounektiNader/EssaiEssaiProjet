@@ -415,9 +415,10 @@ public class ArbreController implements Initializable {
             partieC1 = partieService.DetailsPartie(rs.idPartie("C1"));
 
             if (partieC1.getEtatMatch().equals("Jouee")) {
-
+                
+                System.out.println(equipeGaC1.getDrapeau());
                 C1D2.setText(equipeGaC1.getNomEquipe());
-                Image imgB = new Image("http://localhost/java/russia/"+equipeGaC1.getDrapeau());
+                Image imgB = new Image(equipeGaC1.getDrapeau());
                 ImageView imB = new ImageView(imgB);
 
                 imB.setFitHeight(10);
@@ -436,7 +437,7 @@ public class ArbreController implements Initializable {
             if (partieA1.getEtatMatch().equals("Jouee")) {
 
                 A1B2.setText(equipeGaA1.getNomEquipe());
-                Image imgB2 = new Image("http://localhost/java/russia/"+equipeGaA1.getDrapeau());
+                Image imgB2 = new Image(equipeGaA1.getDrapeau());
                 ImageView imB2 = new ImageView(imgB2);
 
                 imB2.setFitHeight(10);
@@ -461,7 +462,7 @@ public class ArbreController implements Initializable {
                 Equipe equipeGaE1 = rs.EquipeGagne((rs.idPartie("E1")));
 
                 E1F2.setText(equipeGaE1.getNomEquipe());
-                Image imgB = new Image("http://localhost/java/russia/"+equipeGaE1.getDrapeau());
+                Image imgB = new Image(equipeGaE1.getDrapeau());
                 ImageView imB = new ImageView(imgB);
 
                 imB.setFitHeight(10);
@@ -479,7 +480,7 @@ public class ArbreController implements Initializable {
                 Equipe equipeGaG1 = rs.EquipeGagne((rs.idPartie("G1")));
 
                 G1H2.setText(equipeGaG1.getNomEquipe());
-                Image imgB2 = new Image("http://localhost/java/russia/"+equipeGaG1.getDrapeau());
+                Image imgB2 = new Image(equipeGaG1.getDrapeau());
                 ImageView imB2 = new ImageView(imgB2);
 
                 imB2.setFitHeight(10);
@@ -506,7 +507,7 @@ public class ArbreController implements Initializable {
             if (partieB1.getEtatMatch().equals("Jouee")) {
 
                 B1A2.setText(equipeGaB1.getNomEquipe());
-                Image imgB = new Image("http://localhost/java/russia/"+equipeGaB1.getDrapeau());
+                Image imgB = new Image(equipeGaB1.getDrapeau());
                 ImageView imB = new ImageView(imgB);
 
                 imB.setFitHeight(10);
@@ -525,7 +526,7 @@ public class ArbreController implements Initializable {
             if (partieD1.getEtatMatch().equals("Jouee")) {
 
                 D1C2.setText(equipeGaD1.getNomEquipe());
-                Image imgB2 = new Image("http://localhost/java/russia/"+equipeGaD1.getDrapeau());
+                Image imgB2 = new Image(equipeGaD1.getDrapeau());
                 ImageView imB2 = new ImageView(imgB2);
 
                 imB2.setFitHeight(10);
@@ -551,7 +552,7 @@ public class ArbreController implements Initializable {
             if (partieF1.getEtatMatch().equals("Jouee")) {
 
                 F1E2.setText(equipeGaF1.getNomEquipe());
-                Image imgB = new Image("http://localhost/java/russia/"+equipeGaF1.getDrapeau());
+                Image imgB = new Image(equipeGaF1.getDrapeau());
                 ImageView imB = new ImageView(imgB);
 
                 imB.setFitHeight(10);
@@ -569,7 +570,7 @@ public class ArbreController implements Initializable {
             if (partieH1.getEtatMatch().equals("Jouee")) {
 
                 H1G2.setText(equipeGaH1.getNomEquipe());
-                Image imgB2 = new Image("http://localhost/java/russia/"+equipeGaH1.getDrapeau());
+                Image imgB2 = new Image(equipeGaH1.getDrapeau());
                 ImageView imB2 = new ImageView(imgB2);
 
                 imB2.setFitHeight(10);
@@ -597,7 +598,7 @@ public class ArbreController implements Initializable {
             if ((partieA11.getEtatMatch().equals("Jouee")) && (partieB11.getEtatMatch().equals("Jouee"))) {
 
                 ED1.setText(equipeGaA11.getNomEquipe());
-                Image imgB = new Image("http://localhost/java/russia/"+equipeGaA11.getDrapeau());
+                Image imgB = new Image(equipeGaA11.getDrapeau());
                 ImageView imB = new ImageView(imgB);
 
                 imB.setFitHeight(10);
@@ -605,7 +606,7 @@ public class ArbreController implements Initializable {
                 ED1.setGraphic(imB);
 
                 ED2.setText(equipeGaB11.getNomEquipe());
-                Image img = new Image("http://localhost/java/russia/"+equipeGaB11.getDrapeau());
+                Image img = new Image(equipeGaB11.getDrapeau());
                 ImageView im = new ImageView(img);
 
                 im.setFitHeight(10);
@@ -633,7 +634,7 @@ public class ArbreController implements Initializable {
 
             if ((partieC11.getEtatMatch().equals("Jouee")) && (partieD11.getEtatMatch().equals("Jouee"))) {
                 ED3.setText(equipeGaA11.getNomEquipe());
-                Image imgB = new Image("http://localhost/java/russia/"+equipeGaA11.getDrapeau());
+                Image imgB = new Image(equipeGaA11.getDrapeau());
                 ImageView imB = new ImageView(imgB);
 
                 imB.setFitHeight(10);
@@ -641,7 +642,7 @@ public class ArbreController implements Initializable {
                 ED3.setGraphic(imB);
 
                 ED4.setText(equipeGaB11.getNomEquipe());
-                Image img = new Image("http://localhost/java/russia/"+equipeGaB11.getDrapeau());
+                Image img = new Image(equipeGaB11.getDrapeau());
                 ImageView im = new ImageView(img);
 
                 im.setFitHeight(10);
@@ -674,7 +675,7 @@ public class ArbreController implements Initializable {
             if ((partieA111.getEtatMatch().equals("Jouee")) && (partieB111.getEtatMatch().equals("Jouee"))) {
 
                 finaliste1.setText(equipeGaA11.getNomEquipe());
-                Image imgB = new Image("http://localhost/java/russia/"+equipeGaA11.getDrapeau());
+                Image imgB = new Image(equipeGaA11.getDrapeau());
                 ImageView imB = new ImageView(imgB);
 
                 imB.setFitHeight(10);
@@ -682,7 +683,7 @@ public class ArbreController implements Initializable {
                 finaliste1.setGraphic(imB);
 
                 finaliste2.setText(equipeGaB11.getNomEquipe());
-                Image img = new Image("http://localhost/java/russia/"+equipeGaB11.getDrapeau());
+                Image img = new Image(equipeGaB11.getDrapeau());
                 ImageView im = new ImageView(img);
 
                 im.setFitHeight(10);
@@ -690,7 +691,7 @@ public class ArbreController implements Initializable {
                 finaliste2.setGraphic(im);
 
                 bronze1.setText(equipePer1.getNomEquipe());
-                Image imgP1 = new Image("http://localhost/java/russia/"+equipePer1.getDrapeau());
+                Image imgP1 = new Image(equipePer1.getDrapeau());
                 ImageView imP1 = new ImageView(imgP1);
 
                 imP1.setFitHeight(10);
@@ -698,7 +699,7 @@ public class ArbreController implements Initializable {
                 bronze1.setGraphic(imP1);
 
                 bronze2.setText(equipePer2.getNomEquipe());
-                Image imgP2 = new Image("http://localhost/java/russia/"+equipePer2.getDrapeau());
+                Image imgP2 = new Image(equipePer2.getDrapeau());
                 ImageView imP2 = new ImageView(imgP2);
 
                 imP2.setFitHeight(10);
