@@ -48,12 +48,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javax.swing.text.html.CSS;
 import org.controlsfx.control.Notifications;
 import org.xml.sax.SAXException;
 
@@ -199,18 +202,22 @@ public class RecompenseController implements Initializable {
         for (int i = 0; i < cadeau.size(); i++) {
 
             Label labelType = new Label();
-            labelType.setText(cadeau.get(i).getType());
+            labelType.setText(cadeau.get(i).getType() + "\n");
             Image img = new Image(cadeau.get(i).getImg());
             ImageView im = new ImageView(img);
-            im.setFitHeight(30);
-            im.setFitWidth(30);
+            im.setFitHeight(80);
+            im.setFitWidth(80);
             labelType.setGraphic(im);
 
             Label labelJeton = new Label();
             labelJeton.setText("Nombre de Jeton :  " + "" + cadeau.get(i).getJeton());
 
             Button bt = new Button();
-            bt.setText("Parier");
+            bt.setText("Choisir");
+            bt.setMinHeight(33);
+            bt.setMinWidth(81);
+           
+            bt.setStyle("-fx-background-color: #E45652");
 
             int nomJeton = cadeau.get(i).getJeton();
             String nomType = cadeau.get(i).getType();
@@ -218,7 +225,9 @@ public class RecompenseController implements Initializable {
             bt.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
+
                     type.setText(nomType);
+
                     jeton.setText("" + nomJeton);
 
                     imgageViewStat.setImage(imgage);
@@ -274,7 +283,7 @@ public class RecompenseController implements Initializable {
         remplirGrid("Telephone");
         hBox.setVisible(false);
         hboxList.setVisible(false);
-        
+
     }
 
     @FXML
@@ -283,9 +292,7 @@ public class RecompenseController implements Initializable {
         remplirGrid("Ticket");
         hBox.setVisible(false);
         hboxList.setVisible(false);
-        
-        
-        
+
     }
 
     @FXML
@@ -294,8 +301,7 @@ public class RecompenseController implements Initializable {
         remplirGrid("Bon_Achat");
         hBox.setVisible(false);
         hboxList.setVisible(false);
-      
-       
+
     }
 
     @FXML
@@ -364,7 +370,7 @@ public class RecompenseController implements Initializable {
 
     @FXML
     private void confirmer(ActionEvent event) {
-        
+
         hboxList.setVisible(false);
         RecompenseService recompenseService = new RecompenseService();
         CadeauService cadeauService = new CadeauService();
@@ -388,21 +394,20 @@ public class RecompenseController implements Initializable {
             notificationbuilder.showError();
         } else {
 
-            
             recompenseService.ajouterRecompense(username.getText(), type.getText());
             int nombreCadea = recompenseService.NombreMesCadeau(username.getText());
             //System.out.println(nombreCadea);
             nombreCadeau.setText("" + nombreCadea);
-           recompenseService.deminuerJeton(username.getText(),Integer.parseInt(nmbJeton.getText()),Integer.parseInt(jeton.getText()));
-           
+            recompenseService.deminuerJeton(username.getText(), Integer.parseInt(nmbJeton.getText()), Integer.parseInt(jeton.getText()));
+
             ServiceUser serviceUser = new ServiceUser();
-            User u=serviceUser.getUser(username.getText());
-           XML x = new XML();
-           x.Ecrire(u.getUsername(),u.getNom(), u.getPrenom(), u.getMdp(), u.getRole(), u.getMail(),u.getStatus(), u.getJeton(), u.getNationalite(),u.getNum());
-                
-           int jetonActuelle = (Integer.parseInt(nmbJeton.getText())- Integer.parseInt(jeton.getText()));
-           
-           nmbJeton.setText(""+jetonActuelle);
+            User u = serviceUser.getUser(username.getText());
+            XML x = new XML();
+            x.Ecrire(u.getUsername(), u.getNom(), u.getPrenom(), u.getMdp(), u.getRole(), u.getMail(), u.getStatus(), u.getJeton(), u.getNationalite(), u.getNum());
+
+            int jetonActuelle = (Integer.parseInt(nmbJeton.getText()) - Integer.parseInt(jeton.getText()));
+
+            nmbJeton.setText("" + jetonActuelle);
             Notifications notificationbuilder = Notifications.create()
                     .title("Succès")
                     .text("Recompense avec succès ")
@@ -434,5 +439,37 @@ public class RecompenseController implements Initializable {
 //        stage.close();
 //
 //    }
+
+    @FXML
+    private void contact(MouseEvent event) throws IOException {
+        Stage primaryStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/Presentation/ContactUS.fxml"));
+
+        Scene scene = new Scene(root);
+
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        primaryStage.setResizable(false);
+        final Node source = (Node) event.getSource();
+        final Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    private void decon(ActionEvent event) throws IOException {
+
+        XML x = new XML();
+        x.Ecrire("0", "0", "0", "0", "0", "0", "0", 0, "0", "0");
+        Stage primaryStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/Presentation/Accueil.fxml"));
+
+        Scene scene = new Scene(root);
+
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        final Node source = (Node) event.getSource();
+        final Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
+    }
 
 }

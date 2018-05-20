@@ -61,6 +61,7 @@ import static Presentation.ActuController.image;
 import static Presentation.ActuController.stage;
 import static Presentation.AjoutactualiteController.image;
 import static Presentation.AjoutactualiteController.stage;
+import Utils.XML;
 
 /**
  * FXML Controller class
@@ -382,6 +383,22 @@ public class MenuAdsmin implements Initializable {
 
         app_stage.show();
         
+    }
+
+    @FXML
+    private void decon(ActionEvent event) throws IOException {
+            XML x = new XML();
+        x.Ecrire("0", "0", "0", "0", "0", "0", "0", 0, "0", "0");
+        Stage primaryStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/Presentation/Accueil.fxml"));
+
+        Scene scene = new Scene(root);
+
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        final Node source = (Node) event.getSource();
+        final Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
     }
 
     class URLBuilder 

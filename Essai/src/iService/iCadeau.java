@@ -6,7 +6,7 @@ import javafx.collections.ObservableList;
 
 public interface iCadeau {
 
-  public ObservableList<Cadeau> listCadeau() ;
+    public ObservableList<Cadeau> listCadeau();
 
     public List<Cadeau> listCadeau(String categorie);
 
@@ -16,6 +16,14 @@ public interface iCadeau {
 
     public void supprimer(int idCadeau);
 
-    public void modifierCadeau(int idCadeau, String categorie, String type, int jeton, String image);
+    public void modifierCadeau(int idCadeau, String categorie, String type, int jeton);
+
+    public String categorieCadeau(String idCadeau);
+
+    public int nombreRecompenseParPersonne(String username);
+
+    public Cadeau cadeau(int idCadeau);
+
+    public Cadeau cadeau(String type);
 
 }

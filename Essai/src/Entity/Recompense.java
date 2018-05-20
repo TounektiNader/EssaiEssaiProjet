@@ -11,6 +11,15 @@ public class Recompense {
     private int idRecompense ; 
     private Cadeau cadeau ; 
     private User user ;
+    private int count;
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
     
     public Recompense(){}
 
@@ -19,6 +28,15 @@ public class Recompense {
         this.cadeau = cadeau;
         this.user = user;
     }
+
+    public Recompense(int idRecompense, Cadeau cadeau, User user, int count) {
+        this.idRecompense = idRecompense;
+        this.cadeau = cadeau;
+        this.user = user;
+        this.count = count;
+    }
+    
+    
 
     public Recompense(Cadeau cadeau, User user) {
         this.cadeau = cadeau;
@@ -47,6 +65,11 @@ public class Recompense {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Recompense{" + "idRecompense=" + idRecompense + ", cadeau=" + cadeau.toString() + ", user=" + user + ", count=" + count + '}';
     }
     
     

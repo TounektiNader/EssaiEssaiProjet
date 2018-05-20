@@ -109,7 +109,7 @@ public class MotdepasseController implements Initializable {
         
         m.send(U.getMail(),"Mot de passe",U.getMdp());
         Stage SecondStage= new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Accueil.fxml"));
         Scene scene = new Scene(root);
         SecondStage.setScene(scene);
         SecondStage.show();

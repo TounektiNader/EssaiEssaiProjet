@@ -55,4 +55,5 @@ public interface iBet {
     public List<Bet> listBetParPersonne();
      public int nombreBetPerte(String username);
      public int nombreBetGain(String username);
+      public ObservableList<User> GetUser();
 }

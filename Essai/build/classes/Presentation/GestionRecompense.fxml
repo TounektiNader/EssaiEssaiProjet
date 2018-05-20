@@ -171,7 +171,7 @@
                   <Image url="@../images/tickett.png" />
                </image>
             </ImageView>
-            <JFXButton layoutX="907.0" layoutY="6.0" text="Se déconnecter" />
+            <JFXButton layoutX="901.0" layoutY="4.0" onAction="#decon" text="Se déconnecter" />
             <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="873.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/logout.png" />

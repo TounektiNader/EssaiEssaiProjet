@@ -8,6 +8,7 @@ package Presentation;
 import Entity.EntiteVille;
 import static Presentation.AddCafeController.rootP;
 import Services.VilleService;
+import Utils.XML;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
@@ -65,8 +66,6 @@ public class MenuUserController implements Initializable {
     private static final String MEDIA_URL = "/img/vid.mp4";
     
     private MediaPlayer MediaPlayer;
-    @FXML
-    private ProgressBar prgrs;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -171,6 +170,22 @@ public class MenuUserController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(MenuUserController.class.getName()).log(Level.SEVERE, null, ex);
         } 
+    }
+
+    @FXML
+    private void deco(ActionEvent event) throws IOException {
+            XML x = new XML();
+        x.Ecrire("0", "0", "0", "0", "0", "0", "0", 0, "0", "0");
+        Stage primaryStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/Presentation/Accueil.fxml"));
+
+        Scene scene = new Scene(root);
+
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        final Node source = (Node) event.getSource();
+        final Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
     }
 
 }

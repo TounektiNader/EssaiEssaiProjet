@@ -16,6 +16,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -35,26 +36,64 @@ public class ServiceUser implements iServicesUser  {
     private final static String username = "russiarussia";
     private final static String password = "NADERnader27";
      
-    
+     PreparedStatement stmt;
+     ResultSet rs;
     private ObservableList<User> data;
     Connection connexion;
 
     public ServiceUser() {
         connexion = MyConnection.getInstance().getConnexion();
     }
-
+    
+    
     @Override
     public void ajouterUser(User u) {
-        try {
-            String query = "INSERT INTO user (username,nom,prenom,mdp,role,mail,status,jeton,nationalite,num) "
-                    + "values ( '" + u.getUsername()+ "','" + u.getNom()+ "', '" + u.getPrenom()+ "','" + u.getMdp()+ "' , '" + u.getRole() + "','" + u.getMail() + "','false','"+u.getJeton()+"','"+u.getNationalite()+"','"+u.getNum()+"')";
-            Statement stm = connexion.createStatement();
-            stm.executeUpdate(query);
-            int b;
+ String mdp = Utils.Password.hashPassword(u.getMdp());
+        System.out.println(mdp);
+         int b;
+         int d;
             b = (int) (Math.random() * 9999);
-
-            String code = "" + b;
-
+        System.out.println(b);
+     
+        
+        String code = "" + b;
+            boolean test= false ; 
+            String ab="a:0:{}";
+            String ab1="a:1:{i:0;s:10:{}"+"\"ROLE_ADMIN\""+";}";
+        try {
+            String sql = "INSERT INTO user(nom,prenom,jeton,nationalite,num,username,username_canonical,email,email_canonical,enabled,password,confirmation_token,roles,mdp,role,mail,status) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            stmt = connexion.prepareStatement(sql);
+           
+            stmt.setString(1, u.getNom());
+            stmt.setString(2, u.getPrenom());
+            stmt.setInt(3, u.getJeton());
+            stmt.setString(4, u.getNationalite());
+            stmt.setString(5, u.getNum());
+            stmt.setString(6, u.getUsername());
+            stmt.setString(7, u.getUsername());
+            stmt.setString(8, u.getMail());
+            stmt.setString(9, u.getMail());
+            stmt.setInt(10, 0);
+            stmt.setString(11, mdp);
+            stmt.setString(12, null);
+           if(u.getRole().equals("Utilisateur"))
+           {
+            stmt.setString(13,ab);
+            stmt.setString(15, "Utilisateur");
+           }
+           else {stmt.setString(13,ab1);
+           stmt.setString(15, "Admin");}
+            
+            //stmt.setString(14,null);
+            //stmt.setDate(15,null);
+            //stmt.setString(16,null);
+            stmt.setString(14,u.getMdp());
+            //stmt.setString(15,"a");
+            stmt.setString(16,"a");
+            stmt.setString(17,"a");
+            
+            stmt.executeUpdate();
+ 
             ServiceCode c = new ServiceCode();
             c.ajouterCode(code);
             mail a = new mail();
@@ -70,12 +109,56 @@ public class ServiceUser implements iServicesUser  {
         } catch (SQLException ex) {
             System.out.println("Echec d'ajout");
         }
+
     }
+    
+    
+    
+    
+    
+
+//    @Override
+//    public void ajouterUser(User u) {
+//        String mdp = Utils.Password.hashPassword(u.getMdp());
+//        System.out.println(mdp);
+//          int b;
+//            b = (int) (Math.random() * 9999);
+//
+//            String code = "" + b;
+//            int enabled = 0;
+//            String ab="a:0:{}";
+//        try {
+//            String query = "INSERT INTO user (username,username_canonical,nom,prenom,password,role,email,email_canonical,enabled,jeton,nationalite,num,confirmation_token,roles) "
+//                    + "values ( '" + u.getUsername()+ "','" +u.getUsername()+"' , '" +u.getNom()+ "', '" + u.getPrenom()+ "','" + mdp+ "' , '" + u.getRole() + "','" + u.getMail()+"','" +u.getMail() +"','"+enabled+"','"+u.getJeton()+"','"+u.getNationalite()+"','"+u.getNum()+"','"+
+//                    code+"','"+ab+"')";
+//            Statement stm = connexion.createStatement();
+//            stm.executeUpdate(query);
+//          
+//
+//            ServiceCode c = new ServiceCode();
+//            c.ajouterCode(code);
+//            mail a = new mail();
+//            a.send(u.getMail(), "Validation", code);
+//            
+//            try {
+//                envoieSMS(code,u.getNum());
+//            } catch (IOException ex) {
+//                Logger.getLogger(ServiceUser.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//
+//            System.out.println("Ajout effectué");
+//        } catch (SQLException ex) {
+//            System.out.println("Echec d'ajout");
+//        }
+//    }
 
     @Override
     public void modifierUser(User u) {
+        
+        //nthabet fil role lahna
+        String mdp = Utils.Password.hashPassword(u.getMdp());
         try {
-            String query = "UPDATE user SET nom='" + u.getNom() + "',prenom='" + u.getPrenom() + "',mdp='" + u.getMdp() + "',role='" + u.getRole() + "',mail='" + u.getMail() +"',jeton='"+u.getJeton() +"',num='"+u.getNum()+"' where username='" +u.getUsername() + "'";
+            String query = "UPDATE user SET nom='" + u.getNom() + "',prenom='" + u.getPrenom() + "',password='" + mdp + "',email='" + u.getMail() +"',jeton='"+u.getJeton() +"',num='"+u.getNum()+"' where username='" +u.getUsername() + "'";
 
             Statement stm = connexion.createStatement();
             stm.executeUpdate(query);
@@ -99,10 +182,17 @@ public class ServiceUser implements iServicesUser  {
                 user.setUsername( resultat.getString("username")); 
                 user.setNom(resultat.getString("nom"));
                 user.setPrenom(resultat.getString("prenom"));
+               
+               
                 user.setMdp(resultat.getString("mdp"));
-                user.setRole(resultat.getString("role"));
-                user.setMail(resultat.getString("mail"));
-                user.setStatus(resultat.getString("status"));
+               
+                if(resultat.getString("roles").equals("a:1:{i:0;s:10:{}"+"\"ROLE_ADMIN\""+";}")){ user.setRole("Admin");}
+                else{ user.setRole("Utilisateur");}
+               
+                    
+                user.setMail(resultat.getString("email"));
+                if(resultat.getInt("enabled")==1){user.setStatus("true");}
+                else{user.setStatus("false");}
                 user.setJeton(resultat.getInt("jeton"));
                 user.setNum(resultat.getString("num"));
                 
@@ -114,12 +204,50 @@ public class ServiceUser implements iServicesUser  {
         return user;
 }
 
+    
+    
+    
+    public String testMdp(String username) {
+     
+        String mdp1="";
+        try {
+
+            String query = "Select * FROM user WHERE username='" + username+"'";
+            Statement stm = connexion.createStatement();
+            ResultSet resultat = stm.executeQuery(query);
+            while (resultat.next()) {
+
+                 mdp1 =resultat.getString("password");
+         
+                 System.out.println(mdp1);
+       
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Echec d'ajout");
+        }
+        
+       
+        return mdp1;
+    }
+
+    
+   
+    
+    
     @Override
     public User afficherUser(String pseudo ,String mdp) {
         User user = new User();
+      
+      
+       String md = testMdp(pseudo);
+      String b="a:1:{i:0;s:10:"+"\"ROLE_ADMIN\""+";}";
+        System.out.println(md);
+        if(Utils.Password.checkPassword(mdp, md)){
+           
         try {
 
-            String query = "Select * FROM user WHERE username='" + pseudo + "'and mdp='"+mdp+"'";
+            String query = "Select * FROM user WHERE username='" + pseudo + "'";
             Statement stm = connexion.createStatement();
             ResultSet resultat = stm.executeQuery(query);
             while (resultat.next()) {
@@ -128,9 +256,16 @@ public class ServiceUser implements iServicesUser  {
                 user.setNom(resultat.getString("nom"));
                 user.setPrenom(resultat.getString("prenom"));
                 user.setMdp(resultat.getString("mdp"));
-                user.setRole(resultat.getString("role"));
-                user.setMail(resultat.getString("mail"));
-                user.setStatus(resultat.getString("status"));
+                
+                String a = resultat.getString("roles").toString();
+                System.out.println(a);
+                System.out.println(b);
+                if(a.equals(b)){ user.setRole("Admin");}
+                else{ user.setRole("Utilisateur");}
+                user.setMail(resultat.getString("email"));
+                System.out.println(user.getRole());
+                if(resultat.getInt("enabled")==1){user.setStatus("true");}
+                else{user.setStatus("false");}
                 user.setJeton(resultat.getInt("jeton"));
                 user.setNationalite(resultat.getString("nationalite"));
                 user.setNum(resultat.getString("num"));
@@ -140,8 +275,13 @@ public class ServiceUser implements iServicesUser  {
         } catch (SQLException ex) {
             System.out.println("Echec d'ajout");
         }
-        return user;
-    }
+        return user;}
+        else{
+            System.out.println("Impossible");
+            return user ; 
+        }
+     
+       }
 
     @Override
     public void SupprimerUser(String pseudo) {
@@ -160,9 +300,10 @@ public class ServiceUser implements iServicesUser  {
         ServiceCode c = new ServiceCode();
         String code2 = c.rechercheCode(code);
         System.out.println(code2);
+        int en = 1;
         if (code2.equals(code)) {
             try {
-                String query = "UPDATE user SET status='true' where username='" + u.getUsername() + "' ";
+                String query = "UPDATE user SET enabled='"+en+"' where username='" + u.getUsername() + "' ";
 
                 Statement stm = connexion.createStatement();
                 c.supprimerCode(code);
@@ -178,8 +319,11 @@ public class ServiceUser implements iServicesUser  {
     
     public ObservableList<User> GetAdmin() {
        data = FXCollections.observableArrayList();
-             
-         String req="select * from user where role='Admin' and status='false' ;";
+             String status="";
+                String role="";
+               String ad="a:1:{i:0;s:10:{}"+"\"ROLE_ADMIN\""+";}";
+               int en = 0;
+         String req="select * from user where roles='"+ad+"' and enabled='"+en+"' ;";
         
         try {   
             Statement stm = connexion.createStatement();
@@ -190,9 +334,15 @@ public class ServiceUser implements iServicesUser  {
            while(result.next()){
                
                int jeton=result.getInt("jeton");
-               String status=result.getString("status");
-               String mail=result.getString("mail");
-               String role=result.getString("role");
+               
+               if(result.getInt("enabled")==1){ status="true";}
+                else{ status="false";}
+               String mail=result.getString("email");
+              
+                 if(result.getString("roles").equals("a:1:{i:0;s:10:{}"+"\"ROLE_ADMIN\""+";}")){ role="Admin";}
+                else{ role="Utilisateur";}
+               
+               
                String mdp=result.getString("mdp");
                 String pseudo=result.getString("username");
                  String prenom=result.getString("prenom");
@@ -227,9 +377,12 @@ public class ServiceUser implements iServicesUser  {
                 user.setNom(resultat.getString("nom"));
                 user.setPrenom(resultat.getString("prenom"));
                 user.setMdp(resultat.getString("mdp"));
-                user.setRole(resultat.getString("role"));
-                user.setMail(resultat.getString("mail"));
-                user.setStatus(resultat.getString("status"));
+             if(resultat.getString("roles").equals("a:1:{i:0;s:10:{}"+"\"ROLE_ADMIN\""+";}")){ user.setRole("Admin");}
+                else{ user.setRole("Utilisateur");}
+                
+                user.setMail(resultat.getString("email"));
+               if(resultat.getInt("enabled")==1){user.setStatus("true");}
+                else{user.setStatus("false");}
                 user.setJeton(resultat.getInt("jeton"));
                 user.setNationalite(resultat.getString("nationalite"));
                 user.setNum(resultat.getString("num"));
@@ -256,9 +409,13 @@ public class ServiceUser implements iServicesUser  {
                 user.setNom(resultat.getString("nom"));
                user.setPrenom(resultat.getString("prenom"));
                    user.setMdp(resultat.getString("mdp"));
-                user.setRole(resultat.getString("role"));
-                user.setMail(resultat.getString("mail"));
-                user.setStatus(resultat.getString("status"));
+           if(resultat.getString("roles").equals("a:1:{i:0;s:10:{}"+"\"ROLE_ADMIN\""+";}")){ user.setRole("Admin");}
+                else{ user.setRole("Utilisateur");}
+                user.setMail(resultat.getString("email"));
+               
+               if(resultat.getInt("enabled")==1){user.setStatus("true");}
+                else{user.setStatus("false");}
+                
                 user.setJeton(resultat.getInt("jeton"));
                
             }
@@ -272,8 +429,11 @@ public class ServiceUser implements iServicesUser  {
     @Override
     public int nbrAdmin() {
        int nbr=0;
+       String ab = "a:1:{i:0;s:10:{}"+"\"ROLE_ADMIN\""+";}";
+       int en = 0;
      try {
-         String query = "SELECT COUNT(*) FROM user where role='Admin' and status='false'";
+        
+         String query = "SELECT COUNT(*) FROM user where roles='"+ab+"' and enbled='"+en+"'";
          Statement stm = connexion.createStatement();
          ResultSet resultat = stm.executeQuery(query);
          while (resultat.next())
@@ -288,9 +448,11 @@ public class ServiceUser implements iServicesUser  {
     
     @Override
     public void validerAdmin(User u) {
+        int ab = 1;
+        
         if (u.getRole().equals("Admin")) {
             try {
-                String query = "UPDATE user SET status='true' where username='" + u.getUsername() + "' ";
+                String query = "UPDATE user SET enabled='"+ab+"' where username='" + u.getUsername() + "' ";
 
                 Statement stm = connexion.createStatement();
                 

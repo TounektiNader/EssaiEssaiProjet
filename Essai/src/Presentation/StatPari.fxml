@@ -23,7 +23,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.StatPariController">
+<AnchorPane id="AnchorPane" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="592.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.StatPariController">
    <children>
       <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" prefHeight="600.0" prefWidth="207.0" />
       <Pane fx:id="paneE" prefHeight="600.0" prefWidth="207.0" style="-fx-background-color: #36393B;">
@@ -216,7 +216,7 @@
          </image>
       </ImageView>
       <Text fill="#13a1ee" layoutX="353.0" layoutY="552.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 14px;" text="Users" />
-      <JFXButton layoutX="859.0" layoutY="553.0" onAction="#pdff" prefHeight="45.0" prefWidth="156.0" text="Générer PDF" textFill="#cd720b">
+      <JFXButton layoutX="845.0" layoutY="554.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#pdff" prefHeight="34.0" prefWidth="141.0" text="Générer PDF" textFill="#cd720b">
          <graphic>
             <ImageView fitHeight="34.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                <image>

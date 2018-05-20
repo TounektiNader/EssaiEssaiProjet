@@ -94,7 +94,7 @@ public class PartieService implements iPartie {
                 equipe.setNomEquipe(rs.getString("NomEquipe"));
                 equipe.setEntraineur(rs.getString("Entraineur"));
                 equipe.setContinent(rs.getString("Continent"));
-                equipe.setDrapeau(rs.getString("Drapeau"));
+                equipe.setDrapeau("http://localhost/java/russia/"+rs.getString("Drapeau"));
                 equipe.setGroupe(rs.getString("Groupe"));
                 equipe.setButMarque(rs.getInt("ButMarque"));
                 equipe.setButEncaisse(rs.getInt("butEncaisse"));
@@ -111,7 +111,6 @@ public class PartieService implements iPartie {
         return equipe;
     }
 
-    
     public EntiteStade getStade(int idStade) {
         EntiteStade stade = new EntiteStade();
 
@@ -178,8 +177,9 @@ public class PartieService implements iPartie {
 
         return data;
     }
-    
-      public ObservableList<Partie> getPartieAparier() {
+
+    @Override
+    public ObservableList<Partie> getPartieAparier() {
 
         data = FXCollections.observableArrayList();
         try {
@@ -198,7 +198,7 @@ public class PartieService implements iPartie {
     }
 
     @Override
-    public void ajoutPartie(String groupe, String date, String heure, String tour,int idStade, int home, int away) {
+    public void ajoutPartie(String groupe, String date, String heure, String tour, int idStade, int home, int away) {
 
         String sql = "INSERT INTO partie(groupe,datePartie,heurePartie,tour,etatMatch,etiquette,idStade,home,away) VALUES(?,?,?,?,?,?,?,?,?);";
         try {
@@ -229,17 +229,17 @@ public class PartieService implements iPartie {
 
     }
 
-    
-     
-    public void insertPartie(Partie partie,String d) {
+    @Override
+
+    public void insertPartie(Partie partie, String d) {
 
         String sql = "INSERT INTO partie(datePartie,heurePartie,tour,etatMatch,etiquette,idStade,home,away) VALUES(?,?,?,?,?,?,?,?);";
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1,d);
+            stmt.setString(1, d);
             stmt.setString(2, partie.getHeurePartie());
             stmt.setString(3, partie.getTour());
-            stmt.setString(4,"PasEncore");
+            stmt.setString(4, "PasEncore");
             stmt.setString(5, partie.getEtiquette());
             stmt.setInt(6, partie.getStade().getId());
             stmt.setInt(7, partie.getHome().getIDEquipe());
@@ -260,6 +260,7 @@ public class PartieService implements iPartie {
         }
 
     }
+
     @Override
     public void supprimer(int idPartie) {
 
@@ -351,13 +352,12 @@ public class PartieService implements iPartie {
         return data;
     }
 
-    
     @Override
     public ObservableList<Partie> partiegTour(String tour) {
 
         data = FXCollections.observableArrayList();
         try {
-            ResultSet rs = conn.createStatement().executeQuery("select * from partie where tour='" +tour + "'");
+            ResultSet rs = conn.createStatement().executeQuery("select * from partie where tour='" + tour + "'");
             while (rs.next()) {
 
                 data.add(new Partie(rs.getInt("id"), rs.getString("groupe"), rs.getDate("datePartie"), rs.getString("heurePartie"),
@@ -372,8 +372,6 @@ public class PartieService implements iPartie {
         return data;
     }
 
-    
-    
     @Override
     public ObservableList<Partie> partieEquipe(int id) {
 
@@ -472,14 +470,13 @@ public class PartieService implements iPartie {
 //        }
 //
 //    }
-    
-  
-    public void updatPartie(Partie partie,String d) {
+    @Override
+    public void updatPartie(Partie partie, String d) {
 
         try {
 
             Statement statement = conn.createStatement();
-            int rs = statement.executeUpdate("UPDATE  partie SET home='"+partie.getHome().getIDEquipe()+"',away='"+partie.getAway().getIDEquipe()+"',datePartie='"+d+"',heurePartie='"+partie.getHeurePartie()+"',tour='"+partie.getTour()+"',groupe='"+partie.getGroup()+ "',etiquette='"+partie.getEtiquette()+"',idStade='"+partie.getStade().getId()+"' where id='" + partie.getIdMatch() + "'");
+            int rs = statement.executeUpdate("UPDATE  partie SET home='" + partie.getHome().getIDEquipe() + "',away='" + partie.getAway().getIDEquipe() + "',datePartie='" + d + "',heurePartie='" + partie.getHeurePartie() + "',tour='" + partie.getTour() + "',groupe='" + partie.getGroup() + "',etiquette='" + partie.getEtiquette() + "',idStade='" + partie.getStade().getId() + "' where id='" + partie.getIdMatch() + "'");
             if (rs < 0) {
                 System.out.println("Echec");
             } else {
@@ -490,45 +487,42 @@ public class PartieService implements iPartie {
 
         }
 
-    }  
-    
-     
-     public Equipe getEquipe(String nomEquipe) {
-          Equipe p = new Equipe();
-        try {       
-            String myQuery="SELECT * FROM equipe where NomEquipe='"+nomEquipe+"';";
-            Statement stm=conn.createStatement();
+    }
+
+    @Override
+    public Equipe getEquipe(String nomEquipe) {
+        Equipe p = new Equipe();
+        try {
+            String myQuery = "SELECT * FROM equipe where NomEquipe='" + nomEquipe + "';";
+            Statement stm = conn.createStatement();
             ResultSet rs;
             rs = stm.executeQuery(myQuery);
-            
-            while(rs.next()){
-                
+
+            while (rs.next()) {
+
                 p.setIDEquipe(rs.getInt("idEquipe"));
                 p.setNomEquipe(rs.getString("NomEquipe"));
                 p.setEntraineur(rs.getString("Entraineur"));
                 p.setContinent(rs.getString("Continent"));
-                p.setDrapeau(rs.getString("Drapeau"));
+                p.setDrapeau("http://localhost/java/russia/"+rs.getString("Drapeau"));
                 p.setGroupe(rs.getString("Groupe"));
                 p.setMatchJouee(rs.getInt("MatchJouee"));
                 p.setMatchperdu(rs.getInt("MatchPerdu"));
                 p.setMatchNull(rs.getInt("MatchNull"));
                 p.setMatchGagne(rs.getInt("MatchGagne"));
                 p.setButMarque(rs.getInt("ButMarque"));
-               p.setButEncaisse(rs.getInt("butEncaisse"));
-               p.setNombrePoints(rs.getInt("NombrePoints"));
-                
-            }}
-        
-            catch (Exception e) {
+                p.setButEncaisse(rs.getInt("butEncaisse"));
+                p.setNombrePoints(rs.getInt("NombrePoints"));
+
+            }
+        } catch (Exception e) {
             System.err.println("Echec");
         }
         return p;
-}
+    }
 
-     
-
-        @Override
-    public int geIdPartie(int idHome , int idAway) {
+    @Override
+    public int geIdPartie(int idHome, int idAway) {
 
         int id = 0;
 
@@ -552,12 +546,10 @@ public class PartieService implements iPartie {
 
         return id;
     }
-    
-    
-    
+
     @Override
     public ObservableList<Partie> partiegJouee() {
-          String joue = "Jouee";
+        String joue = "Jouee";
         data = FXCollections.observableArrayList();
         try {
             ResultSet rs = conn.createStatement().executeQuery("select * from partie where etatMatch='" + joue + "'");
@@ -574,11 +566,10 @@ public class PartieService implements iPartie {
 
         return data;
     }
-    
-    
+
     @Override
     public ObservableList<Partie> partiegNonJouee() {
-          String joue = "PasEncore";
+        String joue = "PasEncore";
         data = FXCollections.observableArrayList();
         try {
             ResultSet rs = conn.createStatement().executeQuery("select * from partie where etatMatch='" + joue + "'");
@@ -595,7 +586,5 @@ public class PartieService implements iPartie {
 
         return data;
     }
-  
-    
 
 }

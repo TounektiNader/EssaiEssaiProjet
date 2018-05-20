@@ -29,17 +29,21 @@
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="255.0" spacing="15.0">
                <VBox.margin>
-                  <Insets left="25.0" right="25.0" />
+                  <Insets left="25.0" right="25.0" top="20.0" />
                </VBox.margin>
+               <children>
+                  <ImageView fitHeight="33.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/gift1.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="124.0" text="Gérer Résultat" textFill="#f2ebeb">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
             </HBox>
-            <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="151.0" text="Gérer Résultat" textFill="#f2ebeb">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="40.0" />
-               </VBox.margin>
-            </Label>
          </children>
       </VBox>
       <VBox alignment="TOP_RIGHT" layoutX="427.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="441.0" prefWidth="573.0">
@@ -151,7 +155,7 @@
       <JFXButton fx:id="b2" buttonType="RAISED" layoutX="2.0" layoutY="221.0" onAction="#StatPari" prefHeight="56.0" prefWidth="207.0" ripplerFill="#fc0000" style="-fx-background-color: #9a9696;" text="Statistique des Paris" textFill="#534d4d" />
       <JFXButton fx:id="b3" buttonType="RAISED" layoutX="3.0" layoutY="286.0" onAction="#StatRecompense" prefHeight="56.0" prefWidth="207.0" ripplerFill="#fc0000" style="-fx-background-color: #9a9696;" text="Statistique des Recompenses" textFill="#534d4d">
          <graphic>
-            <ImageView fitHeight="33.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imStatReco" fitHeight="33.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/stat.png" />
                </image>
@@ -170,32 +174,32 @@
          </padding>
       </JFXButton>
       <JFXButton fx:id="b7" buttonType="RAISED" layoutX="4.0" layoutY="541.0" onAction="#GererActu" prefHeight="56.0" prefWidth="207.0" ripplerFill="#fc0000" style="-fx-background-color: #9a9696;" text="Gérer Actualités" textFill="#534d4d" />
-      <ImageView fitHeight="33.0" fitWidth="42.0" layoutX="9.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imRec" fitHeight="33.0" fitWidth="42.0" layoutX="9.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/gift1.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="33.0" fitWidth="42.0" layoutX="11.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imStatPari" fitHeight="33.0" fitWidth="42.0" layoutX="11.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/stat.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="33.0" fitWidth="42.0" layoutX="12.0" layoutY="362.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imMatch" fitHeight="33.0" fitWidth="42.0" layoutX="12.0" layoutY="362.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/match.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="33.0" fitWidth="42.0" layoutX="8.0" layoutY="420.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imEquip" fitHeight="33.0" fitWidth="42.0" layoutX="8.0" layoutY="420.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/equipe.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="33.0" fitWidth="42.0" layoutX="11.0" layoutY="486.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imRecomm" fitHeight="33.0" fitWidth="42.0" layoutX="11.0" layoutY="486.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/hotel.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="33.0" fitWidth="42.0" layoutX="15.0" layoutY="551.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imActu" fitHeight="33.0" fitWidth="42.0" layoutX="15.0" layoutY="551.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/news.png" />
          </image>

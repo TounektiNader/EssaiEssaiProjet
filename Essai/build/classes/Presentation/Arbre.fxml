@@ -29,7 +29,7 @@
                </font>
             </Label>
             <Separator layoutX="28.0" layoutY="486.0" prefHeight="6.0" prefWidth="150.0" />
-            <Label layoutX="62.0" layoutY="523.0" style="-fx-border-color: #ffffff;" text="Contact US" textFill="#fcf8f8">
+            <Label layoutX="62.0" layoutY="523.0" onMouseClicked="#contact" style="-fx-border-color: #ffffff;" text="Contact US" textFill="#fcf8f8">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -248,7 +248,7 @@
          </font>
       </JFXTextField>
       <JFXHamburger fx:id="hamburger" layoutX="942.0" layoutY="53.0" />
-      <JFXButton layoutX="887.0" layoutY="10.0" text="Se déconnecter" />
+      <JFXButton layoutX="887.0" layoutY="10.0" onAction="#decon" text="Se déconnecter" />
       <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="862.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/logout.png" />

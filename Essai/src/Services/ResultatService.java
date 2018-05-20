@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -97,8 +98,9 @@ public class ResultatService implements iResultat {
 //                
 //                else{
 //                      ChangerChampEquipe(EquipeGagne(idPartie));}
-                if(partieService.DetailsPartie(idPartie).getTour().equals("16es de finale")){
-                  verficationChangement(idPartie);}
+                if (partieService.DetailsPartie(idPartie).getTour().equals("16es de finale")) {
+                    verficationChangement(idPartie);
+                }
             }
         } catch (SQLException ex) {
 
@@ -174,25 +176,25 @@ public class ResultatService implements iResultat {
         return data;
 
     }
-    
-    
-     public ObservableList<Resultat> listResultatsParGroupe(String groupe) {
+
+    @Override
+    public ObservableList<Resultat> listResultatsParGroupe(String groupe) {
 
         data = FXCollections.observableArrayList();
         PartieService partieService = new PartieService();
         try {
-            String sql = "SELECT * FROM partie, resultat WHERE (partie.id =resultat.idPartie) and (partie.groupe='"+groupe+"') ;" ;
+            String sql = "SELECT * FROM partie, resultat WHERE (partie.id =resultat.idPartie) and (partie.groupe='" + groupe + "') ;";
             stmt = conn.prepareStatement(sql);
 
             rs = stmt.executeQuery();
             while (rs.next()) {
-                   if ((partieService.DetailsPartie(rs.getInt("idPartie"))).getEtatMatch().equals("Jouee")){
-                Resultat resultat = new Resultat(rs.getInt("butHome"), rs.getInt("butAway"), partieService.DetailsPartie(rs.getInt("idPartie")));
-                data.add(resultat);
-            }else{
-                   Resultat resultat = new Resultat(100, 100, partieService.DetailsPartie(rs.getInt("idPartie")));
-                data.add(resultat);
-                   }
+                if ((partieService.DetailsPartie(rs.getInt("idPartie"))).getEtatMatch().equals("Jouee")) {
+                    Resultat resultat = new Resultat(rs.getInt("butHome"), rs.getInt("butAway"), partieService.DetailsPartie(rs.getInt("idPartie")));
+                    data.add(resultat);
+                } else {
+                    Resultat resultat = new Resultat(100, 100, partieService.DetailsPartie(rs.getInt("idPartie")));
+                    data.add(resultat);
+                }
             }
         } catch (SQLException ex) {
         }
@@ -284,6 +286,7 @@ public class ResultatService implements iResultat {
 
     }
 
+    @Override
     public Equipe EquipePerdu(int idPartie) {
 
         Equipe equipePerdu = new Equipe();
@@ -316,6 +319,7 @@ public class ResultatService implements iResultat {
     }
 
     //a vérifierrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
+    @Override
     public void verficationChangement(int idPartie) {
 
         Equipe equipeGagner = new Equipe();
@@ -383,6 +387,7 @@ public class ResultatService implements iResultat {
     }
 
 //modifeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+    @Override
     public void ChangerChampEquipe(Equipe equipe) {
 
         try {
@@ -412,6 +417,7 @@ public class ResultatService implements iResultat {
 
     }
 
+    @Override
     public void ChangerChampEquipe(Equipe equipe, int idEquipe, int nbPoints) {
 
         try {
@@ -464,6 +470,7 @@ public class ResultatService implements iResultat {
 
     static boolean bolAB = true;
 
+    @Override
     public void affectationGroupeAB18Eme() {
 
         EquipeService equipeService = new EquipeService();
@@ -476,7 +483,7 @@ public class ResultatService implements iResultat {
         ListB = equipeService.afficherEquipes("B");
         Collections.sort(ListB);
 
-        if ((nombreMatchParGroupe("A") == 6) && ((nombreMatchParGroupe("B")) == 6) && bolAB) {
+        if ((nombreMatchParGroupe("A") == 6) && ((nombreMatchParGroupe("B")) == 6) && getTest(1)) {
             EntiteStade stadeAB = new EntiteStade();
             stadeAB.setId(2);
             Partie partieA1 = new Partie("16:00", "8es de finale", "A1", stadeAB, ListA.get(0), ListB.get(1));
@@ -486,13 +493,15 @@ public class ResultatService implements iResultat {
             ajoutResultat(partieService.geIdPartie(ListA.get(0).getIDEquipe(), ListB.get(1).getIDEquipe()));
             partieService.insertPartie(partieB1, "2018-06-30");
             ajoutResultat(partieService.geIdPartie(ListB.get(0).getIDEquipe(), ListA.get(1).getIDEquipe()));
-            bolAB = false;
+            //bolAB = false;
+            updateValeur(1);
 
         }
 
     }
     static boolean bolCD = true;
 
+    @Override
     public void affectationGroupeCD8Eme() {
 
         EquipeService equipeService = new EquipeService();
@@ -505,7 +514,7 @@ public class ResultatService implements iResultat {
         ListD = equipeService.afficherEquipes("D");
         Collections.sort(ListD);
 
-        if ((nombreMatchParGroupe("C") == 6) && ((nombreMatchParGroupe("D")) == 6) && bolCD) {
+        if ((nombreMatchParGroupe("C") == 6) && ((nombreMatchParGroupe("D")) == 6) && getTest(2)) {
 
             EntiteStade stadeCD = new EntiteStade();
             stadeCD.setId(2);
@@ -515,12 +524,14 @@ public class ResultatService implements iResultat {
             ajoutResultat(partieService.geIdPartie(ListC.get(0).getIDEquipe(), ListD.get(1).getIDEquipe()));
             partieService.insertPartie(partieD1, "2018-07-01");
             ajoutResultat(partieService.geIdPartie(ListD.get(0).getIDEquipe(), ListC.get(1).getIDEquipe()));
-            bolCD = false;
+            //bolCD = false;
+            updateValeur(2);
         }
 
     }
     static boolean bolEF = true;
 
+    @Override
     public void affectationGroupeEF8Eme() {
 
         EquipeService equipeService = new EquipeService();
@@ -533,7 +544,7 @@ public class ResultatService implements iResultat {
         ListF = equipeService.afficherEquipes("F");
         Collections.sort(ListF);
 
-        if ((nombreMatchParGroupe("E") == 6) && ((nombreMatchParGroupe("F")) == 6) && bolEF) {
+        if ((nombreMatchParGroupe("E") == 6) && ((nombreMatchParGroupe("F")) == 6) && getTest(3)) {
 
             EntiteStade stadeEF = new EntiteStade();
             stadeEF.setId(2);
@@ -543,12 +554,14 @@ public class ResultatService implements iResultat {
             ajoutResultat(partieService.geIdPartie(ListE.get(0).getIDEquipe(), ListF.get(1).getIDEquipe()));
             partieService.insertPartie(partieF1, "2018-07-02");
             ajoutResultat(partieService.geIdPartie(ListF.get(0).getIDEquipe(), ListE.get(1).getIDEquipe()));
-            bolEF = false;
+           // bolEF = false;
+        updateValeur(3);
         }
 
     }
     static boolean bolGH = true;
 
+    @Override
     public void affectationGroupeGH8Eme() {
 
         EquipeService equipeService = new EquipeService();
@@ -561,7 +574,7 @@ public class ResultatService implements iResultat {
         ListH = equipeService.afficherEquipes("H");
         Collections.sort(ListH);
 
-        if ((nombreMatchParGroupe("G") == 6) && ((nombreMatchParGroupe("H")) == 6) && bolGH) {
+        if ((nombreMatchParGroupe("G") == 6) && ((nombreMatchParGroupe("H")) == 6) && getTest(4)) {
 
             EntiteStade stadeGH = new EntiteStade();
             stadeGH.setId(2);
@@ -571,12 +584,14 @@ public class ResultatService implements iResultat {
             ajoutResultat(partieService.geIdPartie(ListG.get(0).getIDEquipe(), ListH.get(1).getIDEquipe()));
             partieService.insertPartie(partieH1, "2018-07-03");
             ajoutResultat(partieService.geIdPartie(ListH.get(0).getIDEquipe(), ListG.get(1).getIDEquipe()));
-            bolGH = false;
+            //bolGH = false;
+            updateValeur(4);
 
         }
 
     }
 
+    @Override
     public int idPartie(String etiq) {
 
         int id = 0;
@@ -598,6 +613,7 @@ public class ResultatService implements iResultat {
     }
     static boolean bol41 = true;
 
+    @Override
     public void affectation4eme1() {
 
         PartieService partieService = new PartieService();
@@ -606,27 +622,29 @@ public class ResultatService implements iResultat {
         Equipe equipeGaC1 = EquipeGagne((idPartie("C1")));
         Equipe equipeGaA1 = EquipeGagne((idPartie("A1")));
 
-          if ((partieService.DetailsPartie(idPartie("C1")).getIdMatch() == 0) && (partieService.DetailsPartie(idPartie("E1")).getIdMatch() == 0)) {
+        if ((partieService.DetailsPartie(idPartie("C1")).getIdMatch() == 0) && (partieService.DetailsPartie(idPartie("E1")).getIdMatch() == 0)) {
             partieC1.setEtatMatch("PasEncore");
             partieA1.setEtatMatch("PasEncore");
         } else {
             partieC1 = partieService.DetailsPartie(idPartie("C1"));
             partieA1 = partieService.DetailsPartie(idPartie("A1"));
 
-        
-        if ((partieC1.getEtatMatch().equals("Jouee")) && (partieA1.getEtatMatch().equals("Jouee")) && bol41) {
-            EntiteStade stadeGH = new EntiteStade();
-            stadeGH.setId(2);
-            Partie partieA11 = new Partie("16:00", "4es de finale", "A11", stadeGH, equipeGaA1, equipeGaC1);
+            if ((partieC1.getEtatMatch().equals("Jouee")) && (partieA1.getEtatMatch().equals("Jouee")) && getTest(5)) {
+                EntiteStade stadeGH = new EntiteStade();
+                stadeGH.setId(2);
+                Partie partieA11 = new Partie("16:00", "4es de finale", "A11", stadeGH, equipeGaA1, equipeGaC1);
 
-            partieService.insertPartie(partieA11, "2018-07-06");
-            ajoutResultat(partieService.geIdPartie(equipeGaA1.getIDEquipe(), equipeGaC1.getIDEquipe()));
-            bol41 = false;
+                partieService.insertPartie(partieA11, "2018-07-06");
+                ajoutResultat(partieService.geIdPartie(equipeGaA1.getIDEquipe(), equipeGaC1.getIDEquipe()));
+                //bol41 = false;
+                updateValeur(5);
+            }
+
         }
-
-    }}
+    }
     static boolean bol42 = true;
 
+    @Override
     public void affectation4eme2() {
 
         PartieService partieService = new PartieService();
@@ -643,22 +661,22 @@ public class ResultatService implements iResultat {
             partieE1 = partieService.DetailsPartie(idPartie("E1"));
             partieG1 = partieService.DetailsPartie(idPartie("G1"));
 
-        
+            if ((partieE1.getEtatMatch().equals("Jouee")) && (partieG1.getEtatMatch().equals("Jouee")) && getTest(6)) {
 
-        if ((partieE1.getEtatMatch().equals("Jouee")) && (partieG1.getEtatMatch().equals("Jouee")) && bol42) {
+                EntiteStade stadeGH = new EntiteStade();
+                stadeGH.setId(2);
+                Partie partieA11 = new Partie("16:00", "4es de finale", "B11", stadeGH, equipeGaE1, equipeGaG1);
 
-            EntiteStade stadeGH = new EntiteStade();
-            stadeGH.setId(2);
-            Partie partieA11 = new Partie("16:00", "4es de finale", "B11", stadeGH, equipeGaE1, equipeGaG1);
-
-            partieService.insertPartie(partieA11, "2018-07-06");
-            ajoutResultat(partieService.geIdPartie(equipeGaE1.getIDEquipe(), equipeGaG1.getIDEquipe()));
-            bol42 = false;
-        }
+                partieService.insertPartie(partieA11, "2018-07-06");
+                ajoutResultat(partieService.geIdPartie(equipeGaE1.getIDEquipe(), equipeGaG1.getIDEquipe()));
+                //bol42 = false;
+                updateValeur(6);
+            }
         }
     }
     static boolean bol43 = true;
 
+    @Override
     public void affectation4eme3() {
 
         PartieService partieService = new PartieService();
@@ -674,22 +692,22 @@ public class ResultatService implements iResultat {
             partieB1 = partieService.DetailsPartie(idPartie("B1"));
             partieD1 = partieService.DetailsPartie(idPartie("D1"));
 
-        
+            if ((partieB1.getEtatMatch().equals("Jouee")) && (partieD1.getEtatMatch().equals("Jouee")) && getTest(7)) {
 
-        if ((partieB1.getEtatMatch().equals("Jouee")) && (partieD1.getEtatMatch().equals("Jouee")) && bol43) {
+                EntiteStade stadeGH = new EntiteStade();
+                stadeGH.setId(2);
+                Partie partieA11 = new Partie("16:00", "4es de finale", "C11", stadeGH, equipeGaB1, equipeGaD1);
 
-            EntiteStade stadeGH = new EntiteStade();
-            stadeGH.setId(2);
-            Partie partieA11 = new Partie("16:00", "4es de finale", "C11", stadeGH, equipeGaB1, equipeGaD1);
-
-            partieService.insertPartie(partieA11, "2018-07-07");
-            ajoutResultat(partieService.geIdPartie(equipeGaB1.getIDEquipe(), equipeGaD1.getIDEquipe()));
-            bol43 = false;
-        }
+                partieService.insertPartie(partieA11, "2018-07-07");
+                ajoutResultat(partieService.geIdPartie(equipeGaB1.getIDEquipe(), equipeGaD1.getIDEquipe()));
+                //bol43 = false;
+                updateValeur(7);
+            }
         }
     }
     static boolean bol44 = true;
 
+    @Override
     public void affectation4eme4() {
 
         PartieService partieService = new PartieService();
@@ -706,18 +724,17 @@ public class ResultatService implements iResultat {
             partieF1 = partieService.DetailsPartie(idPartie("F1"));
             partieH1 = partieService.DetailsPartie(idPartie("H1"));
 
+            if ((partieF1.getEtatMatch().equals("Jouee")) && (partieH1.getEtatMatch().equals("Jouee")) && getTest(8)) {
 
+                EntiteStade stadeGH = new EntiteStade();
+                stadeGH.setId(2);
+                Partie partieA11 = new Partie("16:00", "4es de finale", "D11", stadeGH, equipeGaF1, equipeGaH1);
 
-        if ((partieF1.getEtatMatch().equals("Jouee")) && (partieH1.getEtatMatch().equals("Jouee")) && bol44) {
-
-            EntiteStade stadeGH = new EntiteStade();
-            stadeGH.setId(2);
-            Partie partieA11 = new Partie("16:00", "4es de finale", "D11", stadeGH, equipeGaF1, equipeGaH1);
-
-            partieService.insertPartie(partieA11, "2018-07-07");
-            ajoutResultat(partieService.geIdPartie(equipeGaF1.getIDEquipe(), equipeGaH1.getIDEquipe()));
-            bol44 = false;
-        }
+                partieService.insertPartie(partieA11, "2018-07-07");
+                ajoutResultat(partieService.geIdPartie(equipeGaF1.getIDEquipe(), equipeGaH1.getIDEquipe()));
+updateValeur(8);              
+//  bol44 = false;
+            }
         }
     }
 
@@ -741,8 +758,10 @@ public class ResultatService implements iResultat {
         return nombreMatch;
 
     }
+
     static boolean bol21 = true;
 
+    @Override
     public void affectation2eme1() {
 
         PartieService partieService = new PartieService();
@@ -751,28 +770,30 @@ public class ResultatService implements iResultat {
         Partie partieB11 = new Partie();
         Equipe equipeGaA11 = EquipeGagne(idPartie("A11"));
         Equipe equipeGaB11 = EquipeGagne(idPartie("B11"));
-    
-          if ((partieService.DetailsPartie(idPartie("A11")).getIdMatch() == 0) || (partieService.DetailsPartie(idPartie("B11")).getIdMatch() == 0)) {
+
+        if ((partieService.DetailsPartie(idPartie("A11")).getIdMatch() == 0) || (partieService.DetailsPartie(idPartie("B11")).getIdMatch() == 0)) {
             partieA11.setEtatMatch("PasEncore");
             partieB11.setEtatMatch("PasEncore");
         } else {
             partieA11 = partieService.DetailsPartie(idPartie("A11"));
             partieB11 = partieService.DetailsPartie(idPartie("B11"));
 
-        
-        if ((partieA11.getEtatMatch().equals("Jouee")) && (partieB11.getEtatMatch().equals("Jouee")) && bol21) {
+            if ((partieA11.getEtatMatch().equals("Jouee")) && (partieB11.getEtatMatch().equals("Jouee")) && getTest(9)) {
 
-            EntiteStade stadeGH = new EntiteStade();
-            stadeGH.setId(2);
-            Partie partieA111 = new Partie("20:00", "Demi Finale", "A111", stadeGH, equipeGaA11, equipeGaB11);
-            partieService.insertPartie(partieA111, "2018-07-10");
-            ajoutResultat(partieService.geIdPartie(equipeGaA11.getIDEquipe(), equipeGaB11.getIDEquipe()));
-            bol21 = false;
+                EntiteStade stadeGH = new EntiteStade();
+                stadeGH.setId(2);
+                Partie partieA111 = new Partie("20:00", "Demi Finale", "A111", stadeGH, equipeGaA11, equipeGaB11);
+                partieService.insertPartie(partieA111, "2018-07-10");
+                ajoutResultat(partieService.geIdPartie(equipeGaA11.getIDEquipe(), equipeGaB11.getIDEquipe()));
+                //bol21 = false;
+                updateValeur(9);
+            }
         }
-          }
     }
+
     static boolean bol22 = true;
 
+    @Override
     public void affectation2eme2() {
 
         PartieService partieService = new PartieService();
@@ -782,25 +803,25 @@ public class ResultatService implements iResultat {
         Equipe equipeGaA11 = EquipeGagne(idPartie("C11"));
         Equipe equipeGaB11 = EquipeGagne(idPartie("D11"));
 
-          if ((partieService.DetailsPartie(idPartie("C11")).getIdMatch() == 0) || (partieService.DetailsPartie(idPartie("D11")).getIdMatch() == 0)) {
+        if ((partieService.DetailsPartie(idPartie("C11")).getIdMatch() == 0) || (partieService.DetailsPartie(idPartie("D11")).getIdMatch() == 0)) {
             partieC11.setEtatMatch("PasEncore");
             partieD11.setEtatMatch("PasEncore");
         } else {
             partieC11 = partieService.DetailsPartie(idPartie("C11"));
             partieD11 = partieService.DetailsPartie(idPartie("D11"));
 
-        
-        if ((partieC11.getEtatMatch().equals("Jouee")) && (partieD11.getEtatMatch().equals("Jouee")) && bol22) {
+            if ((partieC11.getEtatMatch().equals("Jouee")) && (partieD11.getEtatMatch().equals("Jouee")) && getTest(10)) {
 
-            EntiteStade stadeGH = new EntiteStade();
-            stadeGH.setId(2);
-            Partie partieB111 = new Partie("20:00", "Demi Finale", "B111", stadeGH, equipeGaA11, equipeGaB11);
+                EntiteStade stadeGH = new EntiteStade();
+                stadeGH.setId(2);
+                Partie partieB111 = new Partie("20:00", "Demi Finale", "B111", stadeGH, equipeGaA11, equipeGaB11);
 
-            partieService.insertPartie(partieB111, "2018-07-11");
-            ajoutResultat(partieService.geIdPartie(equipeGaA11.getIDEquipe(), equipeGaB11.getIDEquipe()));
-            bol22 = false;
+                partieService.insertPartie(partieB111, "2018-07-11");
+                ajoutResultat(partieService.geIdPartie(equipeGaA11.getIDEquipe(), equipeGaB11.getIDEquipe()));
+                //bol22 = false;
+              updateValeur(10);
+            }
         }
-          }
     }
 
     public int nombreMatchTour2() {
@@ -823,8 +844,10 @@ public class ResultatService implements iResultat {
         return nombreMatch;
 
     }
+
     static boolean bolfinal = true;
 
+    @Override
     public void affectionfinal() {
         PartieService partieService = new PartieService();
 
@@ -837,30 +860,31 @@ public class ResultatService implements iResultat {
         Equipe equipePer1 = EquipePerdu(idPartie("A111"));
         Equipe equipePer2 = EquipePerdu(idPartie("B111"));
 
-          if ((partieService.DetailsPartie(idPartie("A111")).getIdMatch() == 0) || (partieService.DetailsPartie(idPartie("B1111")).getIdMatch() == 0)) {
+        if ((partieService.DetailsPartie(idPartie("A111")).getIdMatch() == 0) || (partieService.DetailsPartie(idPartie("B1111")).getIdMatch() == 0)) {
             partieA111.setEtatMatch("PasEncore");
             partieB111.setEtatMatch("PasEncore");
         } else {
             partieA111 = partieService.DetailsPartie(idPartie("A111"));
             partieB111 = partieService.DetailsPartie(idPartie("B111"));
 
-        
-        
-        if ((partieA111.getEtatMatch().equals("Jouee")) && (partieB111.getEtatMatch().equals("Jouee")) && bolfinal) {
+            if ((partieA111.getEtatMatch().equals("Jouee")) && (partieB111.getEtatMatch().equals("Jouee")) && getTest(11)) {
 
-            EntiteStade stadeGH = new EntiteStade();
-            stadeGH.setId(2);
-            Partie partieA1111 = new Partie("17:00", "Finale", "A1111", stadeGH, equipeGaA111, equipeGaB111);
-            Partie partieB1111 = new Partie("16:00", "3eme Place", "B1111", stadeGH, equipePer1, equipePer2);
+                EntiteStade stadeGH = new EntiteStade();
+                stadeGH.setId(2);
+                Partie partieA1111 = new Partie("17:00", "Finale", "A1111", stadeGH, equipeGaA111, equipeGaB111);
+                Partie partieB1111 = new Partie("16:00", "3eme Place", "B1111", stadeGH, equipePer1, equipePer2);
 
-            partieService.insertPartie(partieA1111, "2018-07-15");
-            ajoutResultat(partieService.geIdPartie(equipeGaA111.getIDEquipe(), equipeGaB111.getIDEquipe()));
-            partieService.insertPartie(partieB1111, "2018-07-14");
-            ajoutResultat(partieService.geIdPartie(equipePer1.getIDEquipe(), equipePer2.getIDEquipe()));
-            bolfinal = false;
+                partieService.insertPartie(partieA1111, "2018-07-15");
+                ajoutResultat(partieService.geIdPartie(equipeGaA111.getIDEquipe(), equipeGaB111.getIDEquipe()));
+                partieService.insertPartie(partieB1111, "2018-07-14");
+                ajoutResultat(partieService.geIdPartie(equipePer1.getIDEquipe(), equipePer2.getIDEquipe()));
+                //bolfinal = false;
+                updateValeur(11);
+            }
         }
     }
-    }
+
+    @Override
     public int nombreMatchParGroupe(String groupe) {
         int nombreMatch = 0;
 
@@ -968,6 +992,46 @@ public class ResultatService implements iResultat {
 
     public static void setBolfinal(boolean bolfinal) {
         ResultatService.bolfinal = bolfinal;
+    }
+    
+    
+    
+    public boolean getTest(int id) {
+boolean test =false;
+        try {
+            String sql = "SELECT * FROM test WHERE id=? ";
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+            if(rs.getInt("valeur")==1){test=true;}
+            else{test=false ;}
+            
+            }
+        } catch (SQLException ex) {
+        }
+        return test;
+
+    }
+    
+        public void updateValeur(int id) {
+  
+            int d= 0;
+        try {
+
+            Statement statement = conn.createStatement();
+            int rs = statement.executeUpdate("UPDATE  test  SET valeur='"+d+"' WHERE id='" + id + "' ");
+            if (rs < 0) {
+                System.out.println("Echec");
+            } else {
+                System.out.println("Modification avec succès");
+            }
+
+        } catch (SQLException ex) {
+
+        }
+
     }
 
 }

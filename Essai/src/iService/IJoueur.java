@@ -7,6 +7,7 @@ package iService;
 
 import java.util.List;
 import Entity.Joueurs;
+import java.io.File;
 import javafx.collections.ObservableList;
 
 /**
@@ -16,7 +17,7 @@ import javafx.collections.ObservableList;
 public interface IJoueur {
     
     public void supprimerJoueur() ;
-    public void ajouterJoueur(Joueurs J,String path);
+    public void ajouterJoueur(Joueurs J,File path);
     
 
   

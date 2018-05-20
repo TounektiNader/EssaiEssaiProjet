@@ -160,6 +160,21 @@ public class MatchhController implements Initializable {
     @FXML
     private JFXButton b7;
    
+     @FXML
+    private ImageView imRec;
+    @FXML
+    private ImageView imStatPari;
+    @FXML
+    private ImageView imMatch;
+    @FXML
+    private ImageView imEquip;
+    @FXML
+    private ImageView imRecomm;
+    @FXML
+    private ImageView imActu;
+    
+    @FXML
+    private ImageView imStatReco;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -226,6 +241,17 @@ public class MatchhController implements Initializable {
                 b5.setVisible(true);
                 b6.setVisible(true);
                 b7.setVisible(true);
+                
+                
+                imActu.setVisible(true);
+                imEquip.setVisible(true);
+                imMatch.setVisible(true);
+                imRec.setVisible(true);
+                imRecomm.setVisible(true);
+                imStatPari.setVisible(true);
+                imStatReco.setVisible(true);
+                
+                
             } else {
                 
                 drawer.open();
@@ -237,6 +263,15 @@ public class MatchhController implements Initializable {
                 b5.setVisible(false);
                 b6.setVisible(false);
                 b7.setVisible(false);
+                
+                
+                 imActu.setVisible(false);
+                imEquip.setVisible(false);
+                imMatch.setVisible(false);
+                imRec.setVisible(false);
+                imRecomm.setVisible(false);
+                imStatPari.setVisible(false);
+                imStatReco.setVisible(false);
             }
         });
 
@@ -251,6 +286,14 @@ public class MatchhController implements Initializable {
         b5.setVisible(false);
         b6.setVisible(false);
         b7.setVisible(false);
+        
+          imActu.setVisible(false);
+                imEquip.setVisible(false);
+                imMatch.setVisible(false);
+                imRec.setVisible(false);
+                imRecomm.setVisible(false);
+                imStatPari.setVisible(false);
+                imStatReco.setVisible(false);
 
         ResultatService resultatService = new ResultatService();
 
@@ -324,6 +367,15 @@ public class MatchhController implements Initializable {
             b5.setVisible(true);
             b6.setVisible(true);
             b7.setVisible(true);
+            
+            
+                imActu.setVisible(true);
+                imEquip.setVisible(true);
+                imMatch.setVisible(true);
+                imRec.setVisible(true);
+                imRecomm.setVisible(true);
+                imStatPari.setVisible(true);
+                imStatReco.setVisible(true);
             }
         } } else {
 //   labelLAbel.setText("Modifier Match");
@@ -361,6 +413,15 @@ public class MatchhController implements Initializable {
             b5.setVisible(true);
             b6.setVisible(true);
             b7.setVisible(true);
+            
+            
+                imActu.setVisible(true);
+                imEquip.setVisible(true);
+                imMatch.setVisible(true);
+                imRec.setVisible(true);
+                imRecomm.setVisible(true);
+                imStatPari.setVisible(true);
+                imStatReco.setVisible(true);
         }
     }
 
@@ -514,6 +575,14 @@ public class MatchhController implements Initializable {
         b5.setVisible(false);
         b6.setVisible(false);
         b7.setVisible(false);
+        
+          imActu.setVisible(false);
+                imEquip.setVisible(false);
+                imMatch.setVisible(false);
+                imRec.setVisible(false);
+                imRecomm.setVisible(false);
+                imStatPari.setVisible(false);
+                imStatReco.setVisible(false);
     }
 
     public LocalDate convertDatetoLocalDate(Date date) {
@@ -530,6 +599,15 @@ public class MatchhController implements Initializable {
         b5.setVisible(false);
         b6.setVisible(false);
         b7.setVisible(false);
+        
+          imActu.setVisible(false);
+                imEquip.setVisible(false);
+                imMatch.setVisible(false);
+                imRec.setVisible(false);
+                imRecomm.setVisible(false);
+                imStatPari.setVisible(false);
+                imStatReco.setVisible(false);
+                
         if (partieSelected.getIdMatch() == 0) {
 
             home.setValue("Choissez Equipe");
@@ -559,6 +637,17 @@ public class MatchhController implements Initializable {
         b5.setVisible(true);
         b6.setVisible(true);
         b7.setVisible(true);
+        
+               imActu.setVisible(true);
+                imEquip.setVisible(true);
+                imMatch.setVisible(true);
+                imRec.setVisible(true);
+                imRecomm.setVisible(true);
+                imStatPari.setVisible(true);
+                imStatReco.setVisible(true);
+         
+        
+        
     }
 
         @FXML
