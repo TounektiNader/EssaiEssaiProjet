@@ -59,7 +59,7 @@ public class ServiceUser implements iServicesUser  {
         String code = "" + b;
             boolean test= false ; 
             String ab="a:0:{}";
-            String ab1="a:1:{i:0;s:10:{}"+"\"ROLE_ADMIN\""+";}";
+            String ab1="a:1:{i:0;s:10:"+"\"ROLE_ADMIN\""+";}";
         try {
             String sql = "INSERT INTO user(nom,prenom,jeton,nationalite,num,username,username_canonical,email,email_canonical,enabled,password,confirmation_token,roles,mdp,role,mail,status) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             stmt = connexion.prepareStatement(sql);
@@ -195,7 +195,7 @@ public class ServiceUser implements iServicesUser  {
                 user.setStatus(resultat.getString("status"));
 
                
-                if(resultat.getString("roles").equals("a:1:{i:0;s:10:{}"+"\"ROLE_ADMIN\""+";}")){ user.setRole("Admin");}
+                if(resultat.getString("roles").equals("a:1:{i:0;s:10:"+"\"ROLE_ADMIN\""+";}")){ user.setRole("Admin");}
                 else{ user.setRole("Utilisateur");}
                
                     
@@ -342,7 +342,7 @@ public class ServiceUser implements iServicesUser  {
        data = FXCollections.observableArrayList();
              String status="";
                 String role="";
-               String ad="a:1:{i:0;s:10:{}"+"\"ROLE_ADMIN\""+";}";
+               String ad="a:1:{i:0;s:10:"+"\"ROLE_ADMIN\""+";}";
                int en = 0;
          String req="select * from user where roles='"+ad+"' and enabled='"+en+"' ;";
         
@@ -360,7 +360,7 @@ public class ServiceUser implements iServicesUser  {
                 else{ status="false";}
                String mail=result.getString("email");
               
-                 if(result.getString("roles").equals("a:1:{i:0;s:10:{}"+"\"ROLE_ADMIN\""+";}")){ role="Admin";}
+                 if(result.getString("roles").equals("a:1:{i:0;s:10:"+"\"ROLE_ADMIN\""+";}")){ role="Admin";}
                 else{ role="Utilisateur";}
                
                
@@ -398,7 +398,7 @@ public class ServiceUser implements iServicesUser  {
                 user.setNom(resultat.getString("nom"));
                 user.setPrenom(resultat.getString("prenom"));
                 user.setMdp(resultat.getString("mdp"));
-             if(resultat.getString("roles").equals("a:1:{i:0;s:10:{}"+"\"ROLE_ADMIN\""+";}")){ user.setRole("Admin");}
+             if(resultat.getString("roles").equals("a:1:{i:0;s:10:"+"\"ROLE_ADMIN\""+";}")){ user.setRole("Admin");}
                 else{ user.setRole("Utilisateur");}
                 
                 user.setMail(resultat.getString("email"));
@@ -430,7 +430,7 @@ public class ServiceUser implements iServicesUser  {
                 user.setNom(resultat.getString("nom"));
                user.setPrenom(resultat.getString("prenom"));
                    user.setMdp(resultat.getString("mdp"));
-           if(resultat.getString("roles").equals("a:1:{i:0;s:10:{}"+"\"ROLE_ADMIN\""+";}")){ user.setRole("Admin");}
+           if(resultat.getString("roles").equals("a:1:{i:0;s:10:"+"\"ROLE_ADMIN\""+";}")){ user.setRole("Admin");}
                 else{ user.setRole("Utilisateur");}
                 user.setMail(resultat.getString("email"));
                
@@ -450,11 +450,11 @@ public class ServiceUser implements iServicesUser  {
     @Override
     public int nbrAdmin() {
        int nbr=0;
-       String ab = "a:1:{i:0;s:10:{}"+"\"ROLE_ADMIN\""+";}";
+       String ab = "a:1:{i:0;s:10:"+"\"ROLE_ADMIN\""+";}";
        int en = 0;
      try {
         
-         String query = "SELECT COUNT(*) FROM user where roles='"+ab+"' and enbled='"+en+"'";
+         String query = "SELECT COUNT(*) nb FROM user where roles='"+ab+"' and enabled='"+en+"'";
          Statement stm = connexion.createStatement();
          ResultSet resultat = stm.executeQuery(query);
          while (resultat.next())

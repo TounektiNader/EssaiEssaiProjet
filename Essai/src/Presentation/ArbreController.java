@@ -714,7 +714,7 @@ public class ArbreController implements Initializable {
         
         Equipe equipeGaA111 = rs.EquipeGagne(rs.idPartie("A1111"));
         labelChampion.setText(equipeGaA111.getNomEquipe());
-                Image imgB = new Image("http://localhost/java/russia/"+equipeGaA111.getDrapeau());
+                Image imgB = new Image(equipeGaA111.getDrapeau());
                 ImageView imB = new ImageView(imgB);
                 
                 imB.setFitHeight(10);
