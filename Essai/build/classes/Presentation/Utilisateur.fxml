@@ -13,14 +13,14 @@
 
 <AnchorPane id="AnchorPane" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.UtilisateurController">
    <children>
-      <ImageView fitHeight="607.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="image2" fitHeight="607.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/russia2018.jpg" />
          </image>
       </ImageView>
       <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" layoutY="-1.0" prefHeight="608.0" prefWidth="120.0" />
       <JFXHamburger fx:id="hamburger" layoutX="928.0" layoutY="68.0" />
-      <JFXButton layoutX="860.0" layoutY="14.0" text="Se déconnecter" />
+      <JFXButton layoutX="860.0" layoutY="14.0" onAction="#decon" text="Se déconnecter" />
       <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="835.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/logout.png" />

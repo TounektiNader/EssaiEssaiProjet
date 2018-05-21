@@ -79,7 +79,7 @@ public class RecompenseService implements IRecompense{
          
             rs = stmt.executeQuery();
             while (rs.next()) {
-                cadeau=cadeauService.cadeau(rs.getInt("idCadeau"));
+                cadeau=cadeauService.cadeau(rs.getInt("id"));
                 user=getUser(rs.getString("username"));
                 Recompense recompense = new Recompense(rs.getInt("idRecompense"),cadeau ,user);
                 list.add(recompense);
@@ -107,9 +107,10 @@ public class RecompenseService implements IRecompense{
 
             rs = stmt.executeQuery();
             while (rs.next()) {
-                cadeau=cadeauService.cadeau(rs.getInt("idCadeau"));
+                cadeau=cadeauService.cadeau(rs.getInt("id"));
                 user=getUser(rs.getString("username"));
                 Recompense recompense = new Recompense(rs.getInt("idRecompense"),cadeau ,user);
+                System.out.println("c bn");
                 list.add(recompense);
             }
 

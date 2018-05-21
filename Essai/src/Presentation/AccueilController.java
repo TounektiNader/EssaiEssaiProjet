@@ -1,6 +1,7 @@
 package Presentation;
 
 import Entity.User;
+import Services.PromoService;
 import Services.ServiceUser;
 import Utils.XML;
 import com.jfoenix.controls.JFXDrawer;
@@ -32,7 +33,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.xml.sax.SAXException;
 
-public class AccueilController implements Initializable {
+public class AccueilController implements Initializable  {
 
     @FXML
     private AnchorPane auth;
@@ -87,9 +88,9 @@ public class AccueilController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        
-         if (!NaivgationDrawer.isSplashLoaded) {
+         /*if (!NaivgationDrawer.isSplashLoaded) {
             loadSplashScreen();
-        }
+        }*/
         panee.setVisible(false);
         rootP = root;
 
@@ -136,14 +137,18 @@ public class AccueilController implements Initializable {
       }
       else
       {
-      System.out.println(s.getStatus());
-        if("true".equals(s.getStatus()))
+     
+        if("status".equals(s.getStatus()))
         {
+           s.setRole("Utilisateur");
+                        System.out.println(s.getRole());
+
             if("Admin".equals(s.getRole()))
             {
                 System.out.println(s.getRole());
             XML x= new XML();
         x.Ecrire(s.getUsername(),s.getNom(),s.getPrenom(),s.getMdp(),s.getRole(),s.getMail(),s.getStatus(),s.getJeton(),s.getNationalite(),s.getNum());
+               
        Stage primarya= new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("Admin.fxml"));
         Scene scene = new Scene(root);
@@ -157,6 +162,8 @@ public class AccueilController implements Initializable {
             }
             else
             {
+                PromoService promo=new PromoService();
+                promo.ajouterPromo();
                 panee.setVisible(true);
              XML x= new XML();
             x.Ecrire(s.getUsername(),s.getNom(),s.getPrenom(),s.getMdp(),s.getRole(),s.getMail(),s.getStatus(),s.getJeton(),s.getNationalite(),s.getNum());
@@ -213,7 +220,7 @@ public class AccueilController implements Initializable {
     private void oublier(ActionEvent event) throws IOException
     {
        Stage SecondStage= new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("Motdepasse.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("motdepasse.fxml"));
         Scene scene = new Scene(root);
         SecondStage.setScene(scene);
         SecondStage.show();

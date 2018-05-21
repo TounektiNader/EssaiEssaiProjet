@@ -62,7 +62,7 @@
             <JFXPasswordField fx:id="pass_hidden" layoutX="86.0" layoutY="305.0" />
             <JFXTextField fx:id="email" layoutX="89.0" layoutY="360.0" />
             <Button layoutX="106.0" layoutY="421.0" mnemonicParsing="false" onAction="#Modifier" prefHeight="25.0" prefWidth="112.0" style="-fx-background-color: #E45652; -fx-font-weight: bold;" text="Modifier" textFill="#eeeeee" />
-            <CheckBox fx:id="pass_toggle" layoutX="242.0" layoutY="312.0" mnemonicParsing="false" onAction="#togglevisiblePassword" style="-fx-font-weight: bold;" text="CheckBox" textFill="WHITE" />
+            <CheckBox fx:id="pass_toggle" layoutX="218.0" layoutY="312.0" mnemonicParsing="false" onAction="#togglevisiblePassword" style="-fx-font-weight: bold;" text="Voir Mot de Passe" textFill="WHITE" />
             <JFXTextField fx:id="pass_text" layoutX="86.0" layoutY="305.0" />
          </children>
       </AnchorPane>

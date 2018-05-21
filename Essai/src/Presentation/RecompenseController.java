@@ -6,10 +6,12 @@
 package Presentation;
 
 import Entity.Cadeau;
+import Entity.Promo;
 import Entity.Recompense;
 import Entity.User;
 import static Presentation.GestionRecompenseController.rootP;
 import Services.CadeauService;
+import Services.PromoService;
 import Services.RecompenseService;
 import Services.ServiceUser;
 import Utils.XML;
@@ -121,6 +123,8 @@ public class RecompenseController implements Initializable {
     private Label nmbJeton;
     @FXML
     private JFXTextField username;
+    @FXML
+    private TextField coupon;
 
     /**
      * Initializes the controller class.
@@ -202,8 +206,13 @@ public class RecompenseController implements Initializable {
         for (int i = 0; i < cadeau.size(); i++) {
 
             Label labelType = new Label();
+<<<<<<< HEAD
+            labelType.setText(cadeau.get(i).getType());
+            Image img = new Image("img/"+cadeau.get(i).getImg());
+=======
             labelType.setText(cadeau.get(i).getType() + "\n");
             Image img = new Image(cadeau.get(i).getImg());
+>>>>>>> ccc2bdf2691f6bff288eace049d6e5cb64e0c432
             ImageView im = new ImageView(img);
             im.setFitHeight(80);
             im.setFitWidth(80);
@@ -221,7 +230,7 @@ public class RecompenseController implements Initializable {
 
             int nomJeton = cadeau.get(i).getJeton();
             String nomType = cadeau.get(i).getType();
-            imgage = new Image(cadeau.get(i).getImg());
+           imgage = new Image("img/"+cadeau.get(i).getImg());
             bt.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
@@ -303,6 +312,78 @@ public class RecompenseController implements Initializable {
         hboxList.setVisible(false);
 
     }
+//     public int total()
+//    {
+//        int total=0;
+//        RecompenseService recompenseService = new RecompenseService();
+//        List<Recompense> listRecompense2 = new ArrayList<Recompense>();
+//        listRecompense2.addAll(recompenseService.listRecompense(username.getText()));
+//
+//        for (int i = 0; i <= listRecompense2.size(); i++) 
+//        {
+//            total=total+(listRecompense2.get(i).getCadeau().getJeton());
+//        }
+//        return total;
+//    }
+
+    @FXML
+    private void SupprimerCoupon(ActionEvent event) {
+       PromoService x=new PromoService();
+       Promo y=new Promo();
+       y=x.Recherche(coupon.getText());
+       if(y.getCoupon().equals(coupon.getText()))
+       {
+           try {
+               XML m= new XML();
+               User u= new User();
+               u=m.lire();
+               u.setJeton(u.getJeton()+((100*y.getPromotion())/100));
+               m.Ecrire(u.getUsername(),u.getNom(),u.getPrenom(),u.getMdp(),u.getRole(),u.getMail(),u.getStatus(),u.getJeton(),u.getNationalite(),u.getNum());
+               nmbJeton.setText(""+u.getJeton());
+               ServiceUser h=new ServiceUser();
+               h.modifierUser(u);
+               x.DeletePromo(coupon.getText());
+               Notifications notificationbuilder = Notifications.create()
+                       .title("Succès")
+                       .text("Coupon avec succès")
+                       .graphic(null)
+                       .position(Pos.CENTER)
+                       .onAction(new EventHandler<ActionEvent>() {
+                           @Override
+                           public void handle(ActionEvent event) {
+                               
+                           }
+                       });
+               
+               notificationbuilder.showConfirm();
+               coupon.clear();
+           } catch (SAXException ex) {
+               Logger.getLogger(RecompenseController.class.getName()).log(Level.SEVERE, null, ex);
+           } catch (IOException ex) {
+               Logger.getLogger(RecompenseController.class.getName()).log(Level.SEVERE, null, ex);
+           }
+     
+       }
+       else
+       {
+           Notifications notificationbuilder = Notifications.create()
+                    .title("Alerte")
+                    .text("Ce code n'existe pas")
+                    .graphic(null)
+                    .position(Pos.CENTER)
+                    .onAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+
+                        }
+                    });
+
+            notificationbuilder.showError();
+       coupon.clear();    
+       }
+      
+       
+    }
 
     @FXML
     private void listesVoitures(ActionEvent event) {
@@ -311,8 +392,7 @@ public class RecompenseController implements Initializable {
         hBox.setVisible(false);
         hboxList.setVisible(false);
     }
-
-    @FXML
+       @FXML
     private void listMesCadea(ActionEvent event) {
         grid.getChildren().clear();
         hBox.setVisible(false);
@@ -327,9 +407,9 @@ public class RecompenseController implements Initializable {
 
             try {
 
-                Label lbl = new Label(listRecompense.get(i).getCadeau().getType() + "            " + listRecompense.get(i).getCadeau().getCategorie());
+                Label lbl = new Label(listRecompense.get(i).getCadeau().getType() + "            " + listRecompense.get(i).getCadeau().getCategorie()+ "            " +listRecompense.get(i).getCadeau().getJeton());
 
-                Image img = new Image(listRecompense.get(i).getCadeau().getImg());
+                Image img = new Image("img/"+listRecompense.get(i).getCadeau().getImg());
                 ImageView im = new ImageView(img);
 
                 im.setFitHeight(30);

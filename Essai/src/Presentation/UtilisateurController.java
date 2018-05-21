@@ -26,6 +26,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -46,6 +48,8 @@ public class UtilisateurController implements Initializable {
     @FXML
     private JFXDrawer drawer;
     @FXML
+    private ImageView image2;
+    @FXML
     private JFXHamburger hamburger;
     @FXML
     private JFXTextField username;
@@ -65,6 +69,16 @@ public class UtilisateurController implements Initializable {
         User u;
         try {
             u = a.lire();
+             if(u.getNationalite().equals("Tunisie"))
+                {
+                Image i= new Image("images/tn.png");
+                image2.setImage(i);
+                }
+                if(u.getNationalite().equals("France"))
+                {
+                Image i= new Image("images/fr.png");
+                image2.setImage(i);
+                }
             username.setText(u.getUsername());
             jeton.setText("" + u.getJeton());
         } catch (SAXException ex) {
@@ -119,5 +133,20 @@ public class UtilisateurController implements Initializable {
         
         
     }
+@FXML
+    private void decon(ActionEvent event) throws IOException {
+        
+           XML x =new XML();
+        x.Ecrire("0","0","0","0","0","0","0", 0, "0","0");
+     Stage primaryStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/Presentation/Accueil.fxml"));
 
+        Scene scene = new Scene(root);
+
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        final Node source = (Node) event.getSource();
+        final Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
+    }
 }

@@ -132,7 +132,7 @@ public class InscriptionController implements Initializable {
       }
       else
       {
-         User u = new User(nom.getText(),prenom.getText(),pseudo.getText(),mdp.getText(),role.getSelectionModel().getSelectedItem(),email.getText(),"false",20,nationalite.getSelectionModel().getSelectedItem(),num.getText());
+         User u = new User(pseudo.getText(),prenom.getText(),nom.getText(),mdp.getText(),role.getSelectionModel().getSelectedItem(),email.getText(),"false",20,nationalite.getSelectionModel().getSelectedItem(),num.getText());
     ServiceUser SU = new ServiceUser();
     SU.ajouterUser(u);
     XML x= new XML();

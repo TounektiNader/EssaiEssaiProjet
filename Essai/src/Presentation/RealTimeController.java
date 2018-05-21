@@ -96,7 +96,7 @@ public class RealTimeController implements Initializable {
                         Document doc;
                         try {
 
-                            doc = Jsoup.connect("https://www.sportytrader.com/resultat-direct/eibar-villarreal-cf-2409768/").get();
+                            doc = Jsoup.connect("https://www.sportytrader.com/resultat-direct/arsenal-manchester-city-2335360/").get();
                             //doc.getElementsByClass("title-header-sport-event-awayteam").eachText());
                             // .eachText().forEach(e->score.setText(e));
                             //System.out.println(doc.getElementsByClass("chart-label-header").eachText().size());
@@ -111,19 +111,41 @@ public class RealTimeController implements Initializable {
                             Image i2 = new Image(url2);
                             imagehome.setImage(i);
                             imageaway.setImage(i2);
-
+                            if(doc.getElementsByClass("chart-label-header").isEmpty())
+                                {
+                                    
+                                time.setText(doc.getElementsByClass("score-detail").eachText().get(0));
+                                doc.getElementsByClass("score").eachText().forEach(e -> score.setText(e));
+                                doc.getElementsByClass("title-header-sport-event-awayteam").eachText().forEach(e -> away.setText(e));
+                                doc.getElementsByClass("title-header-sport-event-hometeam").eachText().forEach(e -> home.setText(e));
+                                doc.getElementsByClass("match-progress-event ").eachText().forEach(e -> data.add(e));
+                                }
+                                else
+                                {
+                                doc.getElementsByClass("title-header-sport-event-awayteam").eachText().forEach(e -> away.setText(e));
+                                doc.getElementsByClass("title-header-sport-event-hometeam").eachText().forEach(e -> home.setText(e));
+                                
+                                
+                                }
                             list.setItems(data);
 
-                            Thread.sleep(10000);
+                            Thread.sleep(1000);
 
                             Platform.runLater(() -> {
                                 data.removeAll();
                                 list.getItems().clear();
-                                doc.getElementsByClass("title-header-sport-event-awayteam").eachText().forEach(e -> away.setText(e));
-                                doc.getElementsByClass("title-header-sport-event-hometeam").eachText().forEach(e -> home.setText(e));
+                                if(doc.getElementsByClass("chart-label-header").isEmpty())
+                                {   
+                                score.setText(doc.getElementsByClass("score-detail").eachText().toString());
+                                time.setText(doc.getElementsByClass("score").eachText().toString());
+                                }
                                 doc.getElementsByClass("match-progress-event ").eachText().forEach(e -> data.add(e));
                                 doc.getElementsByClass("chart-label-header").eachText().forEach(e -> time.setText(e));
                                 doc.getElementsByClass("chart-number-header text-center").eachText().forEach(e -> score.setText(e));
+                               
+                                
+                                
+                                
 
                             });
 

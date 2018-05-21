@@ -5,11 +5,13 @@
  */
 package Entity;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Nader
  */
-public class User {
+public class User implements Serializable {
      private String username;
     private String nom;
     private String prenom;
@@ -26,6 +28,7 @@ public class User {
     private String num;
 
     public User(String username, String nom, String prenom, String mdp, String role, String mail, String status, int jeton, String nationalite, String num) {
+        super();
         this.username = username;
         this.nom = nom;
         this.prenom = prenom;
@@ -39,6 +42,7 @@ public class User {
     }
 
     public String getNum() {
+        
         return num;
     }
     
@@ -47,9 +51,10 @@ public class User {
     }
     
 
-    public User(){}
+    public User(){ super();}
 
     public User(String username, String nom, String prenom, String mdp, String role, String mail, String status, int jeton,String nationalite) {
+        super();       
         this.username = username;
         this.nom = nom;
         this.prenom = prenom;
@@ -62,6 +67,7 @@ public class User {
     }
     public User(String username)
     {
+         super();
         this.username=username;
     }
 
@@ -98,7 +104,7 @@ public class User {
     }
 
     public String getRole() {
-        return role;
+        return this.role;
     }
 
     public void setRole(String role) {
