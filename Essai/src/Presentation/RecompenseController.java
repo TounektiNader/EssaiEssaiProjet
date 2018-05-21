@@ -23,6 +23,7 @@ import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import java.io.IOException;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -82,6 +83,12 @@ public class RecompenseController implements Initializable {
     private final int NUM_OF_IMGS = 4;
     private final int SLIDE_FREQ = 4;
     @FXML
+    private JFXButton cou;
+    @FXML
+    private Label date;
+    @FXML
+    private Label pourcentage;
+    @FXML
     private HBox hBox;
     @FXML
     private Label nombreTel;
@@ -133,6 +140,13 @@ public class RecompenseController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         XML a = new XML();
         User u;
+        PromoService jj= new PromoService();
+        List<Promo> list=new ArrayList<Promo>();
+        list.addAll(jj.Afficher());
+        cou.setText(list.get(0).getCoupon());
+        pourcentage.setText(""+list.get(0).getPromotion()+"%");
+        SimpleDateFormat dt1 = new SimpleDateFormat("yyyy/MM/dd kk:mm:ss");
+        date.setText("Expire: "+dt1.format(list.get(0).getExpiraton()));
         try {
             u = a.lire();
             username.setText(u.getUsername());
@@ -206,13 +220,12 @@ public class RecompenseController implements Initializable {
         for (int i = 0; i < cadeau.size(); i++) {
 
             Label labelType = new Label();
-<<<<<<< HEAD
+
             labelType.setText(cadeau.get(i).getType());
             Image img = new Image("img/"+cadeau.get(i).getImg());
-=======
+
             labelType.setText(cadeau.get(i).getType() + "\n");
-            Image img = new Image(cadeau.get(i).getImg());
->>>>>>> ccc2bdf2691f6bff288eace049d6e5cb64e0c432
+            
             ImageView im = new ImageView(img);
             im.setFitHeight(80);
             im.setFitWidth(80);
@@ -312,32 +325,45 @@ public class RecompenseController implements Initializable {
         hboxList.setVisible(false);
 
     }
-//     public int total()
-//    {
-//        int total=0;
-//        RecompenseService recompenseService = new RecompenseService();
-//        List<Recompense> listRecompense2 = new ArrayList<Recompense>();
-//        listRecompense2.addAll(recompenseService.listRecompense(username.getText()));
-//
-//        for (int i = 0; i <= listRecompense2.size(); i++) 
-//        {
-//            total=total+(listRecompense2.get(i).getCadeau().getJeton());
-//        }
-//        return total;
-//    }
+    
 
     @FXML
     private void SupprimerCoupon(ActionEvent event) {
        PromoService x=new PromoService();
        Promo y=new Promo();
        y=x.Recherche(coupon.getText());
+       
+    Calendar now = Calendar.getInstance();         
+    Date teenMinutesFromNow = now.getTime();
+        System.out.println(teenMinutesFromNow.compareTo(y.getExpiraton()));
+    if(teenMinutesFromNow.compareTo(y.getExpiraton())==-1)
+    {
+       x.DeletePromo(coupon.getText());
+       Notifications notificationbuilder = Notifications.create()
+                    .title("Alerte")
+                    .text("Ce code est expiré")
+                    .graphic(null)
+                    .position(Pos.CENTER)
+                    .onAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+
+                        }
+                    });
+
+            notificationbuilder.showError();
+       coupon.clear();    
+    }
+    else
+    {    
        if(y.getCoupon().equals(coupon.getText()))
        {
            try {
+               RecompenseService jj= new RecompenseService();
                XML m= new XML();
                User u= new User();
                u=m.lire();
-               u.setJeton(u.getJeton()+((100*y.getPromotion())/100));
+               u.setJeton((int) (u.getJeton()+Math.ceil((jj.total(username.getText())*y.getPromotion())/100)));
                m.Ecrire(u.getUsername(),u.getNom(),u.getPrenom(),u.getMdp(),u.getRole(),u.getMail(),u.getStatus(),u.getJeton(),u.getNationalite(),u.getNum());
                nmbJeton.setText(""+u.getJeton());
                ServiceUser h=new ServiceUser();
@@ -357,6 +383,9 @@ public class RecompenseController implements Initializable {
                
                notificationbuilder.showConfirm();
                coupon.clear();
+               cou.setText("");
+               date.setText("");
+               pourcentage.setText("");
            } catch (SAXException ex) {
                Logger.getLogger(RecompenseController.class.getName()).log(Level.SEVERE, null, ex);
            } catch (IOException ex) {
@@ -381,7 +410,7 @@ public class RecompenseController implements Initializable {
             notificationbuilder.showError();
        coupon.clear();    
        }
-      
+    } 
        
     }
 
@@ -392,7 +421,7 @@ public class RecompenseController implements Initializable {
         hBox.setVisible(false);
         hboxList.setVisible(false);
     }
-       @FXML
+    @FXML
     private void listMesCadea(ActionEvent event) {
         grid.getChildren().clear();
         hBox.setVisible(false);
@@ -409,8 +438,8 @@ public class RecompenseController implements Initializable {
 
                 Label lbl = new Label(listRecompense.get(i).getCadeau().getType() + "            " + listRecompense.get(i).getCadeau().getCategorie()+ "            " +listRecompense.get(i).getCadeau().getJeton());
 
-                Image img = new Image("img/"+listRecompense.get(i).getCadeau().getImg());
-                ImageView im = new ImageView(img);
+                Image img2 = new Image("img/"+listRecompense.get(i).getCadeau().getImg());
+                ImageView im = new ImageView(img2);
 
                 im.setFitHeight(30);
                 im.setFitWidth(30);

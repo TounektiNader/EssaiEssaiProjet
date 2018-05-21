@@ -79,7 +79,7 @@ public class RecompenseService implements IRecompense{
          
             rs = stmt.executeQuery();
             while (rs.next()) {
-                cadeau=cadeauService.cadeau(rs.getInt("id"));
+                cadeau=cadeauService.cadeau(rs.getInt("idCadeau"));
                 user=getUser(rs.getString("username"));
                 Recompense recompense = new Recompense(rs.getInt("idRecompense"),cadeau ,user);
                 list.add(recompense);
@@ -107,7 +107,7 @@ public class RecompenseService implements IRecompense{
 
             rs = stmt.executeQuery();
             while (rs.next()) {
-                cadeau=cadeauService.cadeau(rs.getInt("id"));
+                cadeau=cadeauService.cadeau(rs.getInt("idCadeau"));
                 user=getUser(rs.getString("username"));
                 Recompense recompense = new Recompense(rs.getInt("idRecompense"),cadeau ,user);
                 System.out.println("c bn");
@@ -224,9 +224,30 @@ public class RecompenseService implements IRecompense{
 
     }
 
+    @Override
+    public int total(String username) {
+             int total=0;
+        try {
+           
+            CadeauService cadeauService = new CadeauService();
+            Cadeau cadeau= new Cadeau();
+            String sql = "SELECT idRecompense,idCadeau,username FROM recompense where username='"+username+"';";
+            stmt = conn.prepareStatement(sql);
+         
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                cadeau=cadeauService.cadeau(rs.getInt("idCadeau"));
+                total=total+cadeau.getJeton();
+                
+            }
+           } catch (SQLException ex) {
+          
+        }
+
     
      
      
  
-
+ return total;
+}
 }

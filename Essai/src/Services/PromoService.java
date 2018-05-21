@@ -15,8 +15,10 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -52,7 +54,7 @@ public class PromoService implements IPromo {
     Date teenMinutesFromNow = now.getTime();
             x.setExpiraton(teenMinutesFromNow);
             x.setCoupon(generate(4));
-            x.setPromotion((int) (Math.random() * ( 20 - 0 )));
+            x.setPromotion((int) (Math.random() * ( 50 - 1 )));
             System.out.println(teenMinutesFromNow.toString());
             SimpleDateFormat dt1 = new SimpleDateFormat("yyyyy/MM/dd kk:mm:ss");
             System.out.println(dt1.format(teenMinutesFromNow));
@@ -92,6 +94,29 @@ public class PromoService implements IPromo {
             
         }
         return x;
+    }
+
+    @Override
+    public List<Promo> Afficher() {
+        List<Promo> list = new ArrayList<Promo>();
+        try {
+            
+            String sql = "SELECT coupon,promotion,expiration FROM promo order by expiration desc;";
+            Statement stm = connexion.createStatement();
+            ResultSet rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                Promo promo= new Promo();
+                
+                promo.setCoupon(rs.getString("coupon"));
+                promo.setPromotion(rs.getInt("promotion"));
+                promo.setExpiraton(rs.getDate("expiration"));
+                
+                list.add(promo);
+                
+            }   } catch (SQLException ex) {
+            Logger.getLogger(PromoService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
     }
     
 }

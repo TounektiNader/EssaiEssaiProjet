@@ -15,6 +15,7 @@ import java.util.List;
  */
 public interface IRecompense {
 
+    public int total(String username);
     public User getUser(String username);
 
     public List<Recompense> listRecompense();

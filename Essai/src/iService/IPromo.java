@@ -6,7 +6,9 @@
 package iService;
 
 import Entity.Promo;
+
 import Entity.User;
+import java.util.List;
 
 /**
  *
@@ -16,4 +18,5 @@ public interface IPromo {
     public void ajouterPromo();
     public void DeletePromo(String coupon);
     public Promo Recherche(String coupon);
+    public List<Promo> Afficher();
 }

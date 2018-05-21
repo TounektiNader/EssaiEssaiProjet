@@ -63,11 +63,10 @@ public class CadeauService implements iCadeau {
 
             rs = stmt.executeQuery();
             while (rs.next()) {
-<<<<<<< HEAD
+
                 Cadeau cadeau = new Cadeau(rs.getInt("id"),rs.getString("Categorie") ,rs.getString("Type"), rs.getInt("jeton"), rs.getString("image"));
-=======
-                Cadeau cadeau = new Cadeau(rs.getInt("idCadeau"), rs.getString("Catégorie"), rs.getString("Type"), rs.getInt("jeton"), rs.getString("image"));
->>>>>>> ccc2bdf2691f6bff288eace049d6e5cb64e0c432
+
+               
                 data.add(cadeau);
             }
 
@@ -201,29 +200,29 @@ public class CadeauService implements iCadeau {
 
         try {
 
-<<<<<<< HEAD
-            String sql = "Upadate cadeau SET Categorie=?,Type=?,jeton=?,image=?) where id=?;";
+
+            String sql = "Upadate cadeau SET Categorie=?,Type=?,jeton=?) where id=?;";
             stmt = conn.prepareStatement(sql);
-            stmt.setInt(5, idCadeau);
+            stmt.setInt(4, idCadeau);
             stmt.setString(1, categorie);
             stmt.setString(2, type);
             stmt.setInt(3, jeton);
-            stmt.setString(4, image);
+            
 
             int s = stmt.executeUpdate();
             if (s < 0) {
-=======
+
          //   String sql = "Update cadeau SET Catégorie=?,Type=?,jeton=?) where idCadeau=?;";
             Statement statement = conn.createStatement();
-            int rs = statement.executeUpdate("UPDATE  cadeau SET Catégorie='" + categorie+ "',Type='" + type+"',jeton='" + jeton+ "' where idCadeau='" +idCadeau+ "'");
+            int rs = statement.executeUpdate("UPDATE  cadeau SET Categorie='" + categorie+ "',Type='" + type+"',jeton='" + jeton+ "' where id='" +idCadeau+ "'");
           
             if (rs < 0) {
->>>>>>> ccc2bdf2691f6bff288eace049d6e5cb64e0c432
+
                 System.out.println("Echec");
             } else {
                 System.out.println(" Modification avec succès");
             }
-        } catch (SQLException ex) {
+        }} catch (SQLException ex) {
 
         }
 
@@ -286,21 +285,19 @@ public class CadeauService implements iCadeau {
 
         try {
 
-<<<<<<< HEAD
-            String sql = " SELECT Catégorie from cadeau where id='"+idCadeau+"' ;";
-=======
-            String sql = " SELECT Catégorie from cadeau where idCadeau='" + idCadeau + "' ;";
->>>>>>> ccc2bdf2691f6bff288eace049d6e5cb64e0c432
+
+            String sql = " SELECT Categorie from cadeau where id='"+idCadeau+"' ;";
+
+          
+
             stmt = conn.prepareStatement(sql);
             rs = stmt.executeQuery();
             while (rs.next()) {
 
-<<<<<<< HEAD
-              cat = rs.getString("Categorie");
-=======
-                cat = rs.getString("Catégorie");
->>>>>>> ccc2bdf2691f6bff288eace049d6e5cb64e0c432
 
+              cat = rs.getString("Categorie");
+
+                
             }
 
         } catch (SQLException ex) {

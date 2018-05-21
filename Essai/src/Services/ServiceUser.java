@@ -189,11 +189,11 @@ public class ServiceUser implements iServicesUser  {
                
                
                 user.setMdp(resultat.getString("mdp"));
-<<<<<<< HEAD
+
                 user.setRole(resultat.getString("role"));
                 user.setMail(resultat.getString("email"));
                 user.setStatus(resultat.getString("status"));
-=======
+
                
                 if(resultat.getString("roles").equals("a:1:{i:0;s:10:{}"+"\"ROLE_ADMIN\""+";}")){ user.setRole("Admin");}
                 else{ user.setRole("Utilisateur");}
@@ -202,7 +202,7 @@ public class ServiceUser implements iServicesUser  {
                 user.setMail(resultat.getString("email"));
                 if(resultat.getInt("enabled")==1){user.setStatus("true");}
                 else{user.setStatus("false");}
->>>>>>> ccc2bdf2691f6bff288eace049d6e5cb64e0c432
+
                 user.setJeton(resultat.getInt("jeton"));
                 user.setNum(resultat.getString("num"));
                 
@@ -257,11 +257,11 @@ public class ServiceUser implements iServicesUser  {
            
         try {
 
-<<<<<<< HEAD
-            String query = "Select * FROM user WHERE username='" + pseudo + "'and password='"+mdp+"'";
-=======
-            String query = "Select * FROM user WHERE username='" + pseudo + "'";
->>>>>>> ccc2bdf2691f6bff288eace049d6e5cb64e0c432
+
+            String query = "Select * FROM user WHERE username='" + pseudo +"'";
+
+            
+
             Statement stm = connexion.createStatement();
             ResultSet resultat = stm.executeQuery(query);
             while (resultat.next()) {
@@ -269,12 +269,12 @@ public class ServiceUser implements iServicesUser  {
                 user.setUsername( resultat.getString("username")); 
                 user.setNom(resultat.getString("nom"));
                 user.setPrenom(resultat.getString("prenom"));
-<<<<<<< HEAD
+
                 user.setMdp(resultat.getString("password"));
                 user.setRole(resultat.getString("roles"));
                 user.setMail(resultat.getString("email"));
                 user.setStatus(resultat.getString("status"));
-=======
+
                 user.setMdp(resultat.getString("mdp"));
                 
                 String a = resultat.getString("roles").toString();
@@ -286,7 +286,7 @@ public class ServiceUser implements iServicesUser  {
                 System.out.println(user.getRole());
                 if(resultat.getInt("enabled")==1){user.setStatus("true");}
                 else{user.setStatus("false");}
->>>>>>> ccc2bdf2691f6bff288eace049d6e5cb64e0c432
+                System.out.println("Affichage systeme"+user.getStatus()+"Affichage");
                 user.setJeton(resultat.getInt("jeton"));
                 user.setNationalite(resultat.getString("nationalite"));
                 user.setNum(resultat.getString("num"));

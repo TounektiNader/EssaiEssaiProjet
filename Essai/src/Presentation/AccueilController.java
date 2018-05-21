@@ -131,16 +131,18 @@ public class AccueilController implements Initializable  {
       else
       {
       s=u.afficherUser(login,mot);
+          System.out.println(s.getStatus());
       if(s.getStatus()== null)
       {
+          System.out.println(s.getStatus()+"////////vide2");
           Vide2();
       }
       else
       {
      
-        if("status".equals(s.getStatus()))
+        if(s.getStatus().equals("true"))
         {
-           s.setRole("Utilisateur");
+          
                         System.out.println(s.getRole());
 
             if("Admin".equals(s.getRole()))

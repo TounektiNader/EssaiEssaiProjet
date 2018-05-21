@@ -1,28 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <repertoire>
   <personne>
-<<<<<<< HEAD
-    <nom>hhhhh</nom>
-    <prenom>hhhhh</prenom>
-    <mail>hhh@gmail.com</mail>
-    <pseudo>hhhh</pseudo>
-    <mdp>hhhh</mdp>
+    <nom>aaaa</nom>
+    <prenom>aaaa</prenom>
+    <mail>hedi@triptop.direct</mail>
+    <pseudo>aaaa</pseudo>
+    <mdp>aaaa</mdp>
     <role>Utilisateur</role>
-    <nationalite>Tunisien</nationalite>
-    <jeton>17</jeton>
-    <status>status</status>
-    <num>5555555565</num>
-=======
-    <nom>esprit</nom>
-    <prenom>esprit</prenom>
-    <mail>nader.tounekti@esprit.tn</mail>
-    <pseudo>esprit</pseudo>
-    <mdp>esprit</mdp>
-    <role>Utilisateur</role>
-    <nationalite>Marocain</nationalite>
-    <jeton>54</jeton>
+    <nationalite>Tunisie</nationalite>
+    <jeton>18</jeton>
     <status>true</status>
     <num>50649211</num>
->>>>>>> ccc2bdf2691f6bff288eace049d6e5cb64e0c432
   </personne>
 </repertoire>

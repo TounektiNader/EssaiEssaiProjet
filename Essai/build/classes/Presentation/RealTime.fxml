@@ -101,20 +101,5 @@
          </font>
       </JFXTextField>
       <Separator layoutX="210.0" layoutY="96.0" prefHeight="8.0" prefWidth="790.0" style="-fx-background-color: #36393B;" />
-<<<<<<< HEAD
-      <JFXButton layoutX="7.0" layoutY="439.0" onAction="#MatchIntefce" prefHeight="39.0" prefWidth="177.0" text="Matchs" textFill="#f5f0f0">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-         <graphic>
-            <ImageView fitHeight="27.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/match.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </JFXButton>
-=======
->>>>>>> ccc2bdf2691f6bff288eace049d6e5cb64e0c432
    </children>
 </AnchorPane>
