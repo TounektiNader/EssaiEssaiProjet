@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <repertoire>
   <personne>
-    <nom>esprit</nom>
-    <prenom>esprit</prenom>
-    <mail>nader.tounekti@esprit.tn</mail>
-    <pseudo>esprit</pseudo>
-    <mdp>esprit</mdp>
-    <role>Utilisateur</role>
-    <nationalite>Marocain</nationalite>
-    <jeton>54</jeton>
-    <status>true</status>
-    <num>50649211</num>
+    <nom>0</nom>
+    <prenom>0</prenom>
+    <mail>0</mail>
+    <pseudo>0</pseudo>
+    <mdp>0</mdp>
+    <role>0</role>
+    <nationalite>0</nationalite>
+    <jeton>0</jeton>
+    <status>0</status>
+    <num>0</num>
   </personne>
 </repertoire>
