@@ -188,6 +188,10 @@ public class ServiceUser implements iServicesUser  {
                 user.setPrenom(resultat.getString("prenom"));
                
                
+<<<<<<< HEAD
+=======
+                user.setMdp(resultat.getString("mdp"));
+>>>>>>> 5568a58ff9ded19200c7f161b6d43e7bc50b637c
 
                 user.setRole(resultat.getString("role"));
                 user.setMail(resultat.getString("email"));
@@ -257,9 +261,15 @@ public class ServiceUser implements iServicesUser  {
         try {
 
 
+<<<<<<< HEAD
             //String query = "Select * FROM user WHERE username='" + pseudo + "'and password='"+mdp+"'";
 
             String query = "Select * FROM user WHERE username='" + pseudo + "'";
+=======
+            String query = "Select * FROM user WHERE username='" + pseudo +"'";
+
+            
+>>>>>>> 5568a58ff9ded19200c7f161b6d43e7bc50b637c
 
             Statement stm = connexion.createStatement();
             ResultSet resultat = stm.executeQuery(query);
@@ -285,7 +295,11 @@ public class ServiceUser implements iServicesUser  {
                 System.out.println(user.getRole());
                 if(resultat.getInt("enabled")==1){user.setStatus("true");}
                 else{user.setStatus("false");}
+<<<<<<< HEAD
 
+=======
+                System.out.println("Affichage systeme"+user.getStatus()+"Affichage");
+>>>>>>> 5568a58ff9ded19200c7f161b6d43e7bc50b637c
                 user.setJeton(resultat.getInt("jeton"));
                 user.setNationalite(resultat.getString("nationalite"));
                 user.setNum(resultat.getString("num"));

@@ -9,6 +9,9 @@
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
 <<<<<<< HEAD
+    <jar href="Essai.jar" size="88009897" download="eager" />
+=======
+<<<<<<< HEAD
     <jar href="Essai.jar" size="72607172" download="eager" />
 =======
 <<<<<<< HEAD
@@ -17,17 +20,22 @@
     <jar href="Essai.jar" size="72607259" download="eager" />
 >>>>>>> ccc2bdf2691f6bff288eace049d6e5cb64e0c432
 >>>>>>> b7a08ef1692ed67ced5e35c7d18a05268a7a1055
+>>>>>>> ec9dc8bcfbf7b79ea1eeab939048b16548bd8287
     <jar href="lib\GMapsFX-2.12.0-sources.jar" size="180752" download="eager" />
     <jar href="lib\GMapsFX-2.12.0.jar" size="207618" download="eager" />
+    <jar href="lib\commons-codec-1.10.jar" size="284184" download="eager" />
+    <jar href="lib\commons-collections4-4.1.jar" size="751238" download="eager" />
+    <jar href="lib\commons-logging-1.2.jar" size="61829" download="eager" />
     <jar href="lib\controlsfx-8.40.14.jar" size="1215643" download="eager" />
     <jar href="lib\controlsfx-samples-8.40.14.jar" size="725707" download="eager" />
     <jar href="lib\curvesapi-1.04.jar" size="98365" download="eager" />
     <jar href="lib\fxsampler-1.0.10.jar" size="30882" download="eager" />
     <jar href="lib\itextpdf-5.1.0.jar" size="1614453" download="eager" />
-    <jar href="lib\jbcrypt-0.3m.jar" size="17750" download="eager" />
     <jar href="lib\jfoenix-1.1.0.jar" size="2312030" download="eager" />
     <jar href="lib\jfoenix-9.0.1.jar" size="2143605" download="eager" />
     <jar href="lib\jsoup-1.11.2.jar" size="392350" download="eager" />
+    <jar href="lib\junit-4.12.jar" size="314932" download="eager" />
+    <jar href="lib\log4j-1.2.17.jar" size="489884" download="eager" />
     <jar href="lib\logback-classic-1.2.1.jar" size="310442" download="eager" />
     <jar href="lib\logback-core-1.2.1.jar" size="473113" download="eager" />
     <jar href="lib\mail.jar" size="521000" download="eager" />

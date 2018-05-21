@@ -2,6 +2,13 @@
 <repertoire>
   <personne>
 <<<<<<< HEAD
+    <nom>aaaa</nom>
+    <prenom>aaaa</prenom>
+    <mail>hedi@triptop.direct</mail>
+    <pseudo>aaaa</pseudo>
+    <mdp>aaaa</mdp>
+=======
+<<<<<<< HEAD
     <nom>admin2</nom>
     <prenom>admin2</prenom>
     <mail>hedi.hamza@esprit.tn</mail>
@@ -19,23 +26,16 @@
     <mail>hhh@gmail.com</mail>
     <pseudo>hhhh</pseudo>
     <mdp>hhhh</mdp>
+>>>>>>> ec9dc8bcfbf7b79ea1eeab939048b16548bd8287
     <role>Utilisateur</role>
-    <nationalite>Tunisien</nationalite>
-    <jeton>17</jeton>
-    <status>status</status>
-    <num>5555555565</num>
-=======
-    <nom>esprit</nom>
-    <prenom>esprit</prenom>
-    <mail>nader.tounekti@esprit.tn</mail>
-    <pseudo>esprit</pseudo>
-    <mdp>esprit</mdp>
-    <role>Utilisateur</role>
-    <nationalite>Marocain</nationalite>
-    <jeton>54</jeton>
+    <nationalite>Tunisie</nationalite>
+    <jeton>18</jeton>
     <status>true</status>
     <num>50649211</num>
+<<<<<<< HEAD
+=======
 >>>>>>> ccc2bdf2691f6bff288eace049d6e5cb64e0c432
 >>>>>>> b7a08ef1692ed67ced5e35c7d18a05268a7a1055
+>>>>>>> ec9dc8bcfbf7b79ea1eeab939048b16548bd8287
   </personne>
 </repertoire>
